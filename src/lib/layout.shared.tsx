@@ -3,7 +3,7 @@ import { RssIcon } from 'lucide-react'
 import Image from 'next/image'
 import { ThemeToggle } from '@/components/theme-toggle'
 
-export const title = 'Starter Kit'
+export const title = 'BS NOTES'
 
 export const logo = (
   <>
