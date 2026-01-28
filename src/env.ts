@@ -12,7 +12,8 @@ export const env = createEnv({
     NEXT_PUBLIC_BASE_URL: z.preprocess(
       (val) =>
         val ??
-        (process.env.NODE_ENV !== 'production' ? 'http://localhost:3000' : val),
+        (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : undefined) ??
+        (process.env.NODE_ENV !== 'production' ? 'http://localhost:3000' : undefined),
       z.url()
     ),
   },
