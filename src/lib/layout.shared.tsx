@@ -29,7 +29,7 @@ export const linkItems: LinkItemType[] = [
   },
   {
     type: 'icon',
-    url: 'https://github.com/techwithanirudh/fumadocs-starter',
+    url: 'https://github.com/muhammadehtishamhashim/bs-notes',
     text: 'Github',
     icon: (
       <svg fill='currentColor' role='img' viewBox='0 0 24 24'>
