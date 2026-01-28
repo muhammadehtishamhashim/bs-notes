@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { env } from '@/env'
+
 import { title } from '@/lib/layout.shared'
 import type { Page } from './source'
 
@@ -34,6 +34,6 @@ export function getPageImage(page: Page) {
 }
 
 export const baseUrl =
-  env.NODE_ENV === 'development' || !env.NEXT_PUBLIC_BASE_URL
+  process.env.NODE_ENV === 'development' || !process.env.NEXT_PUBLIC_BASE_URL
     ? new URL('http://localhost:3000')
-    : new URL(env.NEXT_PUBLIC_BASE_URL)
+    : new URL(process.env.NEXT_PUBLIC_BASE_URL)

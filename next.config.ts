@@ -7,7 +7,7 @@ async function createNextConfig(): Promise<NextConfig> {
   const { createJiti } = await import('jiti')
   const jiti = createJiti(fileURLToPath(import.meta.url))
 
-  await jiti.import('./src/env')
+
 
   const nextConfig: NextConfig = {
     reactStrictMode: true,
