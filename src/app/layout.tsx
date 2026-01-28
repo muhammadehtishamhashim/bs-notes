@@ -23,8 +23,8 @@ const mono = Geist_Mono({
 
 export const metadata = createMetadata({
   title: {
-    template: '%s | Starter Kit',
-    default: 'Starter Kit',
+    template: '%s | BS NOTES',
+    default: 'BS NOTES',
   },
   description: 'The Next.js framework for building documentation sites',
   metadataBase: baseUrl,
