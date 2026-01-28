@@ -9,7 +9,7 @@ import {
   stepCountIs,
   streamText,
 } from 'ai'
-import { env } from '@/env'
+
 import type { MyUIMessage } from './types'
 import { getLLMsTxt } from './utils/llms'
 import { systemPrompt } from './utils/prompts'
@@ -25,7 +25,7 @@ export async function POST(request: Request) {
     } = await request.json()
 
     const handleStreamError = (error: unknown) => {
-      if (env.NODE_ENV !== 'production') {
+      if (process.env.NODE_ENV !== 'production') {
         console.error('An error occurred:', {
           name: (error as Error).name,
           message: (error as Error).message,
@@ -70,7 +70,7 @@ export async function POST(request: Request) {
           }),
           stopWhen: stepCountIs(15),
           onStepFinish: ({ toolResults }) => {
-            if (env.NODE_ENV !== 'production') {
+            if (process.env.NODE_ENV !== 'production') {
               console.log(
                 `Step Results: ${JSON.stringify(toolResults, null, 2)}`
               )
@@ -88,7 +88,7 @@ export async function POST(request: Request) {
 
     return createUIMessageStreamResponse({ stream })
   } catch (error) {
-    if (env.NODE_ENV !== 'production') {
+    if (process.env.NODE_ENV !== 'production') {
       console.error('Failed to process chat request:', {
         name: (error as Error).name,
         message: (error as Error).message,
