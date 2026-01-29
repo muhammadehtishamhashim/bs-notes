@@ -131,3 +131,20 @@ header &[data-search-full] {
 #nd-page {
   @apply @container;
 }
+
+@media (max-width: 768px) {
+  /* Disable Twoslash popups on mobile as they cause layout shifts/stuttering and are not touch-friendly */
+  .twoslash-popup-container,
+  .twoslash-popup-info,
+  .twoslash-query-presisted {
+    display: none !important;
+    pointer-events: none !important;
+    visibility: hidden !important;
+  }
+  
+  /* Optimize scrolling for code blocks */
+  pre, .prose pre {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+  }
+}
