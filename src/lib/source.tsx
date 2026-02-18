@@ -1,4 +1,4 @@
-import { docs } from 'fumadocs-mdx:collections/server'
+import { bsCs, bsMaths, bsPhy, docs } from 'fumadocs-mdx:collections/server'
 import {
   type InferMetaType,
   type InferPageType,
@@ -14,6 +14,24 @@ export const source = loader({
   baseUrl: '/docs',
   plugins: [pageTreeCodeTitles(), lucideIconsPlugin(), openapiPlugin()],
   source: docs.toFumadocsSource(),
+})
+
+export const bsCsSource = loader({
+  baseUrl: '/bs-cs',
+  plugins: [pageTreeCodeTitles(), lucideIconsPlugin(), openapiPlugin()],
+  source: bsCs.toFumadocsSource(),
+})
+
+export const bsPhySource = loader({
+  baseUrl: '/bs-phy',
+  plugins: [pageTreeCodeTitles(), lucideIconsPlugin(), openapiPlugin()],
+  source: bsPhy.toFumadocsSource(),
+})
+
+export const bsMathsSource = loader({
+  baseUrl: '/bs-maths',
+  plugins: [pageTreeCodeTitles(), lucideIconsPlugin(), openapiPlugin()],
+  source: bsMaths.toFumadocsSource(),
 })
 
 function pageTreeCodeTitles(): LoaderPlugin {

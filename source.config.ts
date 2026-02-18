@@ -10,14 +10,48 @@ import type { ElementContent } from 'hast'
 import type { ShikiTransformer } from 'shiki'
 import { z } from 'zod'
 
-export const docs = defineDocs({
+export const { docs, bsCs, bsPhy, bsMaths, meta } = defineDocs({
   docs: {
+    dir: 'content/docs',
     schema: frontmatterSchema.extend({
       index: z.boolean().default(false),
       /**
        * API routes only
        */
       method: z.string().optional(),
+    }),
+    postprocess: {
+      includeProcessedMarkdown: true,
+      extractLinkReferences: true,
+    },
+    async: true,
+  },
+  bsCs: {
+    dir: 'content/bs-cs',
+    schema: frontmatterSchema.extend({
+      index: z.boolean().default(false),
+    }),
+    postprocess: {
+      includeProcessedMarkdown: true,
+      extractLinkReferences: true,
+    },
+    async: true,
+  },
+  bsPhy: {
+    dir: 'content/bs-phy',
+    schema: frontmatterSchema.extend({
+      index: z.boolean().default(false),
+    }),
+    postprocess: {
+      includeProcessedMarkdown: true,
+      extractLinkReferences: true,
+    },
+    async: true,
+  },
+  bsMaths: {
+    dir: 'content/bs-maths',
+    schema: frontmatterSchema.extend({
+      index: z.boolean().default(false),
     }),
     postprocess: {
       includeProcessedMarkdown: true,

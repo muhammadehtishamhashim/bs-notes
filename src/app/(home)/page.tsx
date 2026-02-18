@@ -1,6 +1,6 @@
 'use client'
 
-import { Atom, Binary, BookIcon, Calculator, WebhookIcon } from 'lucide-react'
+import { Atom, Binary, Calculator } from 'lucide-react'
 import DocsBackground from '@/components/docs-background'
 import Link from 'next/link'
 import { cn } from '@/lib/cn'
@@ -8,20 +8,6 @@ import type { ReactElement } from 'react'
 import { Major, Majors } from '@/components/ui/majors'
 
 const majors: Major[] = [
-  {
-    title: 'Documentation',
-    description: 'Get started with the Fumadocs framework.',
-    href: '/docs',
-    icon: <BookIcon className='size-full' />,
-    id: '(index)',
-  },
-  {
-    title: 'API Reference',
-    description: "Get started with Fumadocs's API reference feature.",
-    href: '/docs/api-reference',
-    icon: <WebhookIcon className='size-full' />,
-    id: 'api-reference',
-  },
   {
     title: 'BS Computer Science',
     description: 'Bachelor of Science in Computer Science.',
@@ -85,7 +71,7 @@ export default function DocsPage(): ReactElement {
              <div className="mb-6 flex items-center justify-between">
                 <h2 className="text-2xl font-bold tracking-tight">Browse Majors</h2>
              </div>
-            <Majors majors={majors} enabledIds={['(index)', 'api-reference', 'bs-cs']} />
+            <Majors majors={majors} enabledIds={['bs-cs', 'bs-phy', 'bs-maths']} />
         </div>
       </div>
     </main>
