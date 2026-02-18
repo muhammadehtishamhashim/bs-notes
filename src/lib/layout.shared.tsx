@@ -53,7 +53,7 @@ export function baseOptions(): BaseLayoutProps {
       title: (
         <>
           {logo}
-          <span className='font-medium [header_&]:text-[15px]'>{title}</span>
+          <span className='font-medium in-[header]:text-[15px]'>{title}</span>
         </>
       ),
       transparentMode: 'top',

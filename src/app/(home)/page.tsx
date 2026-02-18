@@ -56,7 +56,7 @@ export default function HomePage(): ReactElement {
         <h1 className='font-bold text-5xl tracking-tight sm:text-7xl'>
           BS Computer Science
           <br />
-          <span className='bg-gradient-to-r from-fd-primary to-fd-foreground/60 bg-clip-text text-transparent'>
+          <span className='bg-linear-to-r from-fd-primary to-fd-foreground/60 bg-clip-text text-transparent'>
             Semester 4
           </span>
         </h1>
