@@ -1,3 +1,11 @@
 {
-  "pages": ["(index)", "api-reference", "changelog"]
+  "$schema": "../../.source/json-schema/docs.meta.json",
+  "pages": [
+    "automata",
+    "applied-phy",
+    "linear-alg",
+    "comp-org",
+    "info-sec",
+    "adv-db"
+  ]
 }
