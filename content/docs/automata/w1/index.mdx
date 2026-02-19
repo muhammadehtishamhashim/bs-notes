@@ -2,12 +2,30 @@
 title: Week 1
 ---
 
+import { WeekOverview } from '@/components/week-overview';
+
 # Theory of Automata - Week 1
 
-Here is a math example to verify KaTeX support:
+<WeekOverview
+  title="Introduction & Basics"
+  description="In this week, we will cover the fundamental concepts of Automata Theory, including Finite State Models and language definitions."
+  modules={[
+    {
+      title: "Introduction",
+      description: "Overview of Automata Theory, core concepts, and why we study it.",
+      link: "/docs/automata/w1/introduction"
+    },
+    {
+      title: "Finite State Models",
+      description: "Understanding Finite Automata (FA), states, transitions, and operations.",
+      link: "/docs/automata/w1/finite-state-models"
+    },
+    {
+      title: "Language Definitions",
+      description: "Preliminaries on Alphabets, Strings, Operations, and Languages.",
+      link: "/docs/automata/w1/language-definitions"
+    }
+  ]}
+/>
 
-$$
-L = \{ a^n b^n \mid n \ge 0 \}
-$$
 
-Inline math: $E = mc^2$
