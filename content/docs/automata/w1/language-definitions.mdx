@@ -3,30 +3,30 @@ title: Language Definitions
 description: Preliminaries on Alphabets, Strings, and Languages.
 ---
 
-# Preliminaries
+## Preliminaries
 
-## 1. Alphabet ($\Sigma$)
+### 1. Alphabet ($\Sigma$)
 A finite, non-empty set of symbols or characters.
 * **Binary:** $\Sigma = \{0, 1\}$
 * **English:** $\Sigma = \{a, b, c, \dots, z\}$
 * **Special:** $\Sigma = \{+, -, \times, \div, =\}$
 
-## 2. String ($w$)
+### 2. String ($w$)
 A finite sequence of symbols chosen from a specific alphabet.
 * **Example:** If $\Sigma = \{0, 1\}$, then $w = 0110$ is a string.
 * **Empty String ($\epsilon$ or $\lambda$):** A string with zero occurrences of symbols. Length is 0.
 
-## 3. Length of String ($|w|$)
+### 3. Length of String ($|w|$)
 The total number of symbols in a string.
 * $|w| = \text{count of characters}$
 * $|\epsilon| = 0$
 
-## 4. Concatenation
+### 4. Concatenation
 Appending one string to the end of another.
 * If $w_1 = abc$ and $w_2 = de$, then $w_1w_2 = abcde$.
 * **Property:** $|w_1w_2| = |w_1| + |w_2|$
 
-## 5. Language ($L$)
+### 5. Language ($L$)
 A set of strings formed using a specific alphabet, usually defined by a rule.
 * **Example 1:** $L_1 = \{ \text{strings starting with 'a'} \}$ over $\Sigma = \{a, b\}$.
 * **Example 2:** $L_2 = \{ \epsilon, 0, 00, 11, \dots \}$ (strings with pattern rules).
