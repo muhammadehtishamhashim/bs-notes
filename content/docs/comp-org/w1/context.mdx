@@ -1,0 +1,49 @@
+---
+title: The Role of Context
+description: Why the same bits mean different things in different files.
+---
+
+## "Information = Bits + Context"
+
+If you open the memory of a computer and look at a sequence of bits (e.g., `01000001`), strictly speaking, it is just a number. It has no inherent meaning until we apply **context**.
+
+Context is provided by:
+
+1. The file extension (telling the OS how to open it).
+2. The file header (internal metadata).
+3. The program reading the data.
+
+---
+
+## Example: The Same Sequence
+
+Imagine we have the binary sequence for the decimal number **65** (`01000001`).
+
+### 1. In a Text File (.txt)
+
+If this byte is inside `hello.txt`, the text editor looks at the context (ASCII/UTF-8 encoding) and renders the letter:
+
+> **A**
+
+### 2. In an Image File (.jpg or .bmp)
+
+If this byte is inside an image file, it might represent a color value. For example, it could be the "Red" channel intensity of a single pixel:
+
+> **Red Value: 65 (Dark Red)**
+
+### 3. In a Machine Code File (.exe)
+
+If this byte is fed directly to the CPU as an instruction (in x86 architecture), `0x41` stands for:
+
+> **INC ECX** (Increment the ECX register by 1)
+
+## Summary Table
+
+| Context (File Type) | Data Interpretation | Result | 
+| :--- | :--- | :--- | 
+| **Source Code (.c, .cpp)** | Text Characters | `int main() { ... }` | 
+| **Executable (.exe)** | Machine Instructions | CPU performs addition/movement | 
+| **Image (.png)** | Pixel Data | Colors on screen | 
+| **Audio (.mp3)** | Sound Waves | Music/Voice | 
+
+> **Takeaway:** The hardware stores the bits, but the software provides the context. Without context, data is meaningless.
