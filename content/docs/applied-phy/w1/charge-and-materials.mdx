@@ -1,0 +1,224 @@
+---
+title: Charge, Materials & Ionization
+description: Introduction to fundamental charge, atomic structure, and the process of ionization.
+---
+
+# Fundamental Charge
+
+All matter is made up of atoms, which contain charged particles.
+
+* **Electron ($-e$)**: Has a negative charge of $-1.6 \times 10^{-19} \text{ C}$
+* **Proton ($+e$)**: Has a positive charge of $+1.6 \times 10^{-19} \text{ C}$
+* **Nucleus**: The central part of the atom is positively charged (contains protons and neutrons).
+
+The formula for total charge is:
+$$Q = \pm ne$$
+*(Where $n$ is an integer and $e$ is the elementary charge)*
+
+## Material Classification
+
+We can classify materials based on their atomic structure, specifically their **valence electrons** (electrons in the outermost shell):
+
+* **Conductor**: Material where valence electrons are **less than 4**.
+* **Insulator**: Material where valence electrons are **more than 4**.
+
+<div className="my-8 grid grid-cols-1 md:grid-cols-2 gap-6 relative z-0">
+  {/* Conductor Card */}
+  <div className="rounded-xl border border-blue-500/20 bg-blue-500/5 p-6 flex flex-col items-center shadow-sm relative overflow-hidden group">
+    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-400 to-blue-600"></div>
+    <h3 className="text-xl font-bold text-blue-500 mb-2">Conductor (e.g., Copper)</h3>
+    <p className="text-sm text-muted-foreground mb-6 text-center">&lt; 4 Valence Electrons</p>
+    
+    <div className="relative w-32 h-32 flex items-center justify-center">
+      {/* Nucleus */}
+      <div className="w-12 h-12 rounded-full bg-blue-500 text-white flex items-center justify-center font-bold absolute z-10 shadow-[0_0_15px_rgba(59,130,246,0.6)]">
+        Cu
+      </div>
+      {/* Outer Shell */}
+      <div className="w-full h-full rounded-full border-2 border-dashed border-blue-500/30 animate-[spin_10s_linear_infinite]">
+        {/* Valence Electron */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-blue-400 shadow-[0_0_8px_rgba(96,165,250,0.8)]"></div>
+      </div>
+    </div>
+    <div className="mt-6 bg-background rounded p-2 text-xs font-mono text-center w-full border border-blue-500/20 text-blue-400">
+      1 loosely bound valence electron
+    </div>
+  </div>
+
+  {/* Insulator Card */}
+  <div className="rounded-xl border border-red-500/20 bg-red-500/5 p-6 flex flex-col items-center shadow-sm relative overflow-hidden group">
+    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-red-400 to-red-600"></div>
+    <h3 className="text-xl font-bold text-red-500 mb-2">Insulator (e.g., Neon)</h3>
+    <p className="text-sm text-muted-foreground mb-6 text-center">&gt; 4 Valence Electrons</p>
+    
+    <div className="relative w-32 h-32 flex items-center justify-center">
+      {/* Nucleus */}
+      <div className="w-12 h-12 rounded-full bg-red-500 text-white flex items-center justify-center font-bold absolute z-10 shadow-[0_0_15px_rgba(239,68,68,0.6)]">
+        Ne
+      </div>
+      {/* Outer Shell */}
+      <div className="w-full h-full rounded-full border-2 border-dashed border-red-500/30">
+        {/* Valence Electrons (8 for Neon) */}
+        {[...Array(8)].map((_, i) => (
+          <div key={i} className="absolute w-4 h-4 rounded-full bg-red-400 shadow-[0_0_8px_rgba(248,113,113,0.8)]" 
+               style={{ 
+                 top: `calc(50% - 2px - ${Math.cos((i * 45 * Math.PI) / 180) * 64}px)`, 
+                 left: `calc(50% - 8px + ${Math.sin((i * 45 * Math.PI) / 180) * 64}px)` 
+               }}>
+          </div>
+        ))}
+      </div>
+    </div>
+    <div className="mt-6 bg-background rounded p-2 text-xs font-mono text-center w-full border border-red-500/20 text-red-400">
+      8 tightly bound valence electrons
+    </div>
+  </div>
+</div>
+
+---
+
+## Atomic Example: Sodium (Na)
+
+Let's look at a Sodium atom:
+* **Mass No.**: 23
+* **Atomic No.**: 11 (meaning 11 protons and 11 electrons in a neutral state)
+
+<div className="my-8 flex justify-center relative z-0">
+  <div className="relative w-64 h-64 flex items-center justify-center bg-card rounded-2xl border shadow-inner p-4">
+    {/* Nucleus */}
+    <div className="absolute w-12 h-12 rounded-full bg-primary text-primary-foreground flex flex-col items-center justify-center font-bold z-10 shadow-lg text-xs">
+      <span>Na</span>
+      <span className="text-[0.6rem] font-normal opacity-80">11p+</span>
+    </div>
+    
+    {/* Shell 1 (K) - 2 electrons */}
+    <div className="absolute w-24 h-24 rounded-full border border-muted-foreground/30">
+      <div className="absolute -top-1.5 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-yellow-400 shadow-sm border border-yellow-600"></div>
+      <div className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-yellow-400 shadow-sm border border-yellow-600"></div>
+    </div>
+
+    {/* Shell 2 (L) - 8 electrons */}
+    <div className="absolute w-40 h-40 rounded-full border border-muted-foreground/30">
+       {[...Array(8)].map((_, i) => (
+          <div key={i} className="absolute w-3 h-3 rounded-full bg-yellow-400 shadow-sm border border-yellow-600" 
+               style={{ 
+                 top: `calc(50% - 1.5px - ${Math.cos((i * 45 * Math.PI) / 180) * 80}px)`, 
+                 left: `calc(50% - 6px + ${Math.sin((i * 45 * Math.PI) / 180) * 80}px)` 
+               }}>
+          </div>
+        ))}
+    </div>
+
+    {/* Shell 3 (M) - 1 valence electron */}
+    <div className="absolute w-56 h-56 rounded-full border-2 border-dashed border-primary/40 animate-[spin_20s_linear_infinite]">
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-destructive shadow-[0_0_10px_rgba(220,38,38,0.8)] border border-destructive ring-2 ring-destructive/30"></div>
+    </div>
+  </div>
+</div>
+
+## Ionization
+
+**Definition**: Removing or adding an electron from the outermost shell of an atom.
+
+When this process occurs, the material becomes ionized. Let's compare a stable material to an ionized material using our Sodium example.
+
+### 1. Stable Material (Neutral Na)
+In a stable, neutral atom, the number of protons equals the number of electrons.
+$$\text{Net Charge} = -11e \text{ (electrons)} + 11e \text{ (protons)}$$
+$$\text{Net Charge} = 0$$
+
+### 2. Ionized Material (Na+)
+If the Sodium atom loses its outermost valence electron (1 electron leaves):
+$$\text{Net Charge} = +11e \text{ (protons)} - 10e \text{ (remaining electrons)}$$
+$$\text{Net Charge} = +1e$$
+
+<div className="my-8 rounded-xl border bg-card overflow-hidden shadow-sm flex flex-col md:flex-row relative z-0">
+  {/* Legend Panel */}
+  <div className="w-full md:w-56 bg-muted/20 border-b md:border-b-0 md:border-r p-6 flex items-center justify-center md:items-start flex-col shrink-0 gap-4">
+    <h4 className="font-bold text-lg text-foreground m-0 hidden md:block">Ionization</h4>
+    <div className="flex flex-row md:flex-col gap-4 md:gap-3 flex-wrap justify-center">
+      <div className="flex items-center gap-2">
+        <div className="w-4 h-4 rounded-full bg-purple-500 shadow-sm border border-purple-700"></div>
+        <span className="text-sm font-medium text-purple-600 dark:text-purple-400">Proton</span>
+      </div>
+      <div className="flex items-center gap-2">
+        <div className="w-4 h-4 rounded-full bg-amber-500 shadow-sm border border-amber-700"></div>
+        <span className="text-sm font-medium text-amber-600 dark:text-amber-400">Neutron</span>
+      </div>
+      <div className="flex items-center gap-2">
+        <div className="w-4 h-4 rounded-full bg-teal-400 shadow-[0_0_6px_rgba(45,212,191,0.8)]"></div>
+        <span className="text-sm font-medium text-teal-600 dark:text-teal-400">Electron</span>
+      </div>
+      <div className="flex items-center gap-2 md:mt-2 md:pt-3 md:border-t border-border/50">
+        <svg className="w-5 h-5 text-orange-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        <span className="text-sm font-medium text-orange-600 dark:text-orange-400">Energy</span>
+      </div>
+    </div>
+  </div>
+
+  {/* Main Atom Visualization */}
+  <div className="flex-1 p-8 md:p-12 flex items-center justify-center relative min-h-[350px] overflow-hidden bg-background/50">
+    
+    {/* Energy Input Arrow */}
+    <div className="absolute left-2 md:left-8 top-1/2 -translate-y-1/2 flex items-center gap-2 text-orange-500 z-10 animate-pulse">
+      <span className="font-bold uppercase tracking-wider text-xs hidden sm:block">Energy</span>
+      <svg className="w-12 h-6 md:w-16 md:h-8" viewBox="0 0 48 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M0 12h40M30 4l10 8-10 8"/>
+      </svg>
+    </div>
+
+    {/* The Atom Container */}
+    <div className="relative w-[280px] h-[280px] flex items-center justify-center">
+      
+      {/* Orbit 1 */}
+      <div className="absolute w-[260px] h-[80px] rounded-[50%] border-2 border-primary/20 rotate-[30deg]">
+        <div className="absolute -top-[9px] left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-teal-400 shadow-[0_0_8px_rgba(45,212,191,0.8)]"></div>
+        <div className="absolute -bottom-[9px] left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-teal-400 shadow-[0_0_8px_rgba(45,212,191,0.8)]"></div>
+      </div>
+
+      {/* Orbit 2 */}
+      <div className="absolute w-[260px] h-[80px] rounded-[50%] border-2 border-primary/20 -rotate-[30deg]">
+        <div className="absolute top-1/2 -left-[9px] -translate-y-1/2 w-4 h-4 rounded-full bg-teal-400 shadow-[0_0_8px_rgba(45,212,191,0.8)]"></div>
+        <div className="absolute top-1/2 -right-[9px] -translate-y-1/2 w-4 h-4 rounded-full bg-teal-400 shadow-[0_0_8px_rgba(45,212,191,0.8)]"></div>
+      </div>
+
+      {/* Orbit 3 (Vertical) */}
+      <div className="absolute w-[260px] h-[80px] rounded-[50%] border-2 border-primary/20 rotate-90">
+        <div className="absolute -top-[9px] left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-teal-400 shadow-[0_0_8px_rgba(45,212,191,0.8)]"></div>
+        <div className="absolute -bottom-[9px] left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-teal-400 shadow-[0_0_8px_rgba(45,212,191,0.8)]"></div>
+      </div>
+      
+      {/* The Nucleus (Cluster of Protons/Neutrons) */}
+      <div className="absolute z-10 w-12 h-12 flex items-center justify-center">
+        <div className="absolute top-[10%] left-[25%] w-4 h-4 rounded-full bg-purple-500 shadow-sm border border-black/20"></div>
+        <div className="absolute top-[35%] left-[10%] w-4 h-4 rounded-full bg-amber-500 shadow-sm border border-black/20"></div>
+        <div className="absolute top-[45%] left-[40%] w-4 h-4 rounded-full bg-purple-500 shadow-sm border border-black/20"></div>
+        <div className="absolute top-[15%] left-[55%] w-4 h-4 rounded-full bg-amber-500 shadow-sm border border-black/20"></div>
+        <div className="absolute top-[65%] left-[20%] w-4 h-4 rounded-full bg-purple-500 shadow-sm border border-black/20"></div>
+        <div className="absolute top-[35%] left-[65%] w-4 h-4 rounded-full bg-amber-500 shadow-sm border border-black/20"></div>
+        <div className="absolute top-[60%] left-[55%] w-4 h-4 rounded-full bg-purple-500 shadow-sm border border-black/20"></div>
+        <div className="absolute top-[25%] left-[40%] w-4 h-4 rounded-full bg-amber-500 shadow-sm border border-black/20 z-10"></div>
+      </div>
+
+      {/* Ejection Effect & Free Electron */}
+      <div className="absolute z-20" style={{ left: '200px', top: '70px' }}>
+        {/* Spark at the origin of ejection (Hollow circle) */}
+        <div className="absolute top-0 left-0 w-6 h-6 border-[3px] border-orange-500 rounded-full shadow-[0_0_15px_rgba(249,115,22,1)] -translate-x-1/2 -translate-y-1/2 animate-pulse">
+        </div>
+        
+        {/* Dashed Line to Free Electron */}
+        <svg className="absolute top-0 left-0 overflow-visible text-orange-500 z-0">
+           <path d="M 0 0 L 50 -50" fill="none" stroke="currentColor" strokeWidth="2.5" strokeDasharray="6 4" />
+           <path d="M 35 -50 L 50 -50 L 50 -35" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+
+        {/* Free Electron */}
+        <div className="absolute z-10 w-5 h-5 rounded-full bg-teal-400 shadow-[0_0_12px_rgba(45,212,191,1)] flex items-center justify-center font-bold text-teal-950" style={{ left: '50px', top: '-50px', transform: 'translate(-50%, -50%)' }}>
+           <span className="text-[10px]">-</span>
+        </div>
+        <span className="absolute text-xs md:text-sm font-bold text-teal-600 dark:text-teal-400 whitespace-nowrap" style={{ left: '65px', top: '-60px' }}>Free Electron</span>
+      </div>
+
+    </div>
+  </div>
+</div>

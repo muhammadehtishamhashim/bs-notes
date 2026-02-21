@@ -1,0 +1,151 @@
+---
+title: Electric Force & Applications
+description: Coulomb's Law, real-world applications of electric force, and related problem-solving.
+---
+
+# Electric Force
+
+When two charged particles are brought near each other, they exert a force on one another. This is governed by **Coulomb's Law**.
+
+* **Like charges** repel each other (e.g., proton and proton).
+* **Unlike charges** attract each other (e.g., proton and electron).
+
+## Coulomb's Law Formula
+
+The magnitude of the electrostatic force ($F$) between two point charges ($q_1$ and $q_2$) is directly proportional to the product of the magnitudes of the charges and inversely proportional to the square of the distance ($r$) between them.
+
+$$F = k \frac{|q_1 \times q_2|}{r^2}$$
+
+Where:
+* $F$ is the electric force (Newtons, N)
+* $k$ is Coulomb's constant ($\approx 8.99 \times 10^9 \text{ N}\cdot\text{m}^2/\text{C}^2$)
+* $q_1, q_2$ are the amounts of charge (Coulombs, C)
+* $r$ is the distance between the centers of the charges (Meters, m)
+
+<div className="my-8 p-6 rounded-xl border bg-card/50 flex flex-col items-center relative z-0">
+  <div className="relative w-full max-w-md h-32 flex items-center justify-between px-8">
+    {/* Charge 1 */}
+    <div className="relative z-10 flex flex-col items-center">
+      <div className="w-16 h-16 rounded-full bg-blue-500/20 border-2 border-blue-500 flex items-center justify-center text-blue-500 font-bold text-xl shadow-[0_0_15px_rgba(59,130,246,0.5)]">
+        +<span className="text-sm ml-1">q₁</span>
+      </div>
+      {/* Force Vector (Repulsion assumed for visual) */}
+      <div className="hidden md:flex absolute top-1/2 -left-12 -translate-y-1/2 items-center text-blue-500">
+        <div className="w-0 h-0 border-y-4 border-y-transparent border-r-[8px] border-r-blue-500"></div>
+        <div className="w-8 h-0.5 bg-blue-500"></div>
+        <span className="absolute -top-6 -left-2 text-sm font-bold">F</span>
+      </div>
+    </div>
+
+    {/* Distance r */}
+    <div className="flex-1 mx-4 flex flex-col items-center justify-center relative">
+      <span className="text-muted-foreground font-mono mb-2">r</span>
+      <div className="w-full border-t-2 border-dashed border-muted-foreground/50"></div>
+    </div>
+
+    {/* Charge 2 */}
+    <div className="relative z-10 flex flex-col items-center">
+      <div className="w-16 h-16 rounded-full bg-blue-500/20 border-2 border-blue-500 flex items-center justify-center text-blue-500 font-bold text-xl shadow-[0_0_15px_rgba(59,130,246,0.5)]">
+        +<span className="text-sm ml-1">q₂</span>
+      </div>
+      {/* Force Vector (Repulsion assumed for visual) */}
+      <div className="absolute top-1/2 -right-12 -translate-y-1/2 flex items-center text-blue-500">
+        <div className="w-8 h-0.5 bg-blue-500"></div>
+        <div className="w-0 h-0 border-y-4 border-y-transparent border-l-[8px] border-l-blue-500"></div>
+        <span className="absolute -top-6 right-0 text-sm font-bold">F</span>
+      </div>
+    </div>
+  </div>
+  <p className="text-sm text-muted-foreground mt-4 text-center">
+    Like charges repel. The force vectors <strong>F</strong> point away from each other.
+  </p>
+</div>
+
+---
+
+## Real-World Applications
+
+Electric force isn't just theory; it is utilized in numerous modern technologies:
+
+1.  **Laser Printers & Photocopiers**: Use static electricity and electric force to attract negatively charged toner particles to positively charged areas on a drum, transferring the image to paper.
+2.  **Electrostatic Precipitators**: Used in smokestacks to reduce pollution. They impart a negative charge to smoke particles, which are then attracted by electric force to positively charged collection plates.
+3.  **Powder Coating / Paint Spraying**: Paint droplets are given a charge as they leave the nozzle, and the object being painted is grounded or given the opposite charge. The electric force ensures an even, efficient coat of paint that wraps around the object.
+
+---
+
+## Related Problem: Calculating Force
+
+**Problem Statement:**
+Two point charges, $q_1 = +2 \times 10^{-6} \text{ C}$ and $q_2 = -3 \times 10^{-6} \text{ C}$, are separated by a distance of $0.05 \text{ m}$. Calculate the electric force between them and state whether it is attractive or repulsive.
+
+**Solution:**
+1.  **Identify given values:**
+    * $q_1 = 2 \times 10^{-6} \text{ C}$
+    * $q_2 = 3 \times 10^{-6} \text{ C}$ (use magnitude for the formula)
+    * $r = 0.05 \text{ m}$
+    * $k = 8.99 \times 10^9 \text{ N}\cdot\text{m}^2/\text{C}^2$
+
+2.  **Apply Coulomb's Law:**
+    $$F = (8.99 \times 10^9) \frac{(2 \times 10^{-6}) \times (3 \times 10^{-6})}{(0.05)^2}$$
+    $$F = (8.99 \times 10^9) \frac{6 \times 10^{-12}}{0.0025}$$
+    $$F = 21.576 \text{ Newtons}$$
+
+**Conclusion:**
+Because $q_1$ is positive and $q_2$ is negative, the forces are **attractive**. The force magnitude is $21.576 \text{ N}$.
+
+<div className="my-8 rounded-xl border bg-gradient-to-br from-card to-muted/20 shadow-sm overflow-hidden relative z-0">
+  <div className="bg-primary/10 border-b p-4">
+    <h3 className="text-lg font-bold text-primary flex items-center gap-2 m-0">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><path d="M8 13h2"/><path d="M8 17h2"/><path d="M14 13h2"/><path d="M14 17h2"/></svg>
+      Problem Visualization
+    </h3>
+  </div>
+  
+  <div className="p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-8">
+    
+    {/* The Math/Answer Box */}
+    <div className="flex-1 w-full bg-card rounded-lg border-2 border-primary/20 p-5 shadow-inner">
+      <div className="text-sm text-muted-foreground uppercase tracking-widest mb-2 font-semibold">Final Answer</div>
+      <div className="font-mono text-3xl font-bold tracking-tight text-foreground flex items-baseline gap-2">
+        21.576
+        <span className="text-primary text-xl font-sans">Newtons</span>
+      </div>
+      <div className="mt-3 inline-flex items-center gap-1.5 bg-green-500/10 text-green-500 px-3 py-1 rounded-full text-sm font-medium border border-green-500/20">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12h8"/><path d="M12 8v8"/></svg>
+        Attractive Force
+      </div>
+    </div>
+
+    {/* The Diagram */}
+    <div className="flex-1 w-full flex flex-col md:flex-row items-center md:items-start justify-center py-4 gap-4 md:gap-0 relative mt-4">
+      <div className="relative z-10 flex flex-col items-center group">
+        <div className="relative w-14 h-14 rounded-full bg-blue-500/20 border-2 border-blue-500 flex items-center justify-center text-blue-500 font-bold transition-transform group-hover:scale-110 shadow-lg shadow-blue-500/20 shadow-blue-500/20">
+          +
+          {/* Attraction Vector explicitly anchored to exactly the sphere's bounds */}
+          <div className="hidden md:flex absolute top-1/2 -right-4 -translate-y-1/2 items-center text-green-500 translate-x-full">
+             <div className="w-6 h-0.5 bg-green-500"></div>
+             <div className="w-0 h-0 border-y-4 border-y-transparent border-l-[8px] border-l-green-500"></div>
+          </div>
+        </div>
+        <div className="mt-2 whitespace-nowrap text-xs text-blue-500 font-mono bg-background/80 px-1 rounded">q₁ = 2µC</div>
+      </div>
+
+      <div className="flex-1 mx-4 flex flex-col items-center justify-center relative w-full md:w-auto md:h-14">
+        <div className="mb-2 md:absolute md:-top-5 md:mb-0 text-xs text-muted-foreground font-mono bg-background/80 px-1 rounded">r = 0.05m</div>
+        <div className="w-full border-t border-dashed border-muted-foreground"></div>
+      </div>
+
+      <div className="relative z-10 flex flex-col items-center group">
+        <div className="relative w-14 h-14 rounded-full bg-red-500/20 border-2 border-red-500 flex items-center justify-center text-red-500 font-bold transition-transform group-hover:scale-110 shadow-lg shadow-red-500/20">
+          -
+          {/* Attraction Vector explicitly anchored to sphere */}
+          <div className="hidden md:flex absolute top-1/2 -left-4 -translate-y-1/2 items-center text-green-500 -translate-x-full">
+             <div className="w-0 h-0 border-y-4 border-y-transparent border-r-[8px] border-r-green-500"></div>
+             <div className="w-6 h-0.5 bg-green-500"></div>
+          </div>
+        </div>
+        <div className="mt-2 whitespace-nowrap text-xs text-red-500 font-mono bg-background/80 px-1 rounded">q₂ = -3µC</div>
+      </div>
+    </div>
+  </div>
+</div>
