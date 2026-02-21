@@ -12,7 +12,11 @@ All matter is made up of atoms, which contain charged particles.
 * **Nucleus**: The central part of the atom is positively charged (contains protons and neutrons).
 
 The formula for total charge is:
-$$Q = \pm ne$$
+$$
+\begin{aligned}
+Q &= \pm ne
+\end{aligned}
+$$
 *(Where $n$ is an integer and $e$ is the elementary charge)*
 
 ## Material Classification
@@ -57,13 +61,12 @@ We can classify materials based on their atomic structure, specifically their **
         Ne
       </div>
       {/* Outer Shell */}
-      <div className="w-full h-full rounded-full border-2 border-dashed border-red-500/30">
+      <div className="w-full h-full rounded-full border-2 border-dashed border-red-500/30 animate-[spin_15s_linear_infinite]">
         {/* Valence Electrons (8 for Neon) */}
         {[...Array(8)].map((_, i) => (
-          <div key={i} className="absolute w-4 h-4 rounded-full bg-red-400 shadow-[0_0_8px_rgba(248,113,113,0.8)]" 
+          <div key={i} className="absolute top-1/2 left-1/2 w-4 h-4 rounded-full bg-red-400 shadow-[0_0_8px_rgba(248,113,113,0.8)]" 
                style={{ 
-                 top: `calc(50% - 2px - ${Math.cos((i * 45 * Math.PI) / 180) * 64}px)`, 
-                 left: `calc(50% - 8px + ${Math.sin((i * 45 * Math.PI) / 180) * 64}px)` 
+                 transform: `translate(-50%, -50%) rotate(${i * 45}deg) translateY(-64px)` 
                }}>
           </div>
         ))}
@@ -86,32 +89,32 @@ Let's look at a Sodium atom:
 <div className="my-8 flex justify-center relative z-0">
   <div className="relative w-64 h-64 flex items-center justify-center bg-card rounded-2xl border shadow-inner p-4">
     {/* Nucleus */}
-    <div className="absolute w-12 h-12 rounded-full bg-primary text-primary-foreground flex flex-col items-center justify-center font-bold z-10 shadow-lg text-xs">
+    <div className="absolute w-12 h-12 rounded-full bg-red-500 text-white border-2 border-red-500 flex flex-col items-center justify-center font-bold z-10 shadow-[0_0_15px_rgba(239,68,68,0.6)]">
       <span>Na</span>
-      <span className="text-[0.6rem] font-normal opacity-80">11p+</span>
     </div>
     
     {/* Shell 1 (K) - 2 electrons */}
-    <div className="absolute w-24 h-24 rounded-full border border-muted-foreground/30">
-      <div className="absolute -top-1.5 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-yellow-400 shadow-sm border border-yellow-600"></div>
-      <div className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-yellow-400 shadow-sm border border-yellow-600"></div>
+    <div className="absolute w-24 h-24 rounded-full border border-dashed border-primary/40 animate-[spin_8s_linear_infinite]">
+      {[...Array(2)].map((_, i) => (
+        <div key={i} className="absolute top-1/2 left-1/2 w-3 h-3 rounded-full bg-teal-400 shadow-[0_0_8px_rgba(45,212,191,0.8)]" 
+             style={{ transform: `translate(-50%, -50%) rotate(${i * 180}deg) translateY(-48px)` }}>
+        </div>
+      ))}
     </div>
 
     {/* Shell 2 (L) - 8 electrons */}
-    <div className="absolute w-40 h-40 rounded-full border border-muted-foreground/30">
+    <div className="absolute w-40 h-40 rounded-full border border-dashed border-primary/40 animate-[spin_12s_linear_infinite_reverse]">
        {[...Array(8)].map((_, i) => (
-          <div key={i} className="absolute w-3 h-3 rounded-full bg-yellow-400 shadow-sm border border-yellow-600" 
-               style={{ 
-                 top: `calc(50% - 1.5px - ${Math.cos((i * 45 * Math.PI) / 180) * 80}px)`, 
-                 left: `calc(50% - 6px + ${Math.sin((i * 45 * Math.PI) / 180) * 80}px)` 
-               }}>
+          <div key={i} className="absolute top-1/2 left-1/2 w-3 h-3 rounded-full bg-teal-400 shadow-[0_0_8px_rgba(45,212,191,0.8)]" 
+               style={{ transform: `translate(-50%, -50%) rotate(${i * 45}deg) translateY(-80px)` }}>
           </div>
         ))}
     </div>
 
     {/* Shell 3 (M) - 1 valence electron */}
     <div className="absolute w-56 h-56 rounded-full border-2 border-dashed border-primary/40 animate-[spin_20s_linear_infinite]">
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-destructive shadow-[0_0_10px_rgba(220,38,38,0.8)] border border-destructive ring-2 ring-destructive/30"></div>
+      <div className="absolute top-1/2 left-1/2 w-4 h-4 rounded-full bg-teal-400 shadow-[0_0_12px_rgba(45,212,191,1)] border border-teal-200 ring-2 ring-teal-400/30"
+           style={{ transform: `translate(-50%, -50%) translateY(-112px)` }}></div>
     </div>
   </div>
 </div>
@@ -124,13 +127,21 @@ When this process occurs, the material becomes ionized. Let's compare a stable m
 
 ### 1. Stable Material (Neutral Na)
 In a stable, neutral atom, the number of protons equals the number of electrons.
-$$\text{Net Charge} = -11e \text{ (electrons)} + 11e \text{ (protons)}$$
-$$\text{Net Charge} = 0$$
+$$
+\begin{aligned}
+\text{Net Charge} &= -11e \text{ (electrons)} + 11e \text{ (protons)} \\
+&= 0
+\end{aligned}
+$$
 
 ### 2. Ionized Material (Na+)
 If the Sodium atom loses its outermost valence electron (1 electron leaves):
-$$\text{Net Charge} = +11e \text{ (protons)} - 10e \text{ (remaining electrons)}$$
-$$\text{Net Charge} = +1e$$
+$$
+\begin{aligned}
+\text{Net Charge} &= +11e \text{ (protons)} - 10e \text{ (remaining electrons)} \\
+&= +1e \text{ (net positive charge)}
+\end{aligned}
+$$
 
 <div className="my-8 rounded-xl border bg-card overflow-hidden shadow-sm flex flex-col md:flex-row relative z-0">
   {/* Legend Panel */}
@@ -167,56 +178,63 @@ $$\text{Net Charge} = +1e$$
       </svg>
     </div>
 
-    {/* The Atom Container */}
+    {/* The Atom Container (Sodium Match) */}
     <div className="relative w-[280px] h-[280px] flex items-center justify-center">
       
-      {/* Orbit 1 */}
-      <div className="absolute w-[260px] h-[80px] rounded-[50%] border-2 border-primary/20 rotate-[30deg]">
-        <div className="absolute -top-[9px] left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-teal-400 shadow-[0_0_8px_rgba(45,212,191,0.8)]"></div>
-        <div className="absolute -bottom-[9px] left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-teal-400 shadow-[0_0_8px_rgba(45,212,191,0.8)]"></div>
+      {/* Shell 1 (K) - 2 electrons */}
+      <div className="absolute w-24 h-24 rounded-full border border-dashed border-primary/20 animate-[spin_8s_linear_infinite]">
+        {[...Array(2)].map((_, i) => (
+          <div key={i} className="absolute top-1/2 left-1/2 w-3 h-3 rounded-full bg-teal-400 shadow-[0_0_8px_rgba(45,212,191,0.8)]" 
+               style={{ transform: `translate(-50%, -50%) rotate(${i * 180}deg) translateY(-48px)` }}>
+          </div>
+        ))}
       </div>
 
-      {/* Orbit 2 */}
-      <div className="absolute w-[260px] h-[80px] rounded-[50%] border-2 border-primary/20 -rotate-[30deg]">
-        <div className="absolute top-1/2 -left-[9px] -translate-y-1/2 w-4 h-4 rounded-full bg-teal-400 shadow-[0_0_8px_rgba(45,212,191,0.8)]"></div>
-        <div className="absolute top-1/2 -right-[9px] -translate-y-1/2 w-4 h-4 rounded-full bg-teal-400 shadow-[0_0_8px_rgba(45,212,191,0.8)]"></div>
+      {/* Shell 2 (L) - 8 electrons */}
+      <div className="absolute w-40 h-40 rounded-full border border-dashed border-primary/20 animate-[spin_12s_linear_infinite_reverse]">
+         {[...Array(8)].map((_, i) => (
+            <div key={i} className="absolute top-1/2 left-1/2 w-3 h-3 rounded-full bg-teal-400 shadow-[0_0_8px_rgba(45,212,191,0.8)]" 
+                 style={{ transform: `translate(-50%, -50%) rotate(${i * 45}deg) translateY(-80px)` }}>
+            </div>
+          ))}
       </div>
 
-      {/* Orbit 3 (Vertical) */}
-      <div className="absolute w-[260px] h-[80px] rounded-[50%] border-2 border-primary/20 rotate-90">
-        <div className="absolute -top-[9px] left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-teal-400 shadow-[0_0_8px_rgba(45,212,191,0.8)]"></div>
-        <div className="absolute -bottom-[9px] left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-teal-400 shadow-[0_0_8px_rgba(45,212,191,0.8)]"></div>
+      {/* Shell 3 (M) - The missing electron */}
+      <div className="absolute w-56 h-56 rounded-full border-2 border-dashed border-primary/20 animate-[spin_20s_linear_infinite]">
+        {/* Placeholder for the missing electron on the orbit */}
+        <div className="absolute top-1/2 left-1/2 w-4 h-4 rounded-full border-2 border-orange-500 shadow-[0_0_15px_rgba(249,115,22,1)] animate-pulse"
+             style={{ transform: `translate(-50%, -50%) rotate(45deg) translateY(-112px)` }}></div>
       </div>
       
-      {/* The Nucleus (Cluster of Protons/Neutrons) */}
+      {/* The Nucleus (Sodium Match: 11 Protons, 12 Neutrons) */}
       <div className="absolute z-10 w-12 h-12 flex items-center justify-center">
-        <div className="absolute top-[10%] left-[25%] w-4 h-4 rounded-full bg-purple-500 shadow-sm border border-black/20"></div>
-        <div className="absolute top-[35%] left-[10%] w-4 h-4 rounded-full bg-amber-500 shadow-sm border border-black/20"></div>
-        <div className="absolute top-[45%] left-[40%] w-4 h-4 rounded-full bg-purple-500 shadow-sm border border-black/20"></div>
-        <div className="absolute top-[15%] left-[55%] w-4 h-4 rounded-full bg-amber-500 shadow-sm border border-black/20"></div>
-        <div className="absolute top-[65%] left-[20%] w-4 h-4 rounded-full bg-purple-500 shadow-sm border border-black/20"></div>
-        <div className="absolute top-[35%] left-[65%] w-4 h-4 rounded-full bg-amber-500 shadow-sm border border-black/20"></div>
-        <div className="absolute top-[60%] left-[55%] w-4 h-4 rounded-full bg-purple-500 shadow-sm border border-black/20"></div>
-        <div className="absolute top-[25%] left-[40%] w-4 h-4 rounded-full bg-amber-500 shadow-sm border border-black/20 z-10"></div>
+        {/* Visual representation of a dense nucleus */}
+        <div className="absolute top-[20%] left-[30%] w-3.5 h-3.5 rounded-full bg-purple-500 shadow-sm border border-black/20"></div>
+        <div className="absolute top-[35%] left-[15%] w-3.5 h-3.5 rounded-full bg-amber-500 shadow-sm border border-black/20"></div>
+        <div className="absolute top-[45%] left-[45%] w-3.5 h-3.5 rounded-full bg-purple-500 shadow-sm border border-black/20 z-10"></div>
+        <div className="absolute top-[15%] left-[55%] w-3.5 h-3.5 rounded-full bg-amber-500 shadow-sm border border-black/20"></div>
+        <div className="absolute top-[65%] left-[25%] w-3.5 h-3.5 rounded-full bg-purple-500 shadow-sm border border-black/20"></div>
+        <div className="absolute top-[35%] left-[70%] w-3.5 h-3.5 rounded-full bg-amber-500 shadow-sm border border-black/20"></div>
+        <div className="absolute top-[65%] left-[60%] w-3.5 h-3.5 rounded-full bg-purple-500 shadow-sm border border-black/20"></div>
+        <div className="absolute top-[20%] left-[40%] w-3.5 h-3.5 rounded-full bg-amber-500 shadow-sm border border-black/20 z-10"></div>
+        <div className="absolute top-[50%] left-[25%] w-3.5 h-3.5 rounded-full bg-amber-500 shadow-sm border border-black/20"></div>
+        <div className="absolute top-[25%] left-[65%] w-3.5 h-3.5 rounded-full bg-purple-500 shadow-sm border border-black/20"></div>
+        <div className="absolute top-[55%] left-[40%] w-3.5 h-3.5 rounded-full bg-amber-500 shadow-sm border border-black/20 z-10"></div>
+        <span className="absolute z-20 text-[10px] font-bold text-white bg-black/40 px-1 rounded backdrop-blur-[2px]">Na+</span>
       </div>
 
       {/* Ejection Effect & Free Electron */}
-      <div className="absolute z-20" style={{ left: '200px', top: '70px' }}>
-        {/* Spark at the origin of ejection (Hollow circle) */}
-        <div className="absolute top-0 left-0 w-6 h-6 border-[3px] border-orange-500 rounded-full shadow-[0_0_15px_rgba(249,115,22,1)] -translate-x-1/2 -translate-y-1/2 animate-pulse">
-        </div>
-        
-        {/* Dashed Line to Free Electron */}
-        <svg className="absolute top-0 left-0 overflow-visible text-orange-500 z-0">
-           <path d="M 0 0 L 50 -50" fill="none" stroke="currentColor" strokeWidth="2.5" strokeDasharray="6 4" />
-           <path d="M 35 -50 L 50 -50 L 50 -35" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+      <div className="absolute z-20" style={{ left: '260px', top: '20px' }}>
+        {/* Dashed Line back to Shell 3 */}
+        <svg className="absolute top-0 left-0 overflow-visible text-orange-500 z-0 opacity-70">
+           <path d="M -40 40 L -10 10" fill="none" stroke="currentColor" strokeWidth="2.5" strokeDasharray="6 4" />
         </svg>
 
         {/* Free Electron */}
-        <div className="absolute z-10 w-5 h-5 rounded-full bg-teal-400 shadow-[0_0_12px_rgba(45,212,191,1)] flex items-center justify-center font-bold text-teal-950" style={{ left: '50px', top: '-50px', transform: 'translate(-50%, -50%)' }}>
+        <div className="absolute z-10 w-5 h-5 rounded-full bg-teal-400 shadow-[0_0_12px_rgba(45,212,191,1)] flex items-center justify-center font-bold text-teal-950" style={{ transform: 'translate(-50%, -50%)' }}>
            <span className="text-[10px]">-</span>
         </div>
-        <span className="absolute text-xs md:text-sm font-bold text-teal-600 dark:text-teal-400 whitespace-nowrap" style={{ left: '65px', top: '-60px' }}>Free Electron</span>
+        <span className="absolute text-xs md:text-sm font-bold text-teal-600 dark:text-teal-400 whitespace-nowrap" style={{ left: '15px', top: '-10px' }}>Free Electron</span>
       </div>
 
     </div>
