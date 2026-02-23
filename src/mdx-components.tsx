@@ -10,6 +10,7 @@ import type { MDXComponents } from 'mdx/types'
 import type { ComponentProps, FC } from 'react'
 import { APIPage } from '@/components/api-page'
 import { Update, Updates } from '@/components/fumadocs/updates'
+import { MathWrapper } from '@/components/mdx/math-wrapper'
 import { Mermaid } from '@/components/mdx/mermaid'
 
 export function getMDXComponents(components?: MDXComponents) {
@@ -23,6 +24,7 @@ export function getMDXComponents(components?: MDXComponents) {
     Updates,
     Update,
     Mermaid,
+    MathWrapper,
     TypeTable,
     Callout,
     blockquote: Callout as unknown as FC<ComponentProps<'blockquote'>>,
