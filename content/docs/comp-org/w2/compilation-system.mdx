@@ -66,77 +66,190 @@ Here, the gcc compiler driver reads the source file `hello.c` and translates it 
 
 ### The Four Phases of Translation
 
+<DiagramWrapper caption="Figure 1.3 The compilation system.">
+  <div className="flex items-start min-w-[850px] gap-1 pt-8 pb-4">
+    
+    {/* Source */}
+    <div className="flex flex-col items-center w-24 shrink-0 mt-3">
+      <span className="text-sm font-bold font-mono mb-2 text-foreground">hello.c</span>
+      <div className="w-full flex items-center">
+        <div className="flex-1 h-[2px] bg-foreground/30"></div>
+        <div className="w-0 h-0 border-y-[5px] border-y-transparent border-l-[8px] border-l-foreground/30"></div>
+      </div>
+      <span className="text-xs text-muted-foreground mt-2 text-center leading-tight">Source<br/>program (text)</span>
+    </div>
+
+    {/* Preprocessor */}
+    <div className="flex flex-col items-center shrink-0">
+      <div className="rounded-xl border-2 border-orange-500/30 bg-orange-500/10 px-4 py-3 text-center shadow-sm">
+        <div className="font-bold text-foreground">Preprocessor</div>
+        <div className="text-sm font-mono text-orange-600 dark:text-orange-400">(cpp)</div>
+      </div>
+    </div>
+
+    {/* Modified source */}
+    <div className="flex flex-col items-center w-28 shrink-0 mt-3">
+      <span className="text-sm font-bold font-mono mb-2 text-foreground">hello.i</span>
+      <div className="w-full flex items-center">
+        <div className="flex-1 h-[2px] bg-foreground/30"></div>
+        <div className="w-0 h-0 border-y-[5px] border-y-transparent border-l-[8px] border-l-foreground/30"></div>
+      </div>
+      <span className="text-xs text-muted-foreground mt-2 text-center leading-tight">Modified source<br/>program (text)</span>
+    </div>
+
+    {/* Compiler */}
+    <div className="flex flex-col items-center shrink-0">
+      <div className="rounded-xl border-2 border-blue-500/30 bg-blue-500/10 px-5 py-3 text-center shadow-sm">
+        <div className="font-bold text-foreground">Compiler</div>
+        <div className="text-sm font-mono text-blue-600 dark:text-blue-400">(cc1)</div>
+      </div>
+    </div>
+
+    {/* Assembly program */}
+    <div className="flex flex-col items-center w-28 shrink-0 mt-3">
+      <span className="text-sm font-bold font-mono mb-2 text-foreground">hello.s</span>
+      <div className="w-full flex items-center">
+        <div className="flex-1 h-[2px] bg-foreground/30"></div>
+        <div className="w-0 h-0 border-y-[5px] border-y-transparent border-l-[8px] border-l-foreground/30"></div>
+      </div>
+      <span className="text-xs text-muted-foreground mt-2 text-center leading-tight">Assembly<br/>program (text)</span>
+    </div>
+
+    {/* Assembler */}
+    <div className="flex flex-col items-center shrink-0">
+      <div className="rounded-xl border-2 border-purple-500/30 bg-purple-500/10 px-5 py-3 text-center shadow-sm">
+        <div className="font-bold text-foreground">Assembler</div>
+        <div className="text-sm font-mono text-purple-600 dark:text-purple-400">(as)</div>
+      </div>
+    </div>
+
+    {/* Relocatable object */}
+    <div className="flex flex-col items-center w-32 shrink-0 mt-3">
+      <span className="text-sm font-bold font-mono mb-2 text-foreground">hello.o</span>
+      <div className="w-full flex items-center">
+        <div className="flex-1 h-[2px] bg-foreground/30"></div>
+        <div className="w-0 h-0 border-y-[5px] border-y-transparent border-l-[8px] border-l-foreground/30"></div>
+      </div>
+      <span className="text-xs text-muted-foreground mt-2 text-center leading-tight">Relocatable object<br/>programs (binary)</span>
+    </div>
+
+    {/* Linker */}
+    <div className="flex flex-col items-center shrink-0 relative">
+      <div className="absolute -top-14 left-1/2 -translate-x-1/2 flex flex-col items-center">
+         <span className="text-sm font-bold font-mono mb-1 text-foreground">printf.o</span>
+         <div className="w-[2px] h-6 bg-foreground/30 relative">
+            <div className="absolute -bottom-[2px] left-1/2 -translate-x-1/2 w-0 h-0 border-x-[5px] border-x-transparent border-t-[8px] border-t-foreground/30"></div>
+         </div>
+      </div>
+      <div className="rounded-xl border-2 border-green-500/30 bg-green-500/10 px-6 py-3 text-center shadow-sm">
+        <div className="font-bold text-foreground">Linker</div>
+        <div className="text-sm font-mono text-green-600 dark:text-green-400">(ld)</div>
+      </div>
+    </div>
+
+    {/* Executable */}
+    <div className="flex flex-col items-center w-28 shrink-0 mt-3">
+      <span className="text-sm font-bold font-mono mb-2 text-foreground">hello</span>
+      <div className="w-full flex items-center">
+        <div className="flex-1 h-[2px] bg-foreground/30"></div>
+        <div className="w-0 h-0 border-y-[5px] border-y-transparent border-l-[8px] border-l-foreground/30"></div>
+      </div>
+      <span className="text-xs text-muted-foreground mt-2 text-center leading-tight">Executable object<br/>program (binary)</span>
+    </div>
+
+  </div>
+</DiagramWrapper>
+
 <div className="my-8 flex flex-col gap-4 relative z-0">
   
   {/* Preprocessor */}
-  <div className="rounded-xl border border-l-4 border-l-orange-500 border-border/50 bg-card p-6 shadow-sm flex flex-col md:flex-row gap-6 items-start md:items-center">
+  <div className="rounded-xl border border-l-4 border-l-orange-500 border-border/50 bg-card p-6 shadow-sm flex flex-col md:flex-row gap-6 items-start">
     <div className="flex flex-col items-center justify-center bg-orange-500/10 border border-orange-500/20 rounded-lg w-24 h-24 shrink-0 shadow-sm relative overflow-hidden">
       <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-orange-400 to-orange-600"></div>
       <span className="text-lg font-black text-orange-500 mb-1">.c → .i</span>
       <span className="text-xs font-bold font-mono text-orange-600/80 uppercase">cpp</span>
     </div>
-    <div>
+    <div className="flex-1 w-full min-w-0">
       <h4 className="text-xl font-bold mb-2 text-foreground flex items-center gap-2">
         <span className="bg-orange-500/10 text-orange-500 rounded-md px-2 py-0.5 text-sm font-bold border border-orange-500/20">1</span>
         Preprocessing Phase
       </h4>
-      <p className="text-sm text-muted-foreground leading-relaxed">
+      <div className="text-sm text-muted-foreground leading-relaxed">
         The preprocessor (`cpp`) modifies the original C program according to directives that begin with the `#` character. For example, the `#include <stdio.h>` command in line 1 of `hello.c` tells the preprocessor to read the contents of the system header file `stdio.h` and insert it directly into the program text. The result is another C program, typically with the `.i` suffix. In this step, it performs text-based modifications: it inserts header files, replaces macros (`#define`), and removes comments. 
-      </p>
+      </div>
     </div>
   </div>
 
   {/* Compiler */}
-  <div className="rounded-xl border border-l-4 border-l-blue-500 border-border/50 bg-card p-6 shadow-sm flex flex-col md:flex-row gap-6 items-start md:items-center">
+  <div className="rounded-xl border border-l-4 border-l-blue-500 border-border/50 bg-card p-6 shadow-sm flex flex-col md:flex-row gap-6 items-start">
     <div className="flex flex-col items-center justify-center bg-blue-500/10 border border-blue-500/20 rounded-lg w-24 h-24 shrink-0 shadow-sm relative overflow-hidden">
       <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-400 to-blue-600"></div>
       <span className="text-lg font-black text-blue-500 mb-1">.i → .s</span>
       <span className="text-xs font-bold font-mono text-blue-600/80 uppercase">cc1</span>
     </div>
-    <div>
+    <div className="flex-1 w-full min-w-0">
       <h4 className="text-xl font-bold mb-2 text-foreground flex items-center gap-2">
         <span className="bg-blue-500/10 text-blue-500 rounded-md px-2 py-0.5 text-sm font-bold border border-blue-500/20">2</span>
         Compilation Phase
       </h4>
-      <p className="text-sm text-muted-foreground leading-relaxed">
-        The compiler (`cc1`) translates the text file `hello.i` into the text file `hello.s`, which contains an *assembly-language program*. This phase converts high-level language into low-level language. The compiler performs several tasks: it checks for syntax errors, analyzes the program structure, optimizes the code, and translates C into assembly language. Assembly language is useful because it provides a common output language for different compilers for different high-level languages.
-      </p>
+      <div className="text-sm text-muted-foreground leading-relaxed space-y-4">
+        <p>
+          The compiler (`cc1`) translates the text file `hello.i` into the text file `hello.s`, which contains an *assembly-language program*. This program includes the following definition of function main:
+        </p>
+        
+        <div className="relative rounded-lg border border-border/50 bg-[#0d1117] overflow-hidden font-mono text-sm shadow-sm my-4">
+          <div className="absolute top-0 left-0 w-8 h-full border-r border-border/20 flex flex-col items-center py-4 text-xs text-muted-foreground select-none">
+            <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span>
+          </div>
+          <pre className="p-4 pl-12 overflow-x-auto text-blue-300"><code>{`main:
+    subq    $8, %rsp
+    movl    $.LC0, %edi
+    call    puts
+    movl    $0, %eax
+    addq    $8, %rsp
+    ret`}</code></pre>
+        </div>
+
+        <p>
+          Each of lines 2-7 in this definition describes one low-level machine-language instruction in a textual form. Assembly language is useful because it provides a common output language for different compilers for different high-level languages. For example, C compilers and Fortran compilers both generate output files in the same assembly language.
+        </p>
+      </div>
     </div>
   </div>
 
   {/* Assembler */}
-  <div className="rounded-xl border border-l-4 border-l-purple-500 border-border/50 bg-card p-6 shadow-sm flex flex-col md:flex-row gap-6 items-start md:items-center">
+  <div className="rounded-xl border border-l-4 border-l-purple-500 border-border/50 bg-card p-6 shadow-sm flex flex-col md:flex-row gap-6 items-start">
     <div className="flex flex-col items-center justify-center bg-purple-500/10 border border-purple-500/20 rounded-lg w-24 h-24 shrink-0 shadow-sm relative overflow-hidden">
       <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-purple-400 to-purple-600"></div>
       <span className="text-lg font-black text-purple-500 mb-1">.s → .o</span>
       <span className="text-xs font-bold font-mono text-purple-600/80 uppercase">as</span>
     </div>
-    <div>
+    <div className="flex-1 w-full min-w-0">
       <h4 className="text-xl font-bold mb-2 text-foreground flex items-center gap-2">
         <span className="bg-purple-500/10 text-purple-500 rounded-md px-2 py-0.5 text-sm font-bold border border-purple-500/20">3</span>
         Assembly Phase
       </h4>
-      <p className="text-sm text-muted-foreground leading-relaxed">
+      <div className="text-sm text-muted-foreground leading-relaxed">
         Next, the assembler (`as`) translates `hello.s` into machine-language instructions (converting text instructions into binary instructions), packages them in a form known as a *relocatable object program*, and stores the result in the object file `hello.o`. This file is a binary file containing bytes to encode the instructions for function `main`. It provides the machine code, symbol information, and keeps track of unresolved references.
-      </p>
+      </div>
     </div>
   </div>
 
   {/* Linker */}
-  <div className="rounded-xl border border-l-4 border-l-green-500 border-border/50 bg-card p-6 shadow-sm flex flex-col md:flex-row gap-6 items-start md:items-center">
+  <div className="rounded-xl border border-l-4 border-l-green-500 border-border/50 bg-card p-6 shadow-sm flex flex-col md:flex-row gap-6 items-start">
     <div className="flex flex-col items-center justify-center bg-green-500/10 border border-green-500/20 rounded-lg w-24 h-24 shrink-0 shadow-sm relative overflow-hidden">
       <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-green-400 to-green-600"></div>
       <span className="text-lg font-black text-green-500 mb-1">.o → exe</span>
       <span className="text-xs font-bold font-mono text-green-600/80 uppercase">ld</span>
     </div>
-    <div>
+    <div className="flex-1 w-full min-w-0">
       <h4 className="text-xl font-bold mb-2 text-foreground flex items-center gap-2">
         <span className="bg-green-500/10 text-green-500 rounded-md px-2 py-0.5 text-sm font-bold border border-green-500/20">4</span>
         Linking Phase
       </h4>
-      <p className="text-sm text-muted-foreground leading-relaxed">
+      <div className="text-sm text-muted-foreground leading-relaxed">
         Notice that our `hello` program calls the `printf` function, which is part of the *standard C library* provided by every C compiler. The `printf` function resides in a separate precompiled object file called `printf.o`, which must somehow be merged with our `hello.o` program. The linker (`ld`) handles this merging. The result is the `hello` file, which is an executable object file (or simply *executable*) that is ready to be loaded into memory and executed by the system.
-      </p>
+      </div>
     </div>
   </div>
 </div>
