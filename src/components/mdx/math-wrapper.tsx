@@ -23,9 +23,7 @@ export function MathWrapper({
         </div>
       )}
       <div className="overflow-x-auto p-4 md:p-6 text-zinc-800 dark:text-zinc-300">
-        <div className="min-w-max">
-          {children}
-        </div>
+        {children}
       </div>
     </div>
   );

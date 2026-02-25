@@ -11,14 +11,18 @@ import { Callout } from 'fumadocs-ui/components/callout';
 import continousBody1 from './files/continous-body-1.jpeg';
 import continousBody2 from './files/continous-body-2.jpeg';
 
-# Electric Field due to a Line of Charge (Rod)
+## Electric Field due to a Line of Charge (Rod)
 
 Imagine an infinitely long rod with an evenly distributed positive charge. We want to find the electric field ($E$) at a point $P$ at a distance $r$ from the rod. 
 
 Using linear charge density ($\lambda = dq/dL$), we can write the electric field for a tiny segment of the rod:
 <MathWrapper title="Electric Field of a Line Element">
-  $$dE = \frac{1}{4\pi\epsilon_0} \frac{dq}{r^2}$$
-  $$E = \frac{1}{4\pi\epsilon_0} \int \frac{\lambda \cdot dL}{r^2}$$
+
+$$
+dE = \frac{1}{4\pi\epsilon_0} \frac{dq}{r^2} \\[1em]
+E = \frac{1}{4\pi\epsilon_0} \int \frac{\lambda \cdot dL}{r^2}
+$$
+
 </MathWrapper>
 
 <ImageWrapper 
@@ -29,11 +33,11 @@ Using linear charge density ($\lambda = dq/dL$), we can write the electric field
 
 ---
 
-# Electric Field due to a Ring of Charge
+## Electric Field due to a Ring of Charge
 
 A ring of charge is essentially the 1D line of charge (rod) bent into a circle. The physics remains one-dimensional, but we use a small arc length ($dS$) instead of a straight line segment ($dL$).
 
-## Resolving Components
+### Resolving Components
 If we pick a point $P$ along the central axis of the ring, the electric field vector $dE$ from a tiny segment of the ring hits point $P$ at an angle $\theta$. We must break this into components:
 * **X-axis (Horizontal)**: $dE_x = dE \cos\theta$
 * **Y-axis (Vertical)**: $dE_y = dE \sin\theta$
@@ -48,72 +52,78 @@ For every segment on the top of the ring pushing *down* ($dE_y$ pointing down), 
   alt="A beautiful 2D mathematical diagram showing the Electric Field of a Ring of Charge. Background must be cleanly integrated perfectly into #111111 dark mode or zinc-50 light mode. On the left side, an orange 3D-angled ring represents a charged ring. From the very top and very bottom edges of the ring, dashed lines connect to a point 'P' on the central horizontal axis. At point P, two diagonal 'dE' vectors push diagonally outward. Vertical components ('dEy (up)' and 'dEy (down)') cancel each other (shown with grey dashed lines). A much larger, thicker blue vector labeled 'dEx (reinforced)' points perfectly straight along the central axis to the right. Sleek and futuristic styling." 
 />
 
-## Mathematical Derivation
+### Mathematical Derivation
 
 Let's derive the exact formula for the total electric field at point $P$.
 
-### Step 1: Defining the Initial Equation
+#### Step 1: Defining the Initial Equation
 Since the Y-components cancel, the net electric field is purely the sum of all X-components ($dE_x$). We know that $dq = \lambda \cdot dS$.
 
 <MathWrapper title="Setting up dEx">
-  $$
-  \begin{aligned}
-  dE &= dE_x = dE \cos\theta \\
-  dE &= \frac{1}{4\pi\epsilon_0} \frac{dq}{r^2} \\
-  dE &= \frac{1}{4\pi\epsilon_0} \frac{\lambda \cdot dS}{r^2} \\
-  \text{So now, } dE_x &= \frac{1}{4\pi\epsilon_0} \frac{\lambda \cdot dS}{r^2} \cos\theta
-  \end{aligned}
-  $$
+
+$$
+\begin{aligned}
+dE &= dE_x = dE \cos\theta \\[1em]
+dE &= \frac{1}{4\pi\epsilon_0} \frac{dq}{r^2} \\[1em]
+dE &= \frac{1}{4\pi\epsilon_0} \frac{\lambda \cdot dS}{r^2} \\[1em]
+\text{So now, } dE_x &= \frac{1}{4\pi\epsilon_0} \frac{\lambda \cdot dS}{r^2} \cos\theta
+\end{aligned}
+$$
+
 </MathWrapper>
 
-### Step 2: Geometric Substitutions
+#### Step 2: Geometric Substitutions
 Looking at the geometry of the ring, we can use the Pythagorean theorem where the hypotenuse is $r$, the base is distance $x$, and the perpendicular is radius $R$. We will substitute $r$ and $\cos\theta$ in our equation.
 
 <MathWrapper title="Substituting Geometry Variables">
-  $$
-  \begin{aligned}
-  \text{We know: } r^2 &= R^2 + x^2 \implies r = \sqrt{R^2 + x^2} \\
-  \text{And: } \cos\theta &= \frac{\text{Base}}{\text{Hypotenuse}} = \frac{x}{r} \\
-  \\
-  dE_x &= \frac{1}{4\pi\epsilon_0} \frac{\lambda \cdot dS}{(R^2 + x^2)} \cos\theta \\
-  dE_x &= \frac{1}{4\pi\epsilon_0} \frac{\lambda \cdot dS}{(R^2 + x^2)} \left( \frac{x}{r} \right) \\
-  dE_x &= \frac{1}{4\pi\epsilon_0} \frac{\lambda \cdot dS}{(R^2 + x^2)} \frac{x}{(R^2 + x^2)^{1/2}} \\
-  dE_x &= \frac{x \cdot \lambda \cdot dS}{4\pi\epsilon_0 (R^2 + x^2)^{3/2}}
-  \end{aligned}
-  $$
+
+$$
+\begin{aligned}
+\text{We know: } r^2 &= R^2 + x^2 \implies r = \sqrt{R^2 + x^2} \\[1em]
+\text{And: } \cos\theta &= \frac{\text{Base}}{\text{Hypotenuse}} = \frac{x}{r} \\[1.5em]
+dE_x &= \frac{1}{4\pi\epsilon_0} \frac{\lambda \cdot dS}{(R^2 + x^2)} \cos\theta \\[1em]
+dE_x &= \frac{1}{4\pi\epsilon_0} \frac{\lambda \cdot dS}{(R^2 + x^2)} \left( \frac{x}{r} \right) \\[1em]
+dE_x &= \frac{1}{4\pi\epsilon_0} \frac{\lambda \cdot dS}{(R^2 + x^2)} \frac{x}{(R^2 + x^2)^{1/2}} \\[1em]
+dE_x &= \frac{x \cdot \lambda \cdot dS}{4\pi\epsilon_0 (R^2 + x^2)^{3/2}}
+\end{aligned}
+$$
+
 </MathWrapper>
 
-### Step 3: Integrating over the Ring
+#### Step 3: Integrating over the Ring
 Now we integrate to sum up all the tiny $dS$ segments around the entire ring. Because $x$, $\lambda$, and $R$ are constants for a specific point $P$, we can pull them out of the integral. The limits of integration for the arc length $dS$ are from $0$ to the full circumference $2\pi R$.
 
 <MathWrapper title="Integration Step">
-  $$
-  \begin{aligned}
-  \int dE_x &= \int_{0}^{2\pi R} \frac{x \cdot \lambda \cdot dS}{4\pi\epsilon_0 (R^2 + x^2)^{3/2}} \\
-  E_x &= \frac{x \cdot \lambda}{4\pi\epsilon_0 (R^2 + x^2)^{3/2}} \int_{0}^{2\pi R} dS \\
-  E_x &= \frac{x \cdot \lambda}{4\pi\epsilon_0 (R^2 + x^2)^{3/2}} [S]_0^{2\pi R} \\
-  E_x &= \frac{x \cdot \lambda}{4\pi\epsilon_0 (R^2 + x^2)^{3/2}} (2\pi R) \\
-  \\
-  \text{Since total charge } q &= \lambda (2\pi R): \\
-  E &= \frac{x \cdot q}{4\pi\epsilon_0 (R^2 + x^2)^{3/2}}
-  \end{aligned}
-  $$
+
+$$
+\begin{aligned}
+\int dE_x &= \int_{0}^{2\pi R} \frac{x \cdot \lambda \cdot dS}{4\pi\epsilon_0 (R^2 + x^2)^{3/2}} \\[1em]
+E_x &= \frac{x \cdot \lambda}{4\pi\epsilon_0 (R^2 + x^2)^{3/2}} \int_{0}^{2\pi R} dS \\[1em]
+E_x &= \frac{x \cdot \lambda}{4\pi\epsilon_0 (R^2 + x^2)^{3/2}} [S]_0^{2\pi R} \\[1em]
+E_x &= \frac{x \cdot \lambda}{4\pi\epsilon_0 (R^2 + x^2)^{3/2}} (2\pi R) \\[1.5em]
+\text{Since total charge } q &= \lambda (2\pi R): \\[1em]
+E &= \frac{x \cdot q}{4\pi\epsilon_0 (R^2 + x^2)^{3/2}}
+\end{aligned}
+$$
+
 </MathWrapper>
 
-### Step 4: Special Case (Point Far Away)
+#### Step 4: Special Case (Point Far Away)
 What happens if the radius $R$ is so small compared to the distance $x$ ($R \ll x$)? For example, $R = 1\text{m}$ and $x = 1000\text{m}$. 
 
 We can assume $R \approx 0$ in our formula. Let's see how the formula simplifies:
 
 <MathWrapper title="Special Case: R is negligible">
-  $$
-  \begin{aligned}
-  E &= \frac{1}{4\pi\epsilon_0} \frac{x \cdot q}{((0) + x^2)^{3/2}} \\
-  E &= \frac{1}{4\pi\epsilon_0} \frac{x \cdot q}{(x^2)^{3/2}} \\
-  E &= \frac{1}{4\pi\epsilon_0} \frac{x \cdot q}{x^3} \\
-  E &= \frac{1}{4\pi\epsilon_0} \frac{q}{x^2}
-  \end{aligned}
-  $$
+
+$$
+\begin{aligned}
+E &= \frac{1}{4\pi\epsilon_0} \frac{x \cdot q}{((0) + x^2)^{3/2}} \\[1em]
+E &= \frac{1}{4\pi\epsilon_0} \frac{x \cdot q}{(x^2)^{3/2}} \\[1em]
+E &= \frac{1}{4\pi\epsilon_0} \frac{x \cdot q}{x^3} \\[1em]
+E &= \frac{1}{4\pi\epsilon_0} \frac{q}{x^2}
+\end{aligned}
+$$
+
 </MathWrapper>
 
 <Callout title="Insight" type="info">
@@ -122,7 +132,7 @@ Notice that the final result $E = \frac{1}{4\pi\epsilon_0} \frac{q}{x^2}$ is the
 
 ---
 
-# Electric Field due to a Disc of Charge
+### Electric Field due to a Disc of Charge
 
 While a ring is 1D (a bent wire), a disc is a solid 2D surface. To calculate the electric field of a solid disc, we use **Surface Charge Density ($\sigma$)**.
 
