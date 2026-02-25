@@ -1,0 +1,68 @@
+---
+title: Continuous Charge Distributions
+description: Calculating charge across 1D, 2D, and 3D objects using charge densities.
+weight: 2
+---
+
+import { MathWrapper } from '@/components/mdx/math-wrapper';
+import { DiagramWrapper } from '@/components/mdx/diagram-wrapper';
+import { ImageWrapper } from '@/components/mdx/image-wrapper';
+import { Callout } from 'fumadocs-ui/components/callout';
+import chargeDistDark from './files/charge-distribution-dark.jpeg';
+
+# Calculating Charge on an Object
+
+When dealing with macroscopic objects (like rods, sheets, or spheres), counting individual electrons is practically impossible. Instead, we assume the charge is evenly distributed and use **Charge Density**, which tells us how much charge is squeezed into a specific amount of space.
+
+## 1-Dimensional: Linear Charge Density ($\lambda$)
+
+For very thin, long objects like a wire or a rod, the charge is spread out along its total length ($L$).
+We define linear charge density ($\lambda$) as the charge per unit length:
+$$\lambda = \frac{dq}{dL}$$
+
+To find the total charge ($q$) on the entire object, we can look at an infinitesimally small length element ($dL$) which holds a tiny amount of charge ($dq$):
+$$dq = \lambda \cdot dL$$
+
+We then integrate over the entire length of the rod (from $0$ to $L$):
+<MathWrapper title="Total Charge on a 1D Object">
+  $$ \int dq = \int_{0}^{L} \lambda \cdot dL $$
+  $$ q = \lambda [L]_{0}^{L} $$
+  $$ q = \lambda L $$
+</MathWrapper>
+
+<Callout title="Example: The 100-meter Rod" type="info">
+If we have a rod of length $L = 100 \text{ m}$ with a linear charge density of $\lambda = 20 \text{ C/m}$, the total charge is:
+$$q = 20 \times 100 = 2000 \text{ C}$$
+</Callout>
+
+<ImageWrapper 
+  title="1D Charge Distribution Element"
+  darkSrc={chargeDistDark}
+  alt="A 2D horizontal diagram representing a 1D charge distribution (a long thin rod). Background should be extremely clean and minimalistic, matching a #111111 dark mode theme or zinc-50 light mode theme. The rod should be a semi-transparent horizontal blue rectangle with small '+' icons evenly spaced inside it to indicate positive charge. On the left side of the rod, a very small vertical segment should be highlighted in a vibrant orange color with a label 'dL (dq)' pointing to it. Below the rod, a dashed line should indicate the total length 'L'. The diagram must be extremely high quality, futuristic, and suitable for a university-level physics textbook." 
+/>
+
+---
+
+## 2-Dimensional: Surface Charge Density ($\sigma$)
+
+For flat, 2D continuous objects like a sheet of paper or a metal plate, charge is distributed evenly across its surface Area ($A$). We define surface charge density ($\sigma$) as the charge per unit area:
+$$\sigma = \frac{dq}{dA}$$
+
+Using integration to find the general formula:
+<MathWrapper title="Total Charge on a 2D Object">
+  $$ \int dq = \sigma \int dA $$
+  $$ q = \sigma A $$
+</MathWrapper>
+
+---
+
+## 3-Dimensional: Volume Charge Density ($\rho$)
+
+For solid 3D objects like a solid sphere or a block, charge is distributed throughout its entire Volume ($V$). We define volume charge density ($\rho$) as the charge per unit volume:
+$$\rho = \frac{dq}{dV}$$
+
+Using integration to find the general formula:
+<MathWrapper title="Total Charge on a 3D Object">
+  $$ \int dq = \rho \int dV $$
+  $$ q = \rho V $$
+</MathWrapper>

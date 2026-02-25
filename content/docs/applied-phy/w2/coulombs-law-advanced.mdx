@@ -1,0 +1,80 @@
+---
+title: Advanced Coulomb's Law
+description: Deep dive into Permittivity, Dielectric Constants, and Vector Form of Coulomb's Law.
+weight: 1
+---
+
+import { MathWrapper } from '@/components/mdx/math-wrapper';
+import { DiagramWrapper } from '@/components/mdx/diagram-wrapper';
+import { ImageWrapper } from '@/components/mdx/image-wrapper';
+import { Callout } from 'fumadocs-ui/components/callout';
+import coulombsLawLight from './files/columbs-law-light.jpeg';
+import coulombsLawDark from './files/columbs-law-dark.jpeg';
+
+# Permittivity of Free Space ($\epsilon_0$)
+
+In Coulomb's Law ($F = k \frac{q_1 q_2}{r^2}$), the constant $k$ is known as Coulomb's constant. Its value in a vacuum is $9 \times 10^9 \text{ Nm}^2/\text{C}^2$.
+
+We can also express $k$ in terms of the **permittivity of free space ($\epsilon_0$)**:
+<MathWrapper title="Coulomb's Constant">
+  $$ k = \frac{1}{4\pi\epsilon_0} $$
+</MathWrapper>
+
+Where $\epsilon_0$ has a constant value of:
+$$ \epsilon_0 = 8.85 \times 10^{-12} \text{ C}^2/\text{Nm}^2 $$
+
+### What is Permittivity?
+Permittivity ($\epsilon$) measures a material's resistance to the formation of an electric field within it. 
+* If $\epsilon \uparrow$ (increases), it means higher resistance ($R \uparrow$) to the field lines.
+* Therefore, the force between charges decreases ($F \downarrow$).
+
+---
+
+# Relative Permittivity (Dielectric Constant)
+
+If the charges are placed in a medium other than a vacuum (like water, glass, or air), the force between them changes because the medium resists the electric field differently.
+
+* **Force in Vacuum ($F_v$)**:
+  $$F_v = \frac{1}{4\pi\epsilon_0} \frac{q_1 q_2}{r^2}$$
+* **Force in Medium ($F_m$)**:
+  $$F_m = \frac{1}{4\pi\epsilon_m} \frac{q_1 q_2}{r^2}$$
+
+Here, $\epsilon_m$ is the permittivity of the specific medium. We can define **Relative Permittivity** (also called the Dielectric Constant, $\epsilon_r$):
+<MathWrapper title="Relative Permittivity">
+  $$ \epsilon_r = \frac{\epsilon_m}{\epsilon_0} \implies \epsilon_m = \epsilon_r \epsilon_0 $$
+</MathWrapper>
+
+### Comparing Forces
+If we divide $F_m$ by $F_v$, we get a very useful comparison formula showing how much the force is reduced:
+<MathWrapper title="Force Reduction in a Medium">
+  $$ \frac{F_m}{F_v} = \frac{1}{\epsilon_r} $$
+  $$ F_m = \frac{F_v}{\epsilon_r} $$
+</MathWrapper>
+
+<Callout title="Example Calculation" type="info">
+If the force between two charges in a vacuum is $F_v = 500 \text{ N}$, and they are moved into a medium with a dielectric constant $\epsilon_r = 25$:
+$$F_m = \frac{500}{25} = 20 \text{ N}$$
+*(The force is heavily reduced because the medium resists the electric field).*
+</Callout>
+
+---
+
+# Vector Form of Coulomb's Law
+
+Force is a vector quantity, meaning it has both magnitude and a specific direction.
+
+<MathWrapper title="Vector Form of Coulomb's Law">
+  $$ \vec{F}_v = \left( \frac{1}{4\pi\epsilon_0} \frac{q_1 q_2}{r^2} \right) \hat{r} $$
+</MathWrapper>
+*(Where $\hat{r}$ is the unit vector indicating direction along the line connecting the charges)*
+
+**Newton's Third Law in Electrostatics:**
+If charge 1 exerts a force on charge 2 ($F_{12}$), then charge 2 exerts an equal and opposite force on charge 1 ($F_{21}$).
+$$F_{12} = -F_{21}$$
+
+<ImageWrapper 
+  title="Newton's Third Law for Point Charges"
+  lightSrc={coulombsLawLight}
+  darkSrc={coulombsLawDark}
+  alt="A minimalistic, high-tech 2D physics diagram demonstrating Newton's Third Law for point charges. The background must seamlessly match a #111111 dark mode theme or zinc-50 light mode theme. At the center, two positive charges (orange particles labeled '+q1' and '+q2') are separated by a grey line labeled 'Distance r'. From the left charge, a force vector points sharply left labeled 'F_21'. From the right charge, an identical force vector points sharply right labeled 'F_12'. At the bottom, a stylish equation box reads 'F_12 = -F_21'. Visually simple, highly legible." 
+/>

@@ -1,0 +1,68 @@
+---
+title: Fields of Continuous Bodies
+description: Calculating Electric Fields for a Rod, Ring, and Disc of charge using integration.
+weight: 4
+---
+
+import { MathWrapper } from '@/components/mdx/math-wrapper';
+import { DiagramWrapper } from '@/components/mdx/diagram-wrapper';
+import { ImageWrapper } from '@/components/mdx/image-wrapper';
+import { Callout } from 'fumadocs-ui/components/callout';
+import continousBody1 from './files/continous-body-1.jpeg';
+import continousBody2 from './files/continous-body-2.jpeg';
+
+# Electric Field due to a Line of Charge (Rod)
+
+Imagine an infinitely long rod with an evenly distributed positive charge. We want to find the electric field ($E$) at a point $P$ at a distance $r$ from the rod. 
+
+Using linear charge density ($\lambda = dq/dL$), we can write the electric field for a tiny segment of the rod:
+<MathWrapper title="Electric Field of a Line Element">
+  $$ dE = \frac{1}{4\pi\epsilon_0} \frac{dq}{r^2} $$
+  $$ E = \frac{1}{4\pi\epsilon_0} \int \frac{\lambda \cdot dL}{r^2} $$
+</MathWrapper>
+
+<ImageWrapper 
+  title="Electric Field of a Line of Charge"
+  darkSrc={continousBody1}
+  alt="A high-end 2D science diagram illustrating the Electric Field of a Line of Charge. The background should be clean (#111111 dark mode or zinc-50 light mode). A horizontal rod of charge is shown with a highlighted infinitesimal segment labeled 'dL (dq)'. A point 'P' is placed at a distance 'r' from the rod, connected by a dashed line. An electric field vector 'dE' points diagonally outward from point P. The overall aesthetic must be sleek, minimalistic, and look professional inside a university physics text." 
+/>
+
+---
+
+# Electric Field due to a Ring of Charge
+
+A ring of charge is essentially the 1D line of charge (rod) bent into a circle. The physics remains one-dimensional, but we use a small arc length ($dS$) instead of a straight line segment ($dL$).
+
+## Resolving Components
+If we pick a point $P$ along the central axis of the ring, the electric field vector $dE$ from a tiny segment of the ring hits point $P$ at an angle $\theta$. We must break this into components:
+* **X-axis (Horizontal)**: $dE_x = dE \cos\theta$
+* **Y-axis (Vertical)**: $dE_y = dE \sin\theta$
+
+<Callout title="The Cancellation Effect" type="warn">
+For every segment on the top of the ring pushing *down* ($dE_y$ pointing down), there is an exact opposite segment on the bottom pushing *up* ($dE_y$ pointing up). Therefore, **all Y-components cancel each other out.** Only the X-components ($dE_x$) add up!
+</Callout>
+
+## The Formula
+Since $dE = \frac{1}{4\pi\epsilon_0} \frac{dq}{r^2}$, and $dq = \lambda \cdot dS$:
+
+<MathWrapper title="Total Electric Field of a Ring (X-axis)">
+  $$ \int dE_x = \int \frac{1}{4\pi\epsilon_0} \frac{\lambda \cdot dS}{r^2} \cos\theta $$
+</MathWrapper>
+
+By integrating around the entire ring, we sum up all the $dS$ segments.
+
+<ImageWrapper 
+  title="Electric Field of a Ring of Charge"
+  darkSrc={continousBody2}
+  alt="A beautiful 2D mathematical diagram showing the Electric Field of a Ring of Charge. Background must be cleanly integrated perfectly into #111111 dark mode or zinc-50 light mode. On the left side, an orange 3D-angled ring represents a charged ring. From the very top and very bottom edges of the ring, dashed lines connect to a point 'P' on the central horizontal axis. At point P, two diagonal 'dE' vectors push diagonally outward. Vertical components ('dEy (up)' and 'dEy (down)') cancel each other (shown with grey dashed lines). A much larger, thicker blue vector labeled 'dEx (reinforced)' points perfectly straight along the central axis to the right. Sleek and futuristic styling." 
+/>
+
+---
+
+# Electric Field due to a Disc of Charge
+
+While a ring is 1D (a bent wire), a disc is a solid 2D surface. To calculate the electric field of a solid disc, we use **Surface Charge Density ($\sigma$)**.
+
+Instead of integrating tiny points, we calculate the electric field of the disc by thinking of it as a series of concentric *rings*, starting from a radius of $0$ all the way to the outer edge radius $R$. We sum (integrate) the electric fields of all these infinite rings together.
+
+*(Note: The exact derivation involves integrating the ring formula from $0$ to $R$, resulting in a formula heavily dependent on surface charge density $\sigma$.)*

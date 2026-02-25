@@ -1,0 +1,73 @@
+---
+title: Electric Field & Dipoles
+description: Point charges in an electric field, lines of force, and electric dipoles.
+weight: 3
+---
+
+import { MathWrapper } from '@/components/mdx/math-wrapper';
+import { DiagramWrapper } from '@/components/mdx/diagram-wrapper';
+import { ImageWrapper } from '@/components/mdx/image-wrapper';
+import { Callout } from 'fumadocs-ui/components/callout';
+import electricField1 from './files/electric-field-1.jpeg';
+import electricField2 from './files/electric-field-2.jpeg';
+
+# Electric Field due to a Point Charge
+
+An electric field ($E$) is a region of space around a charged particle where a force would be exerted on other charged particles. It essentially describes the "electric pull or push" in the space surrounding a charge. The formula for the electric field produced by a point charge $q$ at a distance $r$ is:
+
+<MathWrapper title="Electric Field Equation">
+  $$ E = \frac{1}{4\pi\epsilon_0} \frac{q}{r^2} $$
+</MathWrapper>
+
+* $E$ is a vector quantity, measured in Newtons per Coulomb (N/C). It points away from positive charges and towards negative charges.
+
+## Point Charge IN an Electric Field
+If you take a test charge ($q_0$) and drop it into an existing uniform electric field ($E$), it will experience a force based on the strength of that field:
+<MathWrapper title="Force on a Test Charge">
+  $$ F = q_0 E $$
+</MathWrapper>
+
+Because $F = ma$ (Newton's Second Law), this electric force causes the charge to accelerate. The acceleration of the particle is:
+$$a = \frac{q_0 E}{m}$$
+
+---
+
+# Electric Lines of Force
+
+Electric field lines are a fantastic visualization tool to understand the strength and direction of the electric field visually.
+1. They **originate** from positive charges and **terminate** on negative charges.
+2. The tangent to a field line at any point gives the **direction** of the electric field $\vec{E}$ at that point.
+3. Field lines **never intersect** each other.
+4. The **density** of the lines represents the **strength** of the field (closer lines = stronger field, spread out = weaker field).
+
+<ImageWrapper 
+  title="Electric Field Lines Visualization"
+  darkSrc={electricField1}
+  alt="A high-quality 2D scientific diagram showing Electric Field Lines for two isolated point charges. Background must be cleanly integrated, using a #111111 dark mode theme or zinc-50 light mode theme without looking out of place in modern web documentation. On the left: a positive charge (orange) with vector arrows pointing radially OUTWARD in all directions. On the right: a negative charge (blue) with vector arrows pointing radially INWARD from all directions. Keep it minimalistic, futuristic, and highly legible." 
+/>
+
+---
+
+# Electric Dipole
+
+An electric dipole consists of two equal and opposite point charges ($+q$ and $-q$) separated by a very small distance ($d$). They are very common in nature, such as in water molecules ($H_2O$).
+
+* **Dipole Moment ($p$)**: A vector quantity pointing from the negative charge to the positive charge. It measures the strength of the dipole.
+  $$p = q \cdot d$$
+
+## Dipole in a Uniform Electric Field
+When a dipole is placed inside an external electric field, the $+q$ charge is pushed in the direction of the field, and the $-q$ charge is pulled opposite to the field. 
+
+This creates a rotational **Torque ($\tau$)** that tries to twist and align the dipole with the field lines:
+
+<MathWrapper title="Torque on an Electric Dipole">
+  $$ \tau = p \times E $$
+  $$ \tau = pE \sin\theta $$
+</MathWrapper>
+*(Where $\theta$ is the angle between the dipole moment and the electric field).*
+
+<ImageWrapper 
+  title="Dipole in a Uniform Field"
+  darkSrc={electricField2}
+  alt="A visually stunning, futuristic 2D diagram showing an Electric Dipole situated within a Uniform Electric Field. Background: minimalistic, #111111 (dark) or zinc-50 (light). The uniform field is represented by faded horizontal parallel lines pointing to the right. In the center, a dipole is rotated at an angle with a central connecting rod labeled 'd'. The top-right charge is '+q' (orange) with a force vector pointing right ('F = +qE'). The bottom-left charge is '-q' (blue) with a force vector pointing left ('F = -qE'). Focus on educational clarity and premium textbook aesthetic." 
+/>
