@@ -1,0 +1,36 @@
+---
+title: Sequential Files
+description: Sequential Files
+weight: 3
+---
+
+import { ImageWrapper } from '@/components/mdx/image-wrapper';
+import seqFileDiagram from './files/seqFileDiagram.png';
+
+
+## Sequential Files
+
+<div className="my-6 rounded-xl border border-primary/20 bg-primary/5 px-5 py-3 shadow-sm">
+  <h3 className="text-lg font-bold text-primary mb-2 flex items-center gap-2">
+    <svg className="w-5 h-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h7" /></svg>
+    Concept
+  </h3>
+  <div className="text-sm text-muted-foreground">
+    Sequential file organization is suitable for applications that require sequential processing of the entire file. Another method of sequential file organization is the sorted file method, where files are stored in sorted format either ascending or descending. The records in the file are ordered by a search-key (often a primary key or attribute). 
+  </div>
+</div>
+
+### Operations on Sequential Files
+
+| Operation | Performance & Mechanism |
+| :--- | :--- |
+| **Search** | Because the file is sorted, the DBMS can use a binary search to find records much faster than a linear search. |
+| **Insertion** | In a sorted file, when a new record arrives, it's not simply added to the end. Instead, we must locate the position where the record is to be inserted. If there is free space, insert there. If there is no free space, insert the record in an overflow block. In either case, the pointer chain must be updated. This ensures the final sequence remains sorted. |
+| **Deletion** | Deletions use pointer chains to bridge the gap left by the removed record. |
+| **Maintenance** | Adding or changing records often requires re-sorting the entire set, which can slow down your system. Therefore, you need to reorganize the file from time to time to restore sequential order. |
+
+<ImageWrapper 
+  title="Sorted Sequential File Structure"
+  darkSrc={seqFileDiagram}
+  alt="A precise 2D technical computer science diagram illustrating a Sorted Sequential File with pointer chains and overflow blocks. The background must be pure dark mode (#111111). Show a primary vertical block of sequentially sorted records connected by pointers. From one of the records, show an arrow pointing to a separate, smaller 'Overflow Block' for an inserted record, with a pointer chain that returns to the next record in the main sequence to maintain sorted order logically. Sleek, glowing neon-cyan and purple technical aesthetic." 
+/> 

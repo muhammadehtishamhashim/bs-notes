@@ -4,6 +4,8 @@ description: "Traditional File-Based Systems"
 weight: 2
 ---
 
+import { ImageWrapper } from '@/components/mdx/image-wrapper';
+import fileVsDatabaseDiagram from './files/fileVsDatabaseDiagram.png';
 
 ## File-Based Approach
 
@@ -12,9 +14,9 @@ weight: 2
     <svg className="w-5 h-5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2" /></svg>
     What is a File-Based System?
   </h3>
-  <p className="text-sm text-muted-foreground">
+  <div className="text-sm text-muted-foreground">
     File-based systems were an early attempt to computerize the manual filing system that we are all familiar with. For example, an organization might have physical files set up to hold all external and internal correspondence relating to a project, product, task, client, or employee.
-  </p>
+  </div>
 </div>
 
 ### The Breaking Point
@@ -29,12 +31,17 @@ The file-based system was developed in response to the needs of industry for mor
     <svg className="w-5 h-5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
     Definition
   </h3>
-  <p className="text-sm text-muted-foreground">
+  <div className="text-sm text-muted-foreground">
     A file-based system is defined as a collection of application programs that perform services for the end-users, such as the production of reports.
-  </p>
+  </div>
 </div>
 
 Each program defines and manages its own data. Because each set of departmental application programs handles data entry, file maintenance, and the generation of a fixed set of specific reports, the physical structure and storage of the data files and records are defined directly in the application code.
 
-{/* Add diagram illustrating File-based processing vs Database processing here */}
+<ImageWrapper 
+  title="File-Based System vs. Database System"
+  darkSrc={fileVsDatabaseDiagram}
+  alt="A precise 2D technical computer science diagram illustrating the difference between a File-Based Processing system and a Database Processing system. The background must be pure dark mode (#111111). On the left side (File-Based), show multiple individual user or department icons (like 'Sales', 'HR', 'Accounting') each connecting to their own separate, disconnected 'File' cylinders, highlighting redundancy. On the right side (Database), show the same multiple user/department icons all pointing arrows into a single, centralized central software hub labeled 'DBMS', which then connects to a single unified large database cylinder. Sleek, glowing neon-teal and orange technical aesthetic." 
+/> 
+
 

@@ -1,0 +1,38 @@
+---
+title: Hashing
+description: Static and Dynamic Hashing Structures
+weight: 4
+---
+
+import { ImageWrapper } from '@/components/mdx/image-wrapper';
+import hashingDiagram from './files/hashingDiagram.png';
+
+## Hashing
+
+<div className="my-6 rounded-xl border border-primary/20 bg-primary/5 px-5 py-3 shadow-sm">
+  <h3 className="text-lg font-bold text-primary mb-2 flex items-center gap-2">
+    <svg className="w-5 h-5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+    Concept
+  </h3>
+  <div className="text-sm text-muted-foreground">
+    For a huge database structure it is not sometime feasible to search an index through all its levels and then reach the destination data block to retrieve the desired data. Hashing is an effective technique to calculate the direct location of a data record on the disk without using an index structure. It uses a hash function that computes the location of desired data on the disk when called with the search key as a parameter.
+  </div>
+</div>
+
+### Static Hashing
+In static hashing, when a search-key value is provided the hash function always computes the same address. The numbers of buckets provided remain the same at all times. 
+*   **Insertion:** The hash function computes the bucket address for the search key where the record will be stored.
+*   **Bucket Overflow:** The condition of bucket-overflow is known as a collision. This is a fatal state for any static hash function. To resolve this, the system uses **Overflow Chaining** (Closed Hashing), where a new bucket is allocated and linked after the previous one, or **Linear Probing** (Open Hashing), where the next free bucket is allocated.
+
+### Dynamic Hashing
+The problem with static hashing is that it does not expand or shrink dynamically as the size of the database grows or shrinks, leading to long overflow chains. Dynamic hashing provides a mechanism in which data buckets are added and removed dynamically and on-demand. 
+*   **Extendible Hashing:** Uses a directory of pointers to buckets. It doubles the number of buckets by doubling the directory and splitting just the bucket that overflowed. 
+*   **Linear Hashing:** Avoids the directory by using overflow pages and choosing buckets to split in a round-robin fashion.
+
+<ImageWrapper 
+  title="Static vs Dynamic Hashing"
+  darkSrc={hashingDiagram}
+  alt="A precise 2D technical computer science diagram comparing Static Hashing with Overflow Chaining versus Dynamic Hashing. The background must be pure dark mode (#111111). On the left (Static Hashing), show a fixed number of buckets with 'Overflow' chains (smaller attached blocks) hanging off one bucket that experienced a collision. On the right (Dynamic Hashing), show a directory structure indexing a dynamic set of buckets, with split buckets cleanly separated without long chains. Sleek, glowing neon-pink and cyan technical aesthetic." 
+/> 
+
+---

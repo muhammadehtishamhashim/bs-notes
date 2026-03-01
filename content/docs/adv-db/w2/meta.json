@@ -1,0 +1,10 @@
+{
+  "title": "Week 2",
+  "pages": [
+    "file-struct",
+    "heap-file",
+    "seq-file",
+    "hashing",
+    "B-tree"
+  ]
+}

@@ -4,6 +4,8 @@ description: "Advanced Data Models"
 weight: 3
 ---
 
+import { ImageWrapper } from '@/components/mdx/image-wrapper';
+import ordbmsVsOodbmsDiagram from './files/ordbmsVsOodbmsDiagram.png';
 
 ## Introduction to Advanced Data Models
 
@@ -14,9 +16,9 @@ In response to the increasing complexity of database applications (such as compu
     <svg className="w-5 h-5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" /></svg>
     Object-Oriented DBMS (OODBMS)
   </h3>
-  <p className="text-sm text-muted-foreground">
+  <div className="text-sm text-muted-foreground">
     An OODBMS is the manager of a persistent and sharable collection of objects defined by an Object-Oriented Data Model. The object-oriented data model allows the "real world" to be modeled more closely. The object, which encapsulates both state and behavior, is a more natural and realistic representation of real-world objects. An object can store all the relationships it has with other objects, including many-to-many relationships, and objects can be formed into complex objects.
-  </p>
+  </div>
 </div>
 
 <div className="my-6 rounded-xl border border-primary/20 bg-primary/5 px-5 py-3 shadow-sm">
@@ -25,12 +27,12 @@ In response to the increasing complexity of database applications (such as compu
     Object-Relational DBMS (ORDBMS)
   </h3>
   <div className="text-sm text-muted-foreground space-y-3">
-    <p>
+    <div>
       Various terms have been used for systems that have extended the relational data model, such as the Extended Relational DBMS (ERDBMS) or Universal Server. However, the more descriptive term Object-Relational DBMS is used to indicate that the system incorporates some notion of "object." 
-    </p>
-    <p>
+    </div>
+    <div>
       An ORDBMS is a hybrid of the RDBMS and the OODBMS. The concept is very appealing, preserving the wealth of knowledge and experience that has been acquired with the RDBMS, while extending the relational model with object-oriented features such as a user-extensible type system, encapsulation, inheritance, polymorphism, and dynamic binding of methods.
-    </p>
+    </div>
   </div>
 </div>
 
@@ -46,4 +48,9 @@ Traditional relational DBMSs (RDBMSs) are incredibly successful for standard bus
 | **More Expressive Operations** | The relational model has a fixed set of operations (like standard SQL). Advanced models support user-defined routines, methods, and navigational access from one object to the next, which is far more suitable for handling parts explosions and recursive queries. |
 | **Removal of Impedance Mismatch** | In traditional systems, embedding declarative SQL into an imperative high-level language like C or Java produces an "impedance mismatch" because the models represent data differently. Advanced models (particularly OODBMSs) provide a single language interface, eliminating the inefficiencies of mapping between an application's object model and the database's relational model. |
 
-{/* Add diagram showing the Comparison of ORDBMS and OODBMS data models here */}
+
+<ImageWrapper 
+  title="Comparison of ORDBMS and OODBMS Data Models"
+  darkSrc={ordbmsVsOodbmsDiagram}
+  alt="A precise 2D technical computer science diagram illustrating the comparison between ORDBMS (Object-Relational) and OODBMS (Object-Oriented) data models. The background must be pure dark mode (#111111). On the left (ORDBMS), show a traditional relational table structure (rows and columns) with an added 'Object' layer (like a gear or hex icon) intersecting it, signifying an extension of RDBMS. On the right (OODBMS), show a network of interconnected object nodes (circles) encapsulating both 'State' (data icon) and 'Behavior' (function icon) within them, forming complex hierarchies without any underlying traditional tables. Sleek, glowing neon-indigo and fuchsia technical aesthetic." 
+/> 
