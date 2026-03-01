@@ -1,0 +1,135 @@
+---
+title: Electric Field due to a Disc of Charge
+description: Derivation of the electric field produced by a charged disc using surface charge density.
+weight: 5
+---
+
+import { MathWrapper } from '@/components/mdx/math-wrapper';
+import { ImageWrapper } from '@/components/mdx/image-wrapper';
+import { Callout } from 'fumadocs-ui/components/callout';
+import discChargeDiagram from './files/disc-charge-diagram.png'; 
+
+# Electric Field due to a Charged Disc
+
+While a ring is a 1D bent wire, a disc is a solid 2D surface. To calculate the electric field of a solid disc of radius $R$, we use **Surface Charge Density ($\sigma$)**.
+
+Instead of integrating tiny point charges, we build the disc by thinking of it as a series of concentric *rings*. We take a tiny infinitesimal ring of radius $r$ and thickness $dr$, and integrate its electric field from the center ($r=0$) all the way to the outer edge ($r=R$).
+
+<ImageWrapper 
+  title="Electric Field of a Disc of Charge"
+  darkSrc={discChargeDiagram}
+  alt="A precise 2D technical physics diagram illustrating the electric field due to a charged disc. The background must be pure dark mode (#111111). A 3D-angled circular disc is shown, filled with positive '+' signs. Inside the disc, a highlighted thin concentric ring is drawn with radius 'r' and thickness 'dr'. The total radius of the disc is 'R'. A central horizontal x-axis extends to the right to a point 'P' at distance 'x'. From the top and bottom of the thin ring, diagonal lines converge at point 'P' with arrows labeled 'dE', resolving into 'dEx' (straight along x-axis) and 'dEy' (vertical, canceling). Sleek, glowing neon-blue and orange technical aesthetic." 
+/>
+
+## Mathematical Derivation
+
+Let's derive the exact formula for the total electric field at a point $P$ situated at a distance $x$ from the center of the disc.
+
+### Step 1: Charge of the Ring Element
+First, we need to find the amount of charge ($dq$) on our tiny representative ring. We know surface charge density is $\sigma = \frac{dq}{da}$. The area of this tiny thin ring ($da$) is its circumference multiplied by its thickness.
+
+<MathWrapper title="Charge of Infinitesimal Ring">
+
+$$
+\begin{aligned}
+\sigma &= \frac{dq}{da} \implies dq = \sigma \cdot da \\[1em]
+\text{Area of tiny ring } (da) &= 2\pi r \cdot dr \\[1em]
+dq &= \sigma (2\pi r \cdot dr)
+\end{aligned}
+$$
+
+</MathWrapper>
+
+### Step 2: Setting up the Field Equation
+Just like the ring derivation, the vertical components ($dE_y$) cancel out completely. We only care about the horizontal components ($dE_x$). 
+
+Using the point charge formula $dE = \frac{1}{4\pi\epsilon_0}\frac{dq}{a^2}$ where the diagonal distance is $a = \sqrt{x^2 + r^2}$:
+
+<MathWrapper title="Substituting Geometry">
+
+$$
+\begin{aligned}
+dE_y &= 0 \text{ (cancels out)} \\[1em]
+dE_x &= dE \cos\theta \\[1em]
+dE_x &= \frac{1}{4\pi\epsilon_0} \frac{dq}{(x^2 + r^2)} \cos\theta \\[1em]
+\text{From geometry: } \cos\theta &= \frac{x}{\sqrt{x^2 + r^2}} \\[1.5em]
+dE_x &= \frac{1}{4\pi\epsilon_0} \frac{\sigma(2\pi r \cdot dr)}{(x^2 + r^2)} \left( \frac{x}{\sqrt{x^2 + r^2}} \right) \\[1em]
+dE_x &= \frac{1}{4\pi\epsilon_0} \frac{\sigma \cdot 2\pi x \cdot r \cdot dr}{(x^2 + r^2)^{3/2}}
+\end{aligned}
+$$
+
+</MathWrapper>
+
+### Step 3: Integrating over the Disc
+To find the total electric field $E$, we integrate $dE_x$ from the center of the disc ($r = 0$) to the outer edge ($r = R$). We pull out all the constants ($\sigma, x, \epsilon_0, \pi$).
+
+<MathWrapper title="Solving the Integral">
+
+$$
+\begin{aligned}
+E &= \int_{0}^{R} \frac{1}{4\pi\epsilon_0} \frac{\sigma \cdot 2\pi x \cdot r}{(x^2 + r^2)^{3/2}} dr \\[1.5em]
+E &= \frac{\sigma \cdot 2\pi x}{4\pi\epsilon_0} \int_{0}^{R} r(x^2 + r^2)^{-3/2} dr
+\end{aligned}
+$$
+
+</MathWrapper>
+
+To solve this integral easily, we can use the power rule. We multiply by 2 inside the integral and divide by 2 outside to get the exact derivative of the inside function ($2r$):
+
+<MathWrapper title="Applying Power Rule">
+
+$$
+\begin{aligned}
+E &= \frac{\sigma \cdot \pi x}{4\pi\epsilon_0} \int_{0}^{R} 2r(x^2 + r^2)^{-3/2} dr \\[1em]
+E &= \frac{\sigma \cdot \pi x}{4\pi\epsilon_0} \left[ \frac{(x^2 + r^2)^{-1/2}}{-1/2} \right]_{0}^{R} \\[1em]
+E &= \frac{\sigma \cdot x}{4\epsilon_0} (-2) \left[ \frac{1}{\sqrt{x^2 + r^2}} \right]_{0}^{R} \\[1em]
+E &= -\frac{\sigma \cdot x}{2\epsilon_0} \left[ \frac{1}{\sqrt{x^2 + r^2}} \right]_{0}^{R}
+\end{aligned}
+$$
+
+</MathWrapper>
+
+### Step 4: Applying Limits (Final Normal Case)
+Now, we apply the upper limit $R$ and the lower limit $0$ for the variable $r$.
+
+<MathWrapper title="Final Formula">
+
+$$
+\begin{aligned}
+E &= -\frac{\sigma \cdot x}{2\epsilon_0} \left( \frac{1}{\sqrt{x^2 + R^2}} - \frac{1}{\sqrt{x^2 + 0^2}} \right) \\[1em]
+E &= -\frac{\sigma \cdot x}{2\epsilon_0} \left( \frac{1}{\sqrt{x^2 + R^2}} - \frac{1}{x} \right) \\[1em]
+E &= \frac{\sigma \cdot x}{2\epsilon_0} \left( \frac{1}{x} - \frac{1}{\sqrt{x^2 + R^2}} \right)
+\end{aligned}
+$$
+
+</MathWrapper>
+
+By multiplying the $x$ into the bracket, we arrive at the standard formula for the electric field of a charged disc:
+
+<Callout title="Normal Case Formula" type="info">
+$$ \vec{E} = \frac{\sigma}{2\epsilon_0} \left[ 1 - \frac{x}{\sqrt{x^2 + R^2}} \right] \hat{r} $$
+</Callout>
+
+---
+
+## Special Case: Infinite Sheet of Charge
+
+What happens if the radius $R$ is massive compared to the distance $x$ ($R \gg x$)? If you are standing extremely close to a very large disc, it essentially looks like an **infinite sheet**.
+
+Mathematically, if $R$ is incredibly large, the term $\frac{x}{\sqrt{x^2 + R^2}}$ becomes practically zero (since you are dividing a small number by a massive number).
+
+<MathWrapper title="Special Case Limit">
+
+$$
+\begin{aligned}
+\text{If } R \gg x, \text{ then } \frac{x}{\sqrt{x^2 + R^2}} &\approx 0 \\[1em]
+E &= \frac{\sigma}{2\epsilon_0} [1 - 0] \\[1em]
+\vec{E} &= \frac{\sigma}{2\epsilon_0} \hat{r}
+\end{aligned}
+$$
+
+</MathWrapper>
+
+<Callout title="Insight" type="warn">
+Notice that the variable $x$ has completely disappeared from this special case formula! This means the electric field of an infinite sheet of charge is **uniform**. It doesn't matter if you are $1\text{cm}$ away or $10\text{m}$ away; the force exerted remains exactly the same.
+</Callout>
