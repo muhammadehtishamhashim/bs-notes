@@ -1,0 +1,87 @@
+---
+title: Compilation Phase
+description: Translating high-level C code into low-level Assembly language.
+---
+
+# The Compilation Phase (`cc1`)
+
+The compilation phase is the most complex and computationally heavy part of the compilation system. It takes the pure, expanded C code (`.i` file) and translates it into **Assembly Language** (`.s` file).
+
+### The Internal Stages of the Compiler
+
+The compiler doesn't just translate word-for-word. It deeply analyzes the code through several internal sub-phases:
+
+1.  **Lexical Analysis (Scanning):** Breaks the stream of characters into meaningful tokens (keywords, identifiers, symbols).
+2.  **Syntax Analysis (Parsing):** Checks if the tokens form valid C statements according to language grammar rules, creating an Abstract Syntax Tree (AST). *(This is where you get syntax errors like "missing semicolon".)*
+3.  **Semantic Analysis:** Checks for logic and type consistency (e.g., trying to add a string to an integer).
+4.  **Optimization:** Rewrites the code to make it faster or consume less memory (e.g., removing unused variables, evaluating constant math expressions at compile time).
+5.  **Code Generation:** Converts the optimized abstract representation into target-specific assembly instructions.
+
+---
+
+### Visualizing the Translation
+
+<div className="my-6 overflow-x-auto border border-border/50 rounded-xl bg-card shadow-sm">
+  <div className="w-max mx-auto p-6 flex items-stretch justify-between gap-4">
+    {/* Input File */}
+    <div className="flex-1 bg-[#0d1117] dark:bg-black/50 border border-border/60 rounded-lg p-4 font-mono text-sm shadow-sm">
+      <div className="text-foreground/50 border-b border-border/50 mb-2 pb-1 text-xs">hello.i (C Code)</div>
+      <div className="text-blue-300">int main() {'{'}</div>
+      <div className="text-blue-300 ml-4">int a = 5;</div>
+      <div className="text-blue-300 ml-4">return a;</div>
+      <div className="text-blue-300">{'}'}</div>
+    </div>
+
+    {/* Compiler Engine */}
+    <div className="flex flex-col items-center justify-center shrink-0 w-32">
+      <div className="text-xs font-bold text-blue-500 mb-1">gcc -S</div>
+      <div className="rounded-xl border-2 border-blue-500/30 bg-blue-500/10 w-full py-4 flex flex-col items-center justify-center shadow-sm">
+        <span className="font-bold text-blue-500 mb-2">cc1</span>
+        <span className="text-[10px] uppercase text-muted-foreground px-2 text-center">Syntax Check<br/>& Optimization</span>
+      </div>
+      <div className="text-xs font-bold text-blue-500 mt-2">Target Arch: x86_64</div>
+    </div>
+
+    {/* Output File */}
+    <div className="flex-1 bg-[#0d1117] dark:bg-black/50 border border-border/60 rounded-lg p-4 font-mono text-sm shadow-sm relative">
+      <div className="text-foreground/50 border-b border-border/50 mb-2 pb-1 text-xs">hello.s (Assembly)</div>
+      <div className="text-yellow-300">main:</div>
+      <div className="text-purple-300 ml-4">pushq   %rbp</div>
+      <div className="text-purple-300 ml-4">movq    %rsp, %rbp</div>
+      <div className="text-purple-300 ml-4">movl    $5, -4(%rbp)</div>
+      <div className="text-purple-300 ml-4">movl    -4(%rbp), %eax</div>
+      <div className="text-purple-300 ml-4">popq    %rbp</div>
+      <div className="text-purple-300 ml-4">ret</div>
+    </div>
+  </div>
+</div>
+
+---
+
+### Critical Exam Points
+
+<div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
+  <div className="p-4 border border-l-4 border-l-blue-500 bg-blue-500/5 rounded-r-lg">
+    <h4 className="font-bold text-blue-500 mb-2">Architecture Dependent</h4>
+    <p className="text-sm">Assembly language is specific to the CPU architecture (e.g., x86, ARM, RISC-V). The compiler must know the target processor to generate the correct instructions.</p>
+  </div>
+  <div className="p-4 border border-l-4 border-l-blue-500 bg-blue-500/5 rounded-r-lg">
+    <h4 className="font-bold text-blue-500 mb-2">Common Output Language</h4>
+    <p className="text-sm">Assembly provides a standard interface. A C compiler and a C++ compiler can both generate Assembly, and the rest of the chain (Assembler/Linker) remains exactly the same.</p>
+  </div>
+</div>
+
+| Tool / Flag | Details |
+| :--- | :--- |
+| **Tool Name** | `cc1` (C Compiler core) |
+| **GCC Flag** | `gcc -S hello.i -o hello.s` |
+| **Input $\rightarrow$ Output** | Modified Source (`.i`) $\rightarrow$ Assembly Code (`.s`) |
+| **Output Format** | Human-readable Text (Mnemonics) |
+
+---
+
+## Comprehensive Summary
+* **What it is:** The brain of the translation system, converting C constructs into low-level CPU instructions.
+* **What it does:** Performs lexical, syntax, and semantic checks. If errors exist, compilation halts here. It then optimizes the code and translates it into hardware-specific Assembly language.
+* **Why it matters:** It abstracts away the hardware. Programmers write high-level logic, and the compiler handles the complex task of figuring out which registers and CPU instructions to use.
+* **The Result:** A `.s` file containing text-based assembly instructions (mnemonics like `mov`, `push`, `add`) specific to the target architecture.

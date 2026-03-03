@@ -1,3 +1,9 @@
 {
-  "$schema": "../../../../.source/json-schema/docs.meta.json"
+  "pages":[
+    "compilation-system",
+    "preprocessing-phase",
+    "compilation-phase",
+    "assembly-phase",
+    "linker-phase"
+  ]
 }

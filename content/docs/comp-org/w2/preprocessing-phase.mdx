@@ -1,0 +1,91 @@
+---
+title: Preprocessing Phase
+description: The first step of the compilation system where text substitution happens.
+---
+
+# The Preprocessing Phase (`cpp`)
+
+The preprocessor is the first program invoked by the compiler driver. It modifies the original C source code based on **preprocessor directives** (commands that start with `#`).
+
+### Core Functions
+
+The preprocessor performs purely **text-based operations**. It does not understand C syntax, types, or logic; it simply performs search-and-replace and text insertion.
+
+1.  **File Inclusion (`#include`):** Copies the entire contents of the referenced header file (e.g., `<stdio.h>`) and pastes it directly into the source file.
+2.  **Macro Expansion (`#define`):** Replaces macro names with their defined values or code snippets throughout the file.
+3.  **Conditional Compilation (`#ifdef`, `#ifndef`):** Includes or excludes parts of the code based on certain conditions, useful for cross-platform development or debugging.
+4.  **Comment Removal:** Strips out all `//` and `/* */` comments to reduce file size for the next phase.
+
+---
+
+### Visualizing the Transformation
+
+Below is a fixed-width diagram showing how the file is transformed. Scroll horizontally on smaller screens.
+
+<div className="my-6 overflow-x-auto border border-border/50 rounded-xl bg-card shadow-sm">
+  <div className="w-max mx-auto p-6 flex items-center justify-between gap-4">
+    {/* Input File */}
+    <div className="flex flex-col w-64 bg-[#0d1117] dark:bg-black/50 border border-border/60 rounded-lg p-4 font-mono text-xs shadow-sm">
+      <div className="text-foreground/50 border-b border-border/50 mb-2 pb-1">hello.c (Source)</div>
+      <div className="text-purple-400">#include &lt;stdio.h&gt;</div>
+      <div className="text-purple-400">#define MAX 10</div>
+      <br/>
+      <div className="text-green-500/50">// Main function</div>
+      <div className="text-blue-300">int main() {'{'}</div>
+      <div className="text-blue-300 ml-4">int a = MAX;</div>
+      <div className="text-blue-300">{'}'}</div>
+    </div>
+
+    {/* Preprocessor Engine */}
+    <div className="flex flex-col items-center shrink-0">
+      <div className="text-xs font-bold text-orange-500 mb-1">gcc -E</div>
+      <div className="rounded-full border-2 border-orange-500/30 bg-orange-500/10 w-16 h-16 flex items-center justify-center shadow-sm relative overflow-hidden">
+        <span className="font-bold text-orange-500">cpp</span>
+      </div>
+      <div className="w-24 h-[2px] bg-orange-500/30 my-2 relative">
+         <div className="absolute right-0 -top-1 w-0 h-0 border-y-[5px] border-y-transparent border-l-[8px] border-l-orange-500/50"></div>
+      </div>
+    </div>
+
+    {/* Output File */}
+    <div className="flex flex-col w-64 bg-[#0d1117] dark:bg-black/50 border border-border/60 rounded-lg p-4 font-mono text-xs shadow-sm">
+      <div className="text-foreground/50 border-b border-border/50 mb-2 pb-1">hello.i (Modified Source)</div>
+      <div className="text-foreground/40 italic">... (800+ lines from stdio.h pasted here) ...</div>
+      <div className="text-foreground/40 italic">extern int printf (const char *__restrict __format, ...);</div>
+      <br/>
+      <div className="text-blue-300">int main() {'{'}</div>
+      <div className="text-blue-300 ml-4">int a = <span className="text-yellow-300 bg-yellow-500/20 px-1 rounded">10</span>;</div>
+      <div className="text-blue-300">{'}'}</div>
+    </div>
+  </div>
+</div>
+
+---
+
+### Critical Exam Points
+
+<div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
+  <div className="p-4 border border-l-4 border-l-orange-500 bg-orange-500/5 rounded-r-lg">
+    <h4 className="font-bold text-orange-500 mb-2">No Syntax Checking</h4>
+    <p className="text-sm">The preprocessor does <strong>not</strong> check for C syntax errors. If you forget a semicolon, the preprocessor doesn't care. It only processes text.</p>
+  </div>
+  <div className="p-4 border border-l-4 border-l-orange-500 bg-orange-500/5 rounded-r-lg">
+    <h4 className="font-bold text-orange-500 mb-2">Code Bloat</h4>
+    <p className="text-sm">Including a heavy library like <code>&lt;stdio.h&gt;</code> expands a 5-line <code>.c</code> file into an 800+ line <code>.i</code> file. The compiler must parse all of it.</p>
+  </div>
+</div>
+
+| Tool / Flag | Details |
+| :--- | :--- |
+| **Tool Name** | `cpp` (C PreProcessor) |
+| **GCC Flag** | `gcc -E hello.c -o hello.i` |
+| **Input $\rightarrow$ Output** | Source Code (`.c`) $\rightarrow$ Expanded Source (`.i`) |
+| **Output Format** | Human-readable Text |
+
+---
+
+## Comprehensive Summary
+* **What it is:** The first phase of compilation focusing purely on text manipulation.
+* **What it does:** Expands macros (`#define`), inserts header files (`#include`), processes conditional directives (`#ifdef`), and strips comments.
+* **Why it matters:** It prepares a massive, complete, single text file (the translation unit) so the compiler has all the declarations and code it needs in one place without needing to search multiple files.
+* **The Result:** A `.i` file that is much larger than the original `.c` file, containing only pure C code ready for actual syntax parsing.
