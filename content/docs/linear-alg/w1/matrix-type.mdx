@@ -1,0 +1,150 @@
+---
+title: Types of Matrices
+description: Comprehensive classification of matrices including row, column, square, diagonal, and triangular types.
+---
+
+import { MathWrapper } from '@/components/mdx/math-wrapper';
+import { Callout } from 'fumadocs-ui/components/callout';
+
+# Types of Matrices
+
+Matrices are classified based on their order and the structural arrangement of their elements.
+
+1. **Row Matrix**: A matrix having only one row. Order: $1 \times n$.
+2. **Column Matrix**: A matrix having only one column. Order: $m \times 1$.
+3. **Square Matrix**: A matrix where the number of rows equals the number of columns ($m = n$).
+4. **Diagonal Matrix**: A square matrix where all non-diagonal elements are zero ($a_{ij} = 0$ for $i \neq j$).
+5. **Scalar Matrix**: A diagonal matrix where all diagonal elements are identical.
+6. **Identity (Unit) Matrix**: A scalar matrix where all diagonal elements are exactly $1$. Denoted by $I$.
+7. **Zero (Null) Matrix**: A matrix where all elements are zero. Denoted by $O$.
+8. **Upper Triangular Matrix**: A square matrix where all elements *below* the main diagonal are zero ($a_{ij} = 0$ for $i > j$).
+9. **Lower Triangular Matrix**: A square matrix where all elements *above* the main diagonal are zero ($a_{ij} = 0$ for $i < j$).
+
+---
+
+## Solved Practice Questions
+
+### Question 1
+Identify the type of the following matrix:
+$$A = \begin{bmatrix} 4 & 0 & 0 \\ 0 & 4 & 0 \\ 0 & 0 & 4 \end{bmatrix}$$
+
+**Solution:**
+
+1. It is a $3 \times 3$ matrix, so it is a Square Matrix.
+2. All non-diagonal elements are zero ($a_{ij} = 0$ for $i \neq j$), so it is a Diagonal Matrix.
+3. All principal diagonal elements are exactly the same ($4$).
+
+**Conclusion:** Matrix $A$ is a Scalar Matrix.
+
+### Question 2
+Determine the order and type of the matrix $B$:
+$$B = \begin{bmatrix} 7 & -2 & 3 & 1 \end{bmatrix}$$
+
+**Solution:**
+
+- Rows ($m$) = $1$
+- Columns ($n$) = $4$
+- Order = $1 \times 4$
+
+**Conclusion:** Because it has exactly one row, it is a Row Matrix.
+
+### Question 3
+Find the values of $x$ and $y$ if the following matrix is an Identity Matrix:
+$$I = \begin{bmatrix} 1 & x-2 \\ y+3 & 1 \end{bmatrix}$$
+
+**Solution:**
+
+By definition, a $2 \times 2$ identity matrix is:
+$$
+I = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}
+$$
+
+Comparing the elements:
+- $x - 2 = 0 \implies x = 2$
+- $y + 3 = 0 \implies y = -3$
+
+### Question 4
+A diagonal matrix is given compactly as $D = \text{diag}(5, -1, 3)$. Write the full matrix $D$.
+
+**Solution:**
+
+A "diag" notation implies a square matrix where the specified values form the principal diagonal, and all other entries are zero.
+
+$$
+D = \begin{bmatrix} 5 & 0 & 0 \\ 0 & -1 & 0 \\ 0 & 0 & 3 \end{bmatrix}
+$$
+
+### Question 5
+Identify the type(s) of the following matrix $Z$:
+$$Z = \begin{bmatrix} 0 & 0 \\ 0 & 0 \\ 0 & 0 \end{bmatrix}$$
+
+**Solution:**
+
+1. All elements are exactly zero.
+2. Its order is $3 \times 2$.
+
+**Conclusion:** It is a $3 \times 2$ Zero (or Null) Matrix.
+
+### Question 6
+State the mathematical condition on the elements $a_{ij}$ for a square matrix to be an **Upper Triangular Matrix**. Also provide an example of order 3.
+
+**Solution:**
+
+Condition: $a_{ij} = 0$ for all $i > j$.
+
+Example:
+$$
+U = \begin{bmatrix} 1 & 2 & 3 \\ 0 & 5 & 6 \\ 0 & 0 & 9 \end{bmatrix}
+$$
+
+### Question 7
+True or False: Every Identity matrix is a Scalar matrix. Justify your answer.
+
+**Solution:**
+
+True.
+
+A scalar matrix requires all diagonal elements to be identical and all non-diagonal elements to be zero.
+An identity matrix satisfies this because all diagonal elements are identically $1$, and non-diagonal elements are $0$.
+
+### Question 8
+Find the values of $a, b,$ and $c$ such that the matrix $L$ is a Lower Triangular Matrix.
+$$L = \begin{bmatrix} 2 & a & b \\ 4 & 5 & c \\ 7 & 8 & 9 \end{bmatrix}$$
+
+**Solution:**
+
+For a lower triangular matrix, all elements strictly above the main diagonal must be zero.
+
+Condition: $l_{ij} = 0$ for $i < j$
+
+- $l_{12} = a = 0$
+- $l_{13} = b = 0$
+- $l_{23} = c = 0$
+
+Therefore, $a = 0$, $b = 0$, and $c = 0$.
+
+### Question 9
+Is it possible for a matrix to be both Upper Triangular and Lower Triangular? If so, what is this type of matrix called?
+
+**Solution:**
+
+Yes, it is possible.
+
+- If a matrix is Upper Triangular, then $a_{ij} = 0$ for $i > j$.
+- If a matrix is Lower Triangular, then $a_{ij} = 0$ for $i < j$.
+
+Combining these means $a_{ij} = 0$ for all $i \neq j$.
+A matrix satisfying this condition is called a **Diagonal Matrix**.
+
+### Question 10
+Identify all the applicable classifications for the matrix $M$:
+$$M = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}$$
+
+**Solution:**
+
+1. Square Matrix (Order $2 \times 2$)
+2. Diagonal Matrix (Non-diagonal elements are $0$)
+3. Scalar Matrix (Diagonal elements are identical)
+4. Identity Matrix (Diagonal elements are exactly $1$)
+5. Upper Triangular Matrix ($a_{21} = 0$)
+6. Lower Triangular Matrix ($a_{12} = 0$)

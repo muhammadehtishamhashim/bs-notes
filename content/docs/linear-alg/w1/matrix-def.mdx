@@ -1,0 +1,186 @@
+---
+title: Definition of Matrix
+description: Understanding the fundamental structure, order, and elements of a matrix.
+---
+
+import { MathWrapper } from '@/components/mdx/math-wrapper';
+import { Callout } from 'fumadocs-ui/components/callout';
+
+# Definition of Matrix
+
+A **matrix** is an ordered rectangular array of numbers or functions. The numbers or functions are called the **elements** or the **entries** of the matrix. Matrices are usually denoted by capital letters (e.g., $A, B, C$).
+
+### Order of a Matrix
+
+A matrix having $m$ rows and $n$ columns is called a matrix of order $m \times n$ (read as "$m$ by $n$"). 
+
+In general, an $m \times n$ matrix has the following rectangular array form:
+
+<MathWrapper title="General form of an m x n Matrix">
+
+$$
+\begin{aligned}
+A &= \begin{bmatrix}
+a_{11} & a_{12} & a_{13} & \dots & a_{1n} \\
+a_{21} & a_{22} & a_{23} & \dots & a_{2n} \\
+\vdots & \vdots & \vdots & \ddots & \vdots \\
+a_{m1} & a_{m2} & a_{m3} & \dots & a_{mn}
+\end{bmatrix}
+\end{aligned}
+$$
+
+</MathWrapper>
+
+The element $a_{ij}$ represents the entry at the $i$-th row and $j$-th column. The total number of elements in an $m \times n$ matrix is exactly $mn$.
+
+---
+
+## Solved Practice Questions
+
+### Question 1
+Find the order of the following matrix $A$ and state the total number of elements.
+$$A = \begin{bmatrix} 2 & 5 & -1 \\ 3 & 0 & 4 \end{bmatrix}$$
+
+**Solution:**
+
+- Number of rows ($m$) = $2$
+- Number of columns ($n$) = $3$
+- Order of matrix $A$ = $2 \times 3$
+- Total elements = $2 \times 3 = 6$
+
+### Question 2
+Given the matrix $B$, find the elements $b_{12}, b_{21},$ and $b_{33}$.
+$$B = \begin{bmatrix} 1 & 7 & 9 \\ -2 & 4 & 6 \\ 0 & 3 & 5 \end{bmatrix}$$
+
+**Solution:**
+
+- $b_{12}$ = Element in 1st row, 2nd column = $7$
+- $b_{21}$ = Element in 2nd row, 1st column = $-2$
+- $b_{33}$ = Element in 3rd row, 3rd column = $5$
+
+### Question 3
+Construct a $2 \times 2$ matrix $A = [a_{ij}]$ whose elements are given by $a_{ij} = i + j$.
+
+**Solution:**
+<MathWrapper title="Solution 3">
+
+$$
+\begin{aligned}
+A &= \begin{bmatrix} a_{11} & a_{12} \\ a_{21} & a_{22} \end{bmatrix} \\
+a_{11} &= 1 + 1 = 2 \\
+a_{12} &= 1 + 2 = 3 \\
+a_{21} &= 2 + 1 = 3 \\
+a_{22} &= 2 + 2 = 4 \\
+A &= \begin{bmatrix} 2 & 3 \\ 3 & 4 \end{bmatrix}
+\end{aligned}
+$$
+
+</MathWrapper>
+
+### Question 4
+Construct a $3 \times 2$ matrix $C = [c_{ij}]$ where $c_{ij} = \frac{1}{2}|i - 3j|$.
+
+**Solution:**
+<MathWrapper title="Solution 4">
+
+$$
+\begin{aligned}
+C &= \begin{bmatrix} c_{11} & c_{12} \\ c_{21} & c_{22} \\ c_{31} & c_{32} \end{bmatrix} \\
+c_{11} &= \frac{1}{2}|1 - 3(1)| = \frac{1}{2}|-2| = 1 \\
+c_{12} &= \frac{1}{2}|1 - 3(2)| = \frac{1}{2}|-5| = \frac{5}{2} \\
+c_{21} &= \frac{1}{2}|2 - 3(1)| = \frac{1}{2}|-1| = \frac{1}{2} \\
+c_{22} &= \frac{1}{2}|2 - 3(2)| = \frac{1}{2}|-4| = 2 \\
+c_{31} &= \frac{1}{2}|3 - 3(1)| = \frac{1}{2}|0| = 0 \\
+c_{32} &= \frac{1}{2}|3 - 3(2)| = \frac{1}{2}|-3| = \frac{3}{2} \\
+C &= \begin{bmatrix} 1 & \frac{5}{2} \\ \frac{1}{2} & 2 \\ 0 & \frac{3}{2} \end{bmatrix}
+\end{aligned}
+$$
+
+</MathWrapper>
+
+### Question 5
+If a matrix has 8 elements, what are the possible orders it can have?
+
+**Solution:**
+
+Total elements = $mn = 8$.
+
+Possible pairs of $(m, n)$ that multiply to $8$ are:
+$(1, 8), (8, 1), (2, 4), (4, 2)$
+
+Therefore, the possible orders are:
+$1 \times 8,\ 8 \times 1,\ 2 \times 4,\ 4 \times 2$
+
+### Question 6
+If a matrix has 13 elements, what are the possible orders it can have?
+
+**Solution:**
+
+Total elements = $mn = 13$.
+
+Since $13$ is a prime number, the only integer factors are $1$ and $13$.
+
+Therefore, the possible orders are:
+$1 \times 13$ and $13 \times 1$
+
+### Question 7
+Construct a $2 \times 3$ matrix $X = [x_{ij}]$ where $x_{ij} = (i - j)^2$.
+
+**Solution:**
+<MathWrapper title="Solution 7">
+
+$$
+\begin{aligned}
+X &= \begin{bmatrix} x_{11} & x_{12} & x_{13} \\ x_{21} & x_{22} & x_{23} \end{bmatrix} \\
+x_{11} &= (1 - 1)^2 = 0 \\
+x_{12} &= (1 - 2)^2 = 1 \\
+x_{13} &= (1 - 3)^2 = 4 \\
+x_{21} &= (2 - 1)^2 = 1 \\
+x_{22} &= (2 - 2)^2 = 0 \\
+x_{23} &= (2 - 3)^2 = 1 \\
+X &= \begin{bmatrix} 0 & 1 & 4 \\ 1 & 0 & 1 \end{bmatrix}
+\end{aligned}
+$$
+
+</MathWrapper>
+
+### Question 8
+Identify the row and column index of the number $15$ in the matrix below:
+$$M = \begin{bmatrix} 3 & 6 & 9 \\ 12 & 15 & 18 \\ 21 & 24 & 27 \end{bmatrix}$$
+
+**Solution:**
+
+- The number $15$ is located in the second horizontal row.
+- The number $15$ is located in the second vertical column.
+
+Therefore, $m_{ij} = m_{22} = 15$.
+
+Index: $i = 2$, $j = 2$
+
+### Question 9
+Construct a $2 \times 2$ matrix $D = [d_{ij}]$ where $d_{ij} = e^{ix}\cos(jx)$ for $x=0$.
+
+**Solution:**
+
+Given $x = 0$, the expression simplifies:
+$$
+d_{ij} = e^{i(0)}\cos(j(0)) = e^0 \cos(0) = 1 \cdot 1 = 1
+$$
+
+Therefore, every element is $1$.
+$$
+D = \begin{bmatrix} 1 & 1 \\ 1 & 1 \end{bmatrix}
+$$
+
+### Question 10
+Write down the general form of a $4 \times 1$ matrix (also known as a column matrix) and state its total number of elements.
+
+**Solution:**
+
+A $4 \times 1$ matrix has $4$ rows and $1$ column.
+
+$$
+V = \begin{bmatrix} v_{11} \\ v_{21} \\ v_{31} \\ v_{41} \end{bmatrix}
+$$
+
+Total number of elements = $4 \times 1 = 4$.
