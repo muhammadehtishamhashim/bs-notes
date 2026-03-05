@@ -1,6 +1,6 @@
 ---
 title: Definition of Matrix
-description: Understanding the fundamental structure, order, and elements of a matrix.
+description: Understanding the fundamental structure, order, and elements of a matrix as per the Grade 11 textbook.
 ---
 
 import { MathWrapper } from '@/components/mdx/math-wrapper';
@@ -8,179 +8,204 @@ import { Callout } from 'fumadocs-ui/components/callout';
 
 # Definition of Matrix
 
-A **matrix** is an ordered rectangular array of numbers or functions. The numbers or functions are called the **elements** or the **entries** of the matrix. Matrices are usually denoted by capital letters (e.g., $A, B, C$).
+According to the Grade 11 Mathematics textbook, a **matrix** is a rectangular array of real numbers (or functions) arranged in rows and columns, enclosed by square brackets `[ ]`. 
+
+The numbers or functions that make up the matrix are called its **elements** or **entries**. Matrices are conventionally denoted by uppercase English alphabets like $A, B, C$, while their elements are denoted by corresponding lowercase letters with double subscripts, like $a_{ij}$.
 
 ### Order of a Matrix
 
-A matrix having $m$ rows and $n$ columns is called a matrix of order $m \times n$ (read as "$m$ by $n$"). 
+The textbook defines the **order** (or dimension) of a matrix by the number of its rows and columns. If a matrix $A$ has $m$ horizontal rows and $n$ vertical columns, it is said to be a matrix of order $m \times n$ (read as "$m$ by $n$").
 
-In general, an $m \times n$ matrix has the following rectangular array form:
+<div className="my-6 overflow-x-auto border border-border/50 rounded-xl bg-card shadow-sm">
+  <div className="w-max mx-auto p-6 flex flex-col items-center gap-4">
+    <div className="text-sm font-bold text-foreground/80 mb-2 border-b border-border/50 pb-1 w-full text-center">Visualizing a $3 \times 3$ Matrix Structure</div>
+    <div className="flex items-center gap-4">
+      {/* Row Labels */}
+      <div className="flex flex-col gap-6 text-xs text-muted-foreground font-mono text-right mt-6">
+        <div>Row 1 ($i=1$) $\rightarrow$</div>
+        <div>Row 2 ($i=2$) $\rightarrow$</div>
+        <div>Row 3 ($i=3$) $\rightarrow$</div>
+      </div>
+      
+      {/* Matrix Array */}
+      <div className="relative border-l-2 border-r-2 border-foreground/50 px-4 py-2 rounded-lg bg-[#0d1117] dark:bg-black/50 shadow-inner flex flex-col gap-4 font-mono text-sm">
+        <div className="flex gap-6">
+          <span className="text-blue-400">$a_{11}$</span>
+          <span className="text-blue-400">$a_{12}$</span>
+          <span className="text-blue-400">$a_{13}$</span>
+        </div>
+        <div className="flex gap-6">
+          <span className="text-green-400">$a_{21}$</span>
+          <span className="text-green-400">$a_{22}$</span>
+          <span className="text-green-400">$a_{23}$</span>
+        </div>
+        <div className="flex gap-6">
+          <span className="text-purple-400">$a_{31}$</span>
+          <span className="text-purple-400">$a_{32}$</span>
+          <span className="text-purple-400">$a_{33}$</span>
+        </div>
+      </div>
+    </div>
 
-<MathWrapper title="General form of an m x n Matrix">
+    {/* Column Labels */}
+    <div className="flex gap-10 text-xs text-muted-foreground font-mono text-center ml-24">
+      <div className="flex flex-col items-center"><span>$\uparrow$</span><span>Col 1</span><span>($j=1$)</span></div>
+      <div className="flex flex-col items-center"><span>$\uparrow$</span><span>Col 2</span><span>($j=2$)</span></div>
+      <div className="flex flex-col items-center"><span>$\uparrow$</span><span>Col 3</span><span>($j=3$)</span></div>
+    </div>
+  </div>
+</div>
 
-$$
-\begin{aligned}
-A &= \begin{bmatrix}
-a_{11} & a_{12} & a_{13} & \dots & a_{1n} \\
-a_{21} & a_{22} & a_{23} & \dots & a_{2n} \\
-\vdots & \vdots & \vdots & \ddots & \vdots \\
-a_{m1} & a_{m2} & a_{m3} & \dots & a_{mn}
-\end{bmatrix}
-\end{aligned}
-$$
-
-</MathWrapper>
-
-The element $a_{ij}$ represents the entry at the $i$-th row and $j$-th column. The total number of elements in an $m \times n$ matrix is exactly $mn$.
+<Callout title="Textbook Note" type="info">
+The element $a_{ij}$ denotes the entry located precisely at the intersection of the $i$-th row and the $j$-th column. The total number of elements in an $m \times n$ matrix is $mn$.
+</Callout>
 
 ---
 
-## Solved Practice Questions
+## Conceptual Questions
 
 ### Question 1
-Find the order of the following matrix $A$ and state the total number of elements.
-$$A = \begin{bmatrix} 2 & 5 & -1 \\ 3 & 0 & 4 \end{bmatrix}$$
+Can a matrix have $2.5$ rows or $3.1$ columns? Explain based on the textbook definition.
 
 **Solution:**
-
-- Number of rows ($m$) = $2$
-- Number of columns ($n$) = $3$
-- Order of matrix $A$ = $2 \times 3$
-- Total elements = $2 \times 3 = 6$
+No. According to the textbook definition of a matrix's order ($m \times n$), the variables $m$ (rows) and $n$ (columns) must be strictly positive integers (natural numbers). A fractional row or column is mathematically meaningless.
 
 ### Question 2
-Given the matrix $B$, find the elements $b_{12}, b_{21},$ and $b_{33}$.
-$$B = \begin{bmatrix} 1 & 7 & 9 \\ -2 & 4 & 6 \\ 0 & 3 & 5 \end{bmatrix}$$
+If a matrix has exactly $7$ elements, what are its possible orders? Why?
 
 **Solution:**
-
-- $b_{12}$ = Element in 1st row, 2nd column = $7$
-- $b_{21}$ = Element in 2nd row, 1st column = $-2$
-- $b_{33}$ = Element in 3rd row, 3rd column = $5$
+The total elements in a matrix equals $m \times n = 7$. Since $7$ is a prime number, the only natural numbers that multiply to $7$ are $1$ and $7$. Therefore, the only possible orders are $1 \times 7$ and $7 \times 1$.
 
 ### Question 3
-Construct a $2 \times 2$ matrix $A = [a_{ij}]$ whose elements are given by $a_{ij} = i + j$.
+What is the difference between the element $a_{12}$ and the element $a_{21}$ in a matrix?
 
 **Solution:**
-<MathWrapper title="Solution 3">
+The element $a_{12}$ is located in the 1st row and the 2nd column. The element $a_{21}$ is located in the 2nd row and the 1st column. The subscripts dictate the exact spatial address within the rectangular array.
+
+---
+
+## Exercise Questions
+
+### Question 1
+Find the order of the matrix $A$ and determine the value of the element $a_{23}$.
+$$A = \begin{bmatrix} 2 & 5 & -1 & 7 \\ 3 & 0 & 4 & 9 \\ -5 & 6 & 1 & 8 \end{bmatrix}$$
+
+**Solution:**
+The number of horizontal rows ($m$) is $3$ and vertical columns ($n$) is $4$. Therefore, the order of matrix $A$ is $3 \times 4$. The element $a_{23}$ is located in the 2nd row and 3rd column, which gives $a_{23} = 4$.
+
+### Question 2
+If a matrix has 12 elements, what are all the possible orders it can have?
+
+**Solution:**
+Let the order be $m \times n$. The total elements must equal $12$. We must find all natural number pairs $(m, n)$ whose product is 12:
+- $1 \times 12$
+- $12 \times 1$
+- $2 \times 6$
+- $6 \times 2$
+- $3 \times 4$
+- $4 \times 3$
+
+### Question 3
+Construct a $2 \times 2$ matrix $A = [a_{ij}]$ whose elements are given by the formula $a_{ij} = \frac{(i + 2j)^2}{2}$.
+
+The general form of a $2 \times 2$ matrix is $A = \begin{bmatrix} a_{11} & a_{12} \\ a_{21} & a_{22} \end{bmatrix}$. We calculate each element by substituting the row index $i$ and column index $j$ into the given formula.
+
+<MathWrapper title="Element Calculations">
 
 $$
 \begin{aligned}
-A &= \begin{bmatrix} a_{11} & a_{12} \\ a_{21} & a_{22} \end{bmatrix} \\
-a_{11} &= 1 + 1 = 2 \\
-a_{12} &= 1 + 2 = 3 \\
-a_{21} &= 2 + 1 = 3 \\
-a_{22} &= 2 + 2 = 4 \\
-A &= \begin{bmatrix} 2 & 3 \\ 3 & 4 \end{bmatrix}
+a_{11} &= \frac{(1 + 2(1))^2}{2} = \frac{3^2}{2} = \frac{9}{2} \\
+a_{12} &= \frac{(1 + 2(2))^2}{2} = \frac{5^2}{2} = \frac{25}{2} \\
+a_{21} &= \frac{(2 + 2(1))^2}{2} = \frac{4^2}{2} = \frac{16}{2} = 8 \\
+a_{22} &= \frac{(2 + 2(2))^2}{2} = \frac{6^2}{2} = \frac{36}{2} = 18 \\
+A &= \begin{bmatrix} \frac{9}{2} & \frac{25}{2} \\ 8 & 18 \end{bmatrix}
 \end{aligned}
 $$
 
 </MathWrapper>
 
 ### Question 4
-Construct a $3 \times 2$ matrix $C = [c_{ij}]$ where $c_{ij} = \frac{1}{2}|i - 3j|$.
+Construct a $3 \times 2$ matrix $B = [b_{ij}]$ where the elements are defined as $b_{ij} = |2i - 3j|$.
 
-**Solution:**
-<MathWrapper title="Solution 4">
+The matrix $B$ will have 3 rows and 2 columns. We calculate the absolute value for each specific row ($i$) and column ($j$) coordinate.
+
+<MathWrapper title="Element Calculations">
 
 $$
 \begin{aligned}
-C &= \begin{bmatrix} c_{11} & c_{12} \\ c_{21} & c_{22} \\ c_{31} & c_{32} \end{bmatrix} \\
-c_{11} &= \frac{1}{2}|1 - 3(1)| = \frac{1}{2}|-2| = 1 \\
-c_{12} &= \frac{1}{2}|1 - 3(2)| = \frac{1}{2}|-5| = \frac{5}{2} \\
-c_{21} &= \frac{1}{2}|2 - 3(1)| = \frac{1}{2}|-1| = \frac{1}{2} \\
-c_{22} &= \frac{1}{2}|2 - 3(2)| = \frac{1}{2}|-4| = 2 \\
-c_{31} &= \frac{1}{2}|3 - 3(1)| = \frac{1}{2}|0| = 0 \\
-c_{32} &= \frac{1}{2}|3 - 3(2)| = \frac{1}{2}|-3| = \frac{3}{2} \\
-C &= \begin{bmatrix} 1 & \frac{5}{2} \\ \frac{1}{2} & 2 \\ 0 & \frac{3}{2} \end{bmatrix}
+b_{11} &= |2(1) - 3(1)| = |-1| = 1 \\
+b_{12} &= |2(1) - 3(2)| = |-4| = 4 \\
+b_{21} &= |2(2) - 3(1)| = |1| = 1 \\
+b_{22} &= |2(2) - 3(2)| = |-2| = 2 \\
+b_{31} &= |2(3) - 3(1)| = |3| = 3 \\
+b_{32} &= |2(3) - 3(2)| = |0| = 0 \\
+B &= \begin{bmatrix} 1 & 4 \\ 1 & 2 \\ 3 & 0 \end{bmatrix}
 \end{aligned}
 $$
 
 </MathWrapper>
 
 ### Question 5
-If a matrix has 8 elements, what are the possible orders it can have?
+Determine the general form of a matrix of order $1 \times 4$ and write down the total number of elements.
 
 **Solution:**
-
-Total elements = $mn = 8$.
-
-Possible pairs of $(m, n)$ that multiply to $8$ are:
-$(1, 8), (8, 1), (2, 4), (4, 2)$
-
-Therefore, the possible orders are:
-$1 \times 8,\ 8 \times 1,\ 2 \times 4,\ 4 \times 2$
+A $1 \times 4$ matrix has exactly 1 row and 4 columns. 
+Let the matrix be $C$. The general form is: $C = \begin{bmatrix} c_{11} & c_{12} & c_{13} & c_{14} \end{bmatrix}$.
+The total number of elements is $1 \times 4 = 4$.
 
 ### Question 6
-If a matrix has 13 elements, what are the possible orders it can have?
+Write the element $a_{32}$ of the matrix $A = [a_{ij}]_{3 \times 3}$ given by the formula $a_{ij} = e^{i-j} \sin(j\pi)$.
 
 **Solution:**
-
-Total elements = $mn = 13$.
-
-Since $13$ is a prime number, the only integer factors are $1$ and $13$.
-
-Therefore, the possible orders are:
-$1 \times 13$ and $13 \times 1$
+We need to find the element in the 3rd row, 2nd column ($i=3, j=2$). Substituting these into the formula yields:
+$$a_{32} = e^{3-2} \sin(2\pi) = e^1 \times 0 = 0$$
 
 ### Question 7
-Construct a $2 \times 3$ matrix $X = [x_{ij}]$ where $x_{ij} = (i - j)^2$.
+Construct a $2 \times 3$ matrix $X = [x_{ij}]$ given by the formula $x_{ij} = i^2 - j^2$.
 
-**Solution:**
-<MathWrapper title="Solution 7">
+We will substitute the $i$ and $j$ values for all 6 coordinates in the $2 \times 3$ matrix.
+
+<MathWrapper title="Element Calculations">
 
 $$
 \begin{aligned}
-X &= \begin{bmatrix} x_{11} & x_{12} & x_{13} \\ x_{21} & x_{22} & x_{23} \end{bmatrix} \\
-x_{11} &= (1 - 1)^2 = 0 \\
-x_{12} &= (1 - 2)^2 = 1 \\
-x_{13} &= (1 - 3)^2 = 4 \\
-x_{21} &= (2 - 1)^2 = 1 \\
-x_{22} &= (2 - 2)^2 = 0 \\
-x_{23} &= (2 - 3)^2 = 1 \\
-X &= \begin{bmatrix} 0 & 1 & 4 \\ 1 & 0 & 1 \end{bmatrix}
+x_{11} &= 1^2 - 1^2 = 0 \\
+x_{12} &= 1^2 - 2^2 = -3 \\
+x_{13} &= 1^2 - 3^2 = -8 \\
+x_{21} &= 2^2 - 1^2 = 3 \\
+x_{22} &= 2^2 - 2^2 = 0 \\
+x_{23} &= 2^2 - 3^2 = -5 \\
+X &= \begin{bmatrix} 0 & -3 & -8 \\ 3 & 0 & -5 \end{bmatrix}
 \end{aligned}
 $$
 
 </MathWrapper>
 
 ### Question 8
-Identify the row and column index of the number $15$ in the matrix below:
+If a matrix has 8 elements, what are all the possible orders it can have?
+
+**Solution:**
+We must find all integer pairs that multiply to 8. The possible combinations are $1 \times 8$, $8 \times 1$, $2 \times 4$, and $4 \times 2$.
+
+### Question 9
+Construct a $3 \times 3$ matrix $I = [i_{jk}]$ where $i_{jk} = 1$ if $j = k$, and $i_{jk} = 0$ if $j \neq k$.
+
+Based on the condition, any element on the main diagonal (where row equals column, meaning $j=k$) is $1$. Any element outside the diagonal is $0$.
+
+<MathWrapper title="Matrix Construction">
+
+$$
+\begin{aligned}
+I &= \begin{bmatrix} i_{11} & i_{12} & i_{13} \\ i_{21} & i_{22} & i_{23} \\ i_{31} & i_{32} & i_{33} \end{bmatrix} \\
+I &= \begin{bmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{bmatrix}
+\end{aligned}
+$$
+
+</MathWrapper>
+
+### Question 10
+Identify the row index and column index of the number $15$ in the matrix below:
 $$M = \begin{bmatrix} 3 & 6 & 9 \\ 12 & 15 & 18 \\ 21 & 24 & 27 \end{bmatrix}$$
 
 **Solution:**
-
-- The number $15$ is located in the second horizontal row.
-- The number $15$ is located in the second vertical column.
-
-Therefore, $m_{ij} = m_{22} = 15$.
-
-Index: $i = 2$, $j = 2$
-
-### Question 9
-Construct a $2 \times 2$ matrix $D = [d_{ij}]$ where $d_{ij} = e^{ix}\cos(jx)$ for $x=0$.
-
-**Solution:**
-
-Given $x = 0$, the expression simplifies:
-$$
-d_{ij} = e^{i(0)}\cos(j(0)) = e^0 \cos(0) = 1 \cdot 1 = 1
-$$
-
-Therefore, every element is $1$.
-$$
-D = \begin{bmatrix} 1 & 1 \\ 1 & 1 \end{bmatrix}
-$$
-
-### Question 10
-Write down the general form of a $4 \times 1$ matrix (also known as a column matrix) and state its total number of elements.
-
-**Solution:**
-
-A $4 \times 1$ matrix has $4$ rows and $1$ column.
-
-$$
-V = \begin{bmatrix} v_{11} \\ v_{21} \\ v_{31} \\ v_{41} \end{bmatrix}
-$$
-
-Total number of elements = $4 \times 1 = 4$.
+The number $15$ is located in the second horizontal row ($i=2$). It is also located in the second vertical column ($j=2$). Therefore, its elemental notation is $m_{22}$.

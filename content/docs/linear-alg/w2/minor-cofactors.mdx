@@ -1,0 +1,303 @@
+---
+title: Minors, Cofactors & 3x3 Determinants
+description: Understanding the concepts of minors and cofactors to evaluate the determinant of a 3x3 matrix.
+---
+
+import { MathWrapper } from '@/components/mdx/math-wrapper';
+import { Callout } from 'fumadocs-ui/components/callout';
+
+# Minors and Cofactors
+
+To calculate the determinant of a $3 \times 3$ matrix (or any higher-order matrix), the textbook introduces two foundational concepts: **Minors** and **Cofactors**.
+
+### 1. Minor of an Element ($M_{ij}$)
+
+The minor of an element $a_{ij}$ in a square matrix is the determinant of the smaller sub-matrix that remains after **deleting the $i$-th row and the $j$-th column**. It is denoted by $M_{ij}$.
+
+<div className="my-6 overflow-x-auto border border-border/50 rounded-xl bg-card shadow-sm">
+  <div className="w-max mx-auto p-6 flex flex-col items-center gap-4">
+    <div className="text-sm font-bold text-foreground/80 border-b border-border/50 pb-1 w-full text-center">Finding Minor $M_{11}$ in a $3 \times 3$ Matrix</div>
+    
+    <div className="flex items-center gap-6">
+      {/* Original Matrix with Masking */}
+      <div className="relative border-l-2 border-r-2 border-foreground/50 px-4 py-3 rounded-lg bg-[#0d1117] dark:bg-black/50 shadow-inner flex flex-col gap-4 font-mono text-sm">
+        
+        {/* Row 1 (Masked) */}
+        <div className="flex gap-6 relative">
+          <div className="absolute inset-0 bg-red-500/20 border border-red-500/50 rounded pointer-events-none -mx-2 -my-1 z-10"></div>
+          <span className="text-foreground/30 line-through">$a_{11}$</span>
+          <span className="text-foreground/30 line-through">$a_{12}$</span>
+          <span className="text-foreground/30 line-through">$a_{13}$</span>
+        </div>
+        
+        {/* Row 2 */}
+        <div className="flex gap-6 relative">
+          {/* Col 1 Masking continuation */}
+          <div className="absolute top-[-200%] bottom-[-200%] left-[-8px] w-[35px] bg-red-500/20 border-x border-red-500/50 rounded pointer-events-none z-0"></div>
+          <span className="text-foreground/30 line-through relative z-10">$a_{21}$</span>
+          <span className="text-blue-400 font-bold relative z-10">$a_{22}$</span>
+          <span className="text-blue-400 font-bold relative z-10">$a_{23}$</span>
+        </div>
+
+        {/* Row 3 */}
+        <div className="flex gap-6 relative">
+          <span className="text-foreground/30 line-through relative z-10">$a_{31}$</span>
+          <span className="text-blue-400 font-bold relative z-10">$a_{32}$</span>
+          <span className="text-blue-400 font-bold relative z-10">$a_{33}$</span>
+        </div>
+      </div>
+
+      <div className="text-xl font-black text-foreground/30">$\implies$</div>
+
+      {/* Resulting Minor */}
+      <div className="bg-[#0d1117] dark:bg-black/50 border border-border/60 rounded-lg p-4 font-mono shadow-sm flex items-center gap-2 text-sm">
+        <span className="text-foreground font-bold">$M_{11}$ = </span>
+        <span className="text-blue-400 text-lg border-l border-r border-blue-400/50 px-2">
+          $\begin{matrix} a_{22} & a_{23} \\ a_{32} & a_{33} \end{matrix}$
+        </span>
+      </div>
+    </div>
+    <div className="text-xs text-muted-foreground mt-2">Delete Row 1 and Column 1. The remaining $2 \times 2$ determinant is the Minor $M_{11}$.</div>
+  </div>
+</div>
+
+### 2. Cofactor of an Element ($C_{ij}$)
+
+The cofactor of an element $a_{ij}$ is simply its minor $M_{ij}$ multiplied by a positional sign. The textbook defines it with the formula:
+
+$$C_{ij} = (-1)^{i+j} M_{ij}$$
+
+The positional sign $(-1)^{i+j}$ creates an alternating checkerboard pattern of plus and minus signs across the matrix:
+$$ \begin{bmatrix} + & - & + \\ - & + & - \\ + & - & + \end{bmatrix} $$
+
+### 3. Expansion of a $3 \times 3$ Determinant
+
+The determinant of a $3 \times 3$ matrix can be evaluated by expanding along **any** row or **any** column. The result is the sum of the products of the elements of that row/column and their corresponding cofactors.
+
+Expanding along the first row ($R_1$):
+$$|A| = a_{11}C_{11} + a_{12}C_{12} + a_{13}C_{13}$$
+
+Or, writing it out fully with minors:
+$$|A| = a_{11}(M_{11}) - a_{12}(M_{12}) + a_{13}(M_{13})$$
+
+---
+
+## Conceptual Questions
+
+### Question 1
+If you evaluate a $3 \times 3$ determinant by expanding along Row 1, and then evaluate the same matrix by expanding along Column 2, will you get the same answer?
+
+**Solution:**
+Yes. According to Laplace's formula in the textbook, the determinant of a matrix is a unique characteristic scalar value. Expanding along any row or any column will yield the exact same final result.
+
+### Question 2
+What is the positional sign for the element located at $a_{32}$ when finding its cofactor?
+
+**Solution:**
+The positional sign is calculated using $(-1)^{i+j}$. For the element $a_{32}$, $i=3$ and $j=2$. 
+$(-1)^{3+2} = (-1)^5 = -1$. The sign is negative.
+
+---
+
+## Exercise Questions
+
+### Question 1
+Given the matrix $A = \begin{bmatrix} 2 & 3 & 1 \\ 4 & 5 & 6 \\ 7 & 8 & 9 \end{bmatrix}$, find the minor $M_{21}$.
+
+To find $M_{21}$, we delete the 2nd row and 1st column, leaving a $2 \times 2$ determinant.
+
+<MathWrapper title="Calculating Minor">
+
+$$
+\begin{aligned}
+M_{21} &= \begin{vmatrix} 3 & 1 \\ 8 & 9 \end{vmatrix} \\
+M_{21} &= (3)(9) - (1)(8) \\
+M_{21} &= 27 - 8 \\
+M_{21} &= 19
+\end{aligned}
+$$
+
+</MathWrapper>
+
+### Question 2
+Using the same matrix $A = \begin{bmatrix} 2 & 3 & 1 \\ 4 & 5 & 6 \\ 7 & 8 & 9 \end{bmatrix}$, find the minor $M_{33}$.
+
+Delete the 3rd row and 3rd column.
+
+<MathWrapper title="Calculating Minor">
+
+$$
+\begin{aligned}
+M_{33} &= \begin{vmatrix} 2 & 3 \\ 4 & 5 \end{vmatrix} \\
+M_{33} &= (2)(5) - (3)(4) \\
+M_{33} &= 10 - 12 \\
+M_{33} &= -2
+\end{aligned}
+$$
+
+</MathWrapper>
+
+### Question 3
+For the matrix $B = \begin{bmatrix} 1 & -2 & 4 \\ 0 & 3 & 1 \\ 5 & 2 & -1 \end{bmatrix}$, find the cofactor $C_{12}$.
+
+We first find the minor $M_{12}$ (delete row 1, column 2), then apply the positional sign.
+
+<MathWrapper title="Calculating Cofactor">
+
+$$
+\begin{aligned}
+M_{12} &= \begin{vmatrix} 0 & 1 \\ 5 & -1 \end{vmatrix} = (0)(-1) - (1)(5) = -5 \\
+C_{12} &= (-1)^{1+2} M_{12} \\
+C_{12} &= (-1)^3 (-5) \\
+C_{12} &= (-1)(-5) \\
+C_{12} &= 5
+\end{aligned}
+$$
+
+</MathWrapper>
+
+### Question 4
+For the matrix $B = \begin{bmatrix} 1 & -2 & 4 \\ 0 & 3 & 1 \\ 5 & 2 & -1 \end{bmatrix}$, find the cofactor $C_{22}$.
+
+Find $M_{22}$ (delete row 2, col 2), then apply the sign.
+
+<MathWrapper title="Calculating Cofactor">
+
+$$
+\begin{aligned}
+M_{22} &= \begin{vmatrix} 1 & 4 \\ 5 & -1 \end{vmatrix} = (1)(-1) - (4)(5) = -1 - 20 = -21 \\
+C_{22} &= (-1)^{2+2} M_{22} \\
+C_{22} &= (-1)^4 (-21) \\
+C_{22} &= (1)(-21) \\
+C_{22} &= -21
+\end{aligned}
+$$
+
+</MathWrapper>
+
+### Question 5
+Evaluate the determinant of $A = \begin{bmatrix} 2 & 1 & 3 \\ 4 & -1 & 0 \\ 5 & 2 & 1 \end{bmatrix}$ by expanding along Row 1.
+
+We apply the formula $|A| = a_{11}(M_{11}) - a_{12}(M_{12}) + a_{13}(M_{13})$.
+
+<MathWrapper title="Determinant Expansion">
+
+$$
+\begin{aligned}
+|A| &= 2 \begin{vmatrix} -1 & 0 \\ 2 & 1 \end{vmatrix} - 1 \begin{vmatrix} 4 & 0 \\ 5 & 1 \end{vmatrix} + 3 \begin{vmatrix} 4 & -1 \\ 5 & 2 \end{vmatrix} \\
+|A| &= 2((-1)(1) - (0)(2)) - 1((4)(1) - (0)(5)) + 3((4)(2) - (-1)(5)) \\
+|A| &= 2(-1 - 0) - 1(4 - 0) + 3(8 + 5) \\
+|A| &= 2(-1) - 1(4) + 3(13) \\
+|A| &= -2 - 4 + 39 \\
+|A| &= 33
+\end{aligned}
+$$
+
+</MathWrapper>
+
+### Question 6
+Evaluate the determinant of the same matrix $A = \begin{bmatrix} 2 & 1 & 3 \\ 4 & -1 & 0 \\ 5 & 2 & 1 \end{bmatrix}$ by expanding along Column 3 to verify the result.
+
+The positional signs for Column 3 are $+, -, +$.
+
+<MathWrapper title="Column Expansion">
+
+$$
+\begin{aligned}
+|A| &= a_{13}C_{13} + a_{23}C_{23} + a_{33}C_{33} \\
+|A| &= 3 \begin{vmatrix} 4 & -1 \\ 5 & 2 \end{vmatrix} - 0 \begin{vmatrix} 2 & 1 \\ 5 & 2 \end{vmatrix} + 1 \begin{vmatrix} 2 & 1 \\ 4 & -1 \end{vmatrix} \\
+|A| &= 3((4)(2) - (-1)(5)) - 0 + 1((2)(-1) - (1)(4)) \\
+|A| &= 3(8 + 5) + 1(-2 - 4) \\
+|A| &= 3(13) + 1(-6) \\
+|A| &= 39 - 6 \\
+|A| &= 33
+\end{aligned}
+$$
+
+</MathWrapper>
+
+The result is $33$, proving expansion works along any column.
+
+### Question 7
+Find the value of $x$ if the matrix $M = \begin{bmatrix} 1 & x & 3 \\ 0 & 2 & 1 \\ 1 & 0 & 2 \end{bmatrix}$ is singular.
+
+A singular matrix has a determinant of $0$. We expand along Column 1 because it has a zero, making calculation easier.
+
+<MathWrapper title="Solving Singular Matrix">
+
+$$
+\begin{aligned}
+|M| &= 0 \\
+1 \begin{vmatrix} 2 & 1 \\ 0 & 2 \end{vmatrix} - 0 + 1 \begin{vmatrix} x & 3 \\ 2 & 1 \end{vmatrix} &= 0 \\
+1(4 - 0) + 1(x(1) - 3(2)) &= 0 \\
+4 + (x - 6) &= 0 \\
+x - 2 &= 0 \\
+x &= 2
+\end{aligned}
+$$
+
+</MathWrapper>
+
+### Question 8
+Solve for $x$ given the equation $\begin{vmatrix} 2 & 0 & x \\ 1 & x & 2 \\ 3 & 1 & 1 \end{vmatrix} = 0$.
+
+We expand the determinant along Row 1 to find the quadratic equation.
+
+<MathWrapper title="Solving Quadratic Equation">
+
+$$
+\begin{aligned}
+2 \begin{vmatrix} x & 2 \\ 1 & 1 \end{vmatrix} - 0 + x \begin{vmatrix} 1 & x \\ 3 & 1 \end{vmatrix} &= 0 \\
+2(x(1) - 2(1)) + x(1(1) - x(3)) &= 0 \\
+2(x - 2) + x(1 - 3x) &= 0 \\
+2x - 4 + x - 3x^2 &= 0 \\
+-3x^2 + 3x - 4 &= 0 \\
+3x^2 - 3x + 4 &= 0
+\end{aligned}
+$$
+
+</MathWrapper>
+
+Using the quadratic formula where $a=3, b=-3, c=4$:
+$x = \frac{-(-3) \pm \sqrt{(-3)^2 - 4(3)(4)}}{2(3)} = \frac{3 \pm \sqrt{9 - 48}}{6} = \frac{3 \pm \sqrt{-39}}{6}$
+Since the discriminant is negative, $x$ has no real roots (complex roots only).
+
+### Question 9
+Evaluate the determinant of an Upper Triangular Matrix $U = \begin{bmatrix} 4 & 5 & 2 \\ 0 & 3 & -1 \\ 0 & 0 & 2 \end{bmatrix}$.
+
+Expanding along Column 1 is highly efficient because it contains two zeros.
+
+<MathWrapper title="Triangular Determinant">
+
+$$
+\begin{aligned}
+|U| &= 4 \begin{vmatrix} 3 & -1 \\ 0 & 2 \end{vmatrix} - 0 + 0 \\
+|U| &= 4((3)(2) - (-1)(0)) \\
+|U| &= 4(6 - 0) \\
+|U| &= 24
+\end{aligned}
+$$
+
+</MathWrapper>
+
+*(Notice the determinant is simply the product of its main diagonal: $4 \times 3 \times 2 = 24$.)*
+
+### Question 10
+If all the elements of Row 2 in a $3 \times 3$ matrix $A$ are completely zero, calculate its determinant.
+$$A = \begin{bmatrix} a & b & c \\ 0 & 0 & 0 \\ d & e & f \end{bmatrix}$$
+
+If we expand the determinant along the row of zeros (Row 2), every cofactor is multiplied by zero.
+
+<MathWrapper title="Zero Row Determinant">
+
+$$
+\begin{aligned}
+|A| &= -0 \cdot M_{21} + 0 \cdot M_{22} - 0 \cdot M_{23} \\
+|A| &= 0 + 0 - 0 \\
+|A| &= 0
+\end{aligned}
+$$
+
+</MathWrapper>
+
+Thus, any matrix with a complete row or column of zeros is always singular ($|A|=0$).

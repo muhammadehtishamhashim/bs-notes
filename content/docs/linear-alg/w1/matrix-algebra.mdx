@@ -1,6 +1,6 @@
 ---
 title: Algebra of Matrices
-description: Matrix equality, addition, scalar multiplication, and full matrix multiplication.
+description: Matrix equality, addition, scalar multiplication, and the row-by-column multiplication method based on Grade 11 math.
 ---
 
 import { MathWrapper } from '@/components/mdx/math-wrapper';
@@ -8,238 +8,295 @@ import { Callout } from 'fumadocs-ui/components/callout';
 
 # Algebra of Matrices
 
-Matrix algebra outlines the rules for combining and manipulating matrices.
+Matrix algebra, as defined in Chapter 3 of the Grade 11 textbook, outlines the formal rules for mathematical operations on matrices.
 
-1. **Equality of Matrices**: Two matrices $A = [a_{ij}]$ and $B = [b_{ij}]$ are equal if they have the same order and their corresponding elements are equal ($a_{ij} = b_{ij}$).
-2. **Addition of Matrices**: If $A$ and $B$ are of the same order, their sum $A + B$ is obtained by adding corresponding elements.
-3. **Scalar Multiplication**: If a matrix $A$ is multiplied by a scalar $k$, every element of $A$ is multiplied by $k$.
-4. **Matrix Multiplication**: The product of two matrices $A$ and $B$ is defined only if the number of columns in $A$ equals the number of rows in $B$. If $A$ is $m \times n$ and $B$ is $n \times p$, the product matrix $AB$ will have an order of $m \times p$.
+1. **Equality of Matrices**: Two matrices $A = [a_{ij}]$ and $B = [b_{ij}]$ are strictly equal if they share the exact same order AND their corresponding elements are identical ($a_{ij} = b_{ij}$).
+2. **Matrix Addition/Subtraction**: $A \pm B$ is only defined if $A$ and $B$ are of the **same order** (comparable). The result is obtained by adding/subtracting corresponding elements.
+3. **Scalar Multiplication**: If matrix $A$ is multiplied by a real number $k$ (a scalar), every single element inside $A$ is multiplied by $k$.
+4. **Matrix Multiplication ($AB$)**: The product $AB$ is defined **only if** the number of columns in $A$ equals the number of rows in $B$. The result is calculated using the **Row-by-Column** dot product method.
+
+---
+
+### Visualizing Matrix Multiplication
+
+Matrix multiplication is often the most difficult concept for students. Here is a visual breakdown of the row-by-column dot product process:
+
+<div className="my-6 overflow-x-auto border border-border/50 rounded-xl bg-card shadow-sm">
+  <div className="w-max mx-auto p-6 flex items-center justify-between gap-6">
+    
+    {/* Matrix A (Row focus) */}
+    <div className="flex flex-col items-center">
+      <span className="text-sm font-bold text-foreground mb-2">Matrix A ($2 \times \mathbf{2}$)</span>
+      <div className="bg-[#0d1117] dark:bg-black/50 border border-border/60 rounded-lg p-3 font-mono text-sm shadow-sm relative">
+        <div className="flex gap-4 bg-orange-500/20 border border-orange-500/50 rounded px-2 py-1 relative z-10">
+          <span className="text-orange-400">1</span>
+          <span className="text-orange-400">2</span>
+        </div>
+        <div className="flex gap-4 px-2 py-1 mt-1">
+          <span className="text-muted-foreground">3</span>
+          <span className="text-muted-foreground">4</span>
+        </div>
+      </div>
+    </div>
+
+    {/* Multiplication Symbol */}
+    <div className="text-2xl font-black text-foreground/30">$\times$</div>
+
+    {/* Matrix B (Column focus) */}
+    <div className="flex flex-col items-center">
+      <span className="text-sm font-bold text-foreground mb-2">Matrix B ($\mathbf{2} \times 2$)</span>
+      <div className="bg-[#0d1117] dark:bg-black/50 border border-border/60 rounded-lg p-3 font-mono text-sm shadow-sm flex gap-4">
+        <div className="flex flex-col gap-2 bg-blue-500/20 border border-blue-500/50 rounded px-2 py-1">
+          <span className="text-blue-400">5</span>
+          <span className="text-blue-400">6</span>
+        </div>
+        <div className="flex flex-col gap-2 px-2 py-1">
+          <span className="text-muted-foreground">7</span>
+          <span className="text-muted-foreground">8</span>
+        </div>
+      </div>
+    </div>
+
+    {/* Equals Symbol */}
+    <div className="text-2xl font-black text-foreground/30">$=$</div>
+
+    {/* Product Matrix (Result) */}
+    <div className="flex flex-col items-center">
+      <span className="text-sm font-bold text-foreground mb-2">Matrix C ($2 \times 2$)</span>
+      <div className="bg-[#0d1117] dark:bg-black/50 border border-border/60 rounded-lg p-3 font-mono text-sm shadow-sm">
+        <div className="flex gap-6">
+          <span className="text-green-400 bg-green-500/10 border border-green-500/30 rounded px-2 py-1 font-bold">
+            (1$\times$5) + (2$\times$6) = 17
+          </span>
+          <span className="text-muted-foreground px-2 py-1">$c_{12}$</span>
+        </div>
+        <div className="flex gap-6 mt-2">
+          <span className="text-muted-foreground px-2 py-1">$c_{21}$</span>
+          <span className="text-muted-foreground px-2 py-1">$c_{22}$</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
 
 <Callout title="Warning: Commutativity" type="warn">
-Unlike regular multiplication, matrix multiplication is generally **not commutative**. In most cases, $AB \neq BA$.
+According to textbook rules, unlike standard algebra where $ab = ba$, matrix multiplication is generally **not commutative**. In most cases, $AB \neq BA$. Order strictly matters!
 </Callout>
 
 ---
 
-## Solved Practice Questions
+## Conceptual Questions
 
 ### Question 1
-Find the values of $x, y, z,$ and $w$ if the following matrices are equal:
-$$\begin{bmatrix} x - y & 2x + z \\ 2x - y & 3z + w \end{bmatrix} = \begin{bmatrix} -1 & 5 \\ 0 & 13 \end{bmatrix}$$
+What is the fundamental difference in the necessary conditions required to add two matrices versus multiplying two matrices?
 
 **Solution:**
-
-Equating corresponding elements:
-1. $x - y = -1$
-2. $2x - y = 0$
-3. $2x + z = 5$
-4. $3z + w = 13$
-
-From (2), $y = 2x$. Substitute into (1):
-- $x - (2x) = -1 \implies -x = -1 \implies x = 1$
-- $y = 2(1) = 2$
-
-Substitute $x = 1$ into (3):
-- $2(1) + z = 5 \implies z = 3$
-
-Substitute $z = 3$ into (4):
-- $3(3) + w = 13 \implies 9 + w = 13 \implies w = 4$
-
-**Result:** $x = 1,\ y = 2,\ z = 3,\ w = 4$
+To add two matrices, they must have the exact same order (comparable). To multiply two matrices $A$ and $B$, they do not need the same order; instead, they must be conformable, meaning the number of columns in matrix $A$ must exactly equal the number of rows in matrix $B$.
 
 ### Question 2
-Find $A + B$ given:
-$$A = \begin{bmatrix} 2 & 4 \\ 3 & 2 \end{bmatrix},\quad B = \begin{bmatrix} 1 & 3 \\ -2 & 5 \end{bmatrix}$$
+If matrix $A$ has an order of $m \times n$ and matrix $B$ has an order of $n \times p$, what will be the order of the resulting product matrix $AB$?
 
 **Solution:**
-<MathWrapper title="Solution 2">
+The inner dimensions ($n$) cancel out during the dot product operation. The resulting product matrix $AB$ inherits the number of rows from the first matrix and the number of columns from the second matrix. 
+
+Thus, its order will be $m \times p$.
+
+### Question 3
+Explain why matrix multiplication is not commutative using a dimension argument.
+
+**Solution:**
+Let $A$ be a $2 \times 3$ matrix and $B$ be a $3 \times 4$ matrix. The product $AB$ is perfectly valid because the inner dimensions match ($3=3$), resulting in a $2 \times 4$ matrix. However, if we attempt $BA$, we are multiplying a $3 \times 4$ matrix by a $2 \times 3$ matrix. The inner dimensions do not match ($4 \neq 2$), meaning the product $BA$ is completely undefined. Therefore, $AB \neq BA$.
+
+---
+
+## Exercise Questions
+
+### Question 1
+Find the values of $a, b, c, d$ given the matrix equality equation below.
+$$\begin{bmatrix} a - b & 2a + c \\ 2a - b & 3c + d \end{bmatrix} = \begin{bmatrix} -1 & 5 \\ 0 & 13 \end{bmatrix}$$
+
+By the definition of equality, corresponding elements in matching positions must be equal. We set up a system of linear equations and solve them progressively.
+
+<MathWrapper title="System of Equations">
+
+$$
+\begin{aligned}
+(i)\quad a - b &= -1 \\
+(ii)\quad 2a - b &= 0 \\
+(iii)\quad 2a + c &= 5 \\
+(iv)\quad 3c + d &= 13 \\
+b &= 2a \quad \text{(from ii)} \\
+a - (2a) &= -1 \implies -a = -1 \implies a = 1 \\
+b &= 2(1) = 2 \\
+2(1) + c &= 5 \implies c = 3 \\
+3(3) + d &= 13 \implies 9 + d = 13 \implies d = 4
+\end{aligned}
+$$
+
+</MathWrapper>
+
+### Question 2
+Given matrices $A = \begin{bmatrix} 2 & 4 \\ 3 & 2 \end{bmatrix}$ and $B = \begin{bmatrix} 1 & 3 \\ -2 & 5 \end{bmatrix}$, find $A + B$.
+
+Since both matrices are $2 \times 2$, addition is possible. We add the corresponding elements together.
+
+<MathWrapper title="Addition Steps">
 
 $$
 \begin{aligned}
 A + B &= \begin{bmatrix} 2+1 & 4+3 \\ 3+(-2) & 2+5 \end{bmatrix} \\
-&= \begin{bmatrix} 3 & 7 \\ 1 & 7 \end{bmatrix}
+A + B &= \begin{bmatrix} 3 & 7 \\ 1 & 7 \end{bmatrix}
 \end{aligned}
 $$
 
 </MathWrapper>
 
 ### Question 3
-Find $3A - C$ given:
-$$A = \begin{bmatrix} 2 & 4 \\ 3 & 2 \end{bmatrix},\quad C = \begin{bmatrix} -2 & 5 \\ 3 & 4 \end{bmatrix}$$
+Find $3A - 2B$ given $A = \begin{bmatrix} 1 & -1 \\ 2 & 3 \end{bmatrix}$ and $B = \begin{bmatrix} 0 & 4 \\ -2 & 1 \end{bmatrix}$.
 
-**Solution:**
-<MathWrapper title="Solution 3">
+First, we perform scalar multiplication by multiplying every element in $A$ by 3 and every element in $B$ by 2. Then, we subtract the resulting matrices.
+
+<MathWrapper title="Scalar Multiplication and Subtraction">
 
 $$
 \begin{aligned}
-3A &= 3 \begin{bmatrix} 2 & 4 \\ 3 & 2 \end{bmatrix} = \begin{bmatrix} 6 & 12 \\ 9 & 6 \end{bmatrix} \\
-3A - C &= \begin{bmatrix} 6 & 12 \\ 9 & 6 \end{bmatrix} - \begin{bmatrix} -2 & 5 \\ 3 & 4 \end{bmatrix} \\
-&= \begin{bmatrix} 6 - (-2) & 12 - 5 \\ 9 - 3 & 6 - 4 \end{bmatrix} \\
-&= \begin{bmatrix} 8 & 7 \\ 6 & 2 \end{bmatrix}
+3A &= \begin{bmatrix} 3(1) & 3(-1) \\ 3(2) & 3(3) \end{bmatrix} = \begin{bmatrix} 3 & -3 \\ 6 & 9 \end{bmatrix} \\
+2B &= \begin{bmatrix} 2(0) & 2(4) \\ 2(-2) & 2(1) \end{bmatrix} = \begin{bmatrix} 0 & 8 \\ -4 & 2 \end{bmatrix} \\
+3A - 2B &= \begin{bmatrix} 3 - 0 & -3 - 8 \\ 6 - (-4) & 9 - 2 \end{bmatrix} \\
+3A - 2B &= \begin{bmatrix} 3 & -11 \\ 10 & 7 \end{bmatrix}
 \end{aligned}
 $$
 
 </MathWrapper>
 
 ### Question 4
-Find matrix $X$ if $Y = \begin{bmatrix} 3 & 2 \\ 1 & 4 \end{bmatrix}$ and $2X + Y = \begin{bmatrix} 1 & 0 \\ -3 & 2 \end{bmatrix}$.
+Find matrix $X$ if $2X + \begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix} = \begin{bmatrix} 5 & 8 \\ 7 & 0 \end{bmatrix}$.
 
-**Solution:**
-<MathWrapper title="Solution 4">
+Treat the matrices algebraically. Isolate $2X$ by subtracting the constant matrix from both sides, then multiply by the scalar $1/2$.
+
+<MathWrapper title="Solving the Matrix Equation">
 
 $$
 \begin{aligned}
-2X + \begin{bmatrix} 3 & 2 \\ 1 & 4 \end{bmatrix} &= \begin{bmatrix} 1 & 0 \\ -3 & 2 \end{bmatrix} \\
-2X &= \begin{bmatrix} 1 & 0 \\ -3 & 2 \end{bmatrix} - \begin{bmatrix} 3 & 2 \\ 1 & 4 \end{bmatrix} \\
-2X &= \begin{bmatrix} 1-3 & 0-2 \\ -3-1 & 2-4 \end{bmatrix} \\
-2X &= \begin{bmatrix} -2 & -2 \\ -4 & -2 \end{bmatrix} \\
-X &= \frac{1}{2} \begin{bmatrix} -2 & -2 \\ -4 & -2 \end{bmatrix} \\
-X &= \begin{bmatrix} -1 & -1 \\ -2 & -1 \end{bmatrix}
+2X &= \begin{bmatrix} 5 & 8 \\ 7 & 0 \end{bmatrix} - \begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix} \\
+2X &= \begin{bmatrix} 5-1 & 8-2 \\ 7-3 & 0-4 \end{bmatrix} \\
+2X &= \begin{bmatrix} 4 & 6 \\ 4 & -4 \end{bmatrix} \\
+X &= \frac{1}{2} \begin{bmatrix} 4 & 6 \\ 4 & -4 \end{bmatrix} \\
+X &= \begin{bmatrix} 2 & 3 \\ 2 & -2 \end{bmatrix}
 \end{aligned}
 $$
 
 </MathWrapper>
 
 ### Question 5
-Compute the product $AB$ where:
-$$A = \begin{bmatrix} 1 & -2 \\ 2 & 3 \end{bmatrix},\quad B = \begin{bmatrix} 1 & 2 & 3 \\ 2 & 3 & 1 \end{bmatrix}$$
+Find the product $AB$ if $A = \begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix}$ and $B = \begin{bmatrix} -1 & 0 \\ 2 & 1 \end{bmatrix}$.
 
-**Solution:**
+Both matrices are $2 \times 2$. We use the row-by-column dot product method.
 
-Order of $A$ is $2 \times 2$, Order of $B$ is $2 \times 3$.
-Product matrix $AB$ will be $2 \times 3$.
-
-<MathWrapper title="Solution 5">
+<MathWrapper title="Matrix Multiplication">
 
 $$
 \begin{aligned}
-AB &= \begin{bmatrix} 
-(1)(1) + (-2)(2) & (1)(2) + (-2)(3) & (1)(3) + (-2)(1) \\
-(2)(1) + (3)(2) & (2)(2) + (3)(3) & (2)(3) + (3)(1)
-\end{bmatrix} \\
-AB &= \begin{bmatrix} 
-1 - 4 & 2 - 6 & 3 - 2 \\
-2 + 6 & 4 + 9 & 6 + 3
-\end{bmatrix} \\
-AB &= \begin{bmatrix} -3 & -4 & 1 \\ 8 & 13 & 9 \end{bmatrix}
+AB &= \begin{bmatrix} (1)(-1) + (2)(2) & (1)(0) + (2)(1) \\ (3)(-1) + (4)(2) & (3)(0) + (4)(1) \end{bmatrix} \\
+AB &= \begin{bmatrix} -1 + 4 & 0 + 2 \\ -3 + 8 & 0 + 4 \end{bmatrix} \\
+AB &= \begin{bmatrix} 3 & 2 \\ 5 & 4 \end{bmatrix}
 \end{aligned}
 $$
 
 </MathWrapper>
 
 ### Question 6
-Show that matrix multiplication is not commutative by calculating $AB$ and $BA$ for:
-$$A = \begin{bmatrix} 1 & 0 \\ 0 & -1 \end{bmatrix},\quad B = \begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}$$
+Compute $AB$ where $A = \begin{bmatrix} 2 & -1 \\ 3 & 0 \end{bmatrix}$ and $B = \begin{bmatrix} 1 & 4 & 2 \\ 3 & 1 & 5 \end{bmatrix}$.
 
-**Solution:**
+Matrix $A$ is $2 \times 2$ and Matrix $B$ is $2 \times 3$. The columns of $A$ match the rows of $B$, so multiplication is conformable. The product will be $2 \times 3$.
 
-<MathWrapper title="Solution 6">
+<MathWrapper title="Matrix Multiplication">
 
 $$
 \begin{aligned}
-AB &= \begin{bmatrix} 1 & 0 \\ 0 & -1 \end{bmatrix} \begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix} \\
-&= \begin{bmatrix} (1)(0)+(0)(1) & (1)(1)+(0)(0) \\ (0)(0)+(-1)(1) & (0)(1)+(-1)(0) \end{bmatrix} \\
-&= \begin{bmatrix} 0 & 1 \\ -1 & 0 \end{bmatrix} \\[10pt]
-BA &= \begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix} \begin{bmatrix} 1 & 0 \\ 0 & -1 \end{bmatrix} \\
-&= \begin{bmatrix} (0)(1)+(1)(0) & (0)(0)+(1)(-1) \\ (1)(1)+(0)(0) & (1)(0)+(0)(-1) \end{bmatrix} \\
-&= \begin{bmatrix} 0 & -1 \\ 1 & 0 \end{bmatrix}
+AB &= \begin{bmatrix} 
+(2)(1) + (-1)(3) & (2)(4) + (-1)(1) & (2)(2) + (-1)(5) \\
+(3)(1) + (0)(3) & (3)(4) + (0)(1) & (3)(2) + (0)(5) 
+\end{bmatrix} \\
+AB &= \begin{bmatrix} 2 - 3 & 8 - 1 & 4 - 5 \\ 3 + 0 & 12 + 0 & 6 + 0 \end{bmatrix} \\
+AB &= \begin{bmatrix} -1 & 7 & -1 \\ 3 & 12 & 6 \end{bmatrix}
 \end{aligned}
 $$
 
 </MathWrapper>
-
-Since $\begin{bmatrix} 0 & 1 \\ -1 & 0 \end{bmatrix} \neq \begin{bmatrix} 0 & -1 \\ 1 & 0 \end{bmatrix}$, we can see that $AB \neq BA$.
 
 ### Question 7
-Compute $A^2$ for the matrix $A = \begin{bmatrix} 2 & -1 \\ 3 & 2 \end{bmatrix}$.
+Let $A = \begin{bmatrix} 1 & 0 \\ 0 & -1 \end{bmatrix}$ and $B = \begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}$. Show that $AB \neq BA$.
 
-**Solution:**
-<MathWrapper title="Solution 7">
+We will compute the product $AB$ and then independently compute the product $BA$ to observe the differences in the resulting matrices.
+
+<MathWrapper title="Commutativity Test">
 
 $$
 \begin{aligned}
-A^2 &= A \cdot A = \begin{bmatrix} 2 & -1 \\ 3 & 2 \end{bmatrix} \begin{bmatrix} 2 & -1 \\ 3 & 2 \end{bmatrix} \\
-A^2 &= \begin{bmatrix} (2)(2) + (-1)(3) & (2)(-1) + (-1)(2) \\ (3)(2) + (2)(3) & (3)(-1) + (2)(2) \end{bmatrix} \\
-A^2 &= \begin{bmatrix} 4 - 3 & -2 - 2 \\ 6 + 6 & -3 + 4 \end{bmatrix} \\
-A^2 &= \begin{bmatrix} 1 & -4 \\ 12 & 1 \end{bmatrix}
+AB &= \begin{bmatrix} 1 & 0 \\ 0 & -1 \end{bmatrix} \begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix} = \begin{bmatrix} 0 & 1 \\ -1 & 0 \end{bmatrix} \\
+BA &= \begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix} \begin{bmatrix} 1 & 0 \\ 0 & -1 \end{bmatrix} = \begin{bmatrix} 0 & -1 \\ 1 & 0 \end{bmatrix}
 \end{aligned}
 $$
 
 </MathWrapper>
 
+Since corresponding elements differ (e.g., $1 \neq -1$), we prove that $AB \neq BA$.
+
 ### Question 8
-Multiply the row matrix by the column matrix:
-$$\begin{bmatrix} 1 & 2 & 3 \end{bmatrix} \begin{bmatrix} 4 \\ 5 \\ 6 \end{bmatrix}$$
+Evaluate $\begin{bmatrix} 2 & -1 & 3 \end{bmatrix} \begin{bmatrix} 4 \\ 2 \\ -5 \end{bmatrix}$.
 
-**Solution:**
+We are multiplying a $1 \times 3$ row vector by a $3 \times 1$ column vector. The resulting matrix will have an order of $1 \times 1$.
 
-Order: $(1 \times 3)$ multiplied by $(3 \times 1)$ yields a $(1 \times 1)$ matrix.
-
-<MathWrapper title="Solution 8">
+<MathWrapper title="Vector Multiplication">
 
 $$
 \begin{aligned}
-\text{Result} &= \begin{bmatrix} (1)(4) + (2)(5) + (3)(6) \end{bmatrix} \\
-&= \begin{bmatrix} 4 + 10 + 18 \end{bmatrix} \\
-&= \begin{bmatrix} 32 \end{bmatrix}
+\text{Product} &= \begin{bmatrix} (2)(4) + (-1)(2) + (3)(-5) \end{bmatrix} \\
+&= \begin{bmatrix} 8 - 2 - 15 \end{bmatrix} \\
+&= \begin{bmatrix} -9 \end{bmatrix}
 \end{aligned}
 $$
 
 </MathWrapper>
 
 ### Question 9
-Verify the distributive property $A(B + C) = AB + AC$ given:
-$$A = \begin{bmatrix} 1 & 2 \\ 0 & 1 \end{bmatrix},\ B = \begin{bmatrix} 2 & 0 \\ 1 & 3 \end{bmatrix},\ C = \begin{bmatrix} 1 & 1 \\ 2 & 0 \end{bmatrix}$$
+Verify the distributive property $A(B + C) = AB + AC$ given $A = \begin{bmatrix} 1 & 2 \\ 0 & 1 \end{bmatrix}$, $B = \begin{bmatrix} 2 & 0 \\ 1 & 3 \end{bmatrix}$, $C = \begin{bmatrix} 1 & 1 \\ 2 & 0 \end{bmatrix}$.
 
-**Solution:**
+We will evaluate the Left Hand Side (LHS) by adding first, and the Right Hand Side (RHS) by multiplying first.
 
-<MathWrapper title="Solution 9">
+<MathWrapper title="Distributive Property Check">
 
 $$
 \begin{aligned}
-\text{LHS: } & \\
-B + C &= \begin{bmatrix} 2+1 & 0+1 \\ 1+2 & 3+0 \end{bmatrix} = \begin{bmatrix} 3 & 1 \\ 3 & 3 \end{bmatrix} \\
-A(B+C) &= \begin{bmatrix} 1 & 2 \\ 0 & 1 \end{bmatrix} \begin{bmatrix} 3 & 1 \\ 3 & 3 \end{bmatrix} = \begin{bmatrix} 3+6 & 1+6 \\ 0+3 & 0+3 \end{bmatrix} = \begin{bmatrix} 9 & 7 \\ 3 & 3 \end{bmatrix} \\[10pt]
-\text{RHS: } & \\
-AB &= \begin{bmatrix} 1 & 2 \\ 0 & 1 \end{bmatrix} \begin{bmatrix} 2 & 0 \\ 1 & 3 \end{bmatrix} = \begin{bmatrix} 2+2 & 0+6 \\ 0+1 & 0+3 \end{bmatrix} = \begin{bmatrix} 4 & 6 \\ 1 & 3 \end{bmatrix} \\
-AC &= \begin{bmatrix} 1 & 2 \\ 0 & 1 \end{bmatrix} \begin{bmatrix} 1 & 1 \\ 2 & 0 \end{bmatrix} = \begin{bmatrix} 1+4 & 1+0 \\ 0+2 & 0+0 \end{bmatrix} = \begin{bmatrix} 5 & 1 \\ 2 & 0 \end{bmatrix} \\
-AB + AC &= \begin{bmatrix} 4+5 & 6+1 \\ 1+2 & 3+0 \end{bmatrix} = \begin{bmatrix} 9 & 7 \\ 3 & 3 \end{bmatrix}
+B + C &= \begin{bmatrix} 3 & 1 \\ 3 & 3 \end{bmatrix} \\
+\text{LHS} &= \begin{bmatrix} 1 & 2 \\ 0 & 1 \end{bmatrix} \begin{bmatrix} 3 & 1 \\ 3 & 3 \end{bmatrix} = \begin{bmatrix} 3+6 & 1+6 \\ 0+3 & 0+3 \end{bmatrix} = \begin{bmatrix} 9 & 7 \\ 3 & 3 \end{bmatrix} \\
+AB &= \begin{bmatrix} 1 & 2 \\ 0 & 1 \end{bmatrix} \begin{bmatrix} 2 & 0 \\ 1 & 3 \end{bmatrix} = \begin{bmatrix} 4 & 6 \\ 1 & 3 \end{bmatrix} \\
+AC &= \begin{bmatrix} 1 & 2 \\ 0 & 1 \end{bmatrix} \begin{bmatrix} 1 & 1 \\ 2 & 0 \end{bmatrix} = \begin{bmatrix} 5 & 1 \\ 2 & 0 \end{bmatrix} \\
+\text{RHS} &= AB + AC = \begin{bmatrix} 4+5 & 6+1 \\ 1+2 & 3+0 \end{bmatrix} = \begin{bmatrix} 9 & 7 \\ 3 & 3 \end{bmatrix}
 \end{aligned}
 $$
 
 </MathWrapper>
 
-Since LHS = RHS, the distributive property holds.
+Since LHS equals RHS, the property is verified.
 
 ### Question 10
-If $f(x) = x^2 - 5x + 6I$, find $f(A)$ where $A = \begin{bmatrix} 2 & 0 \\ 1 & 2 \end{bmatrix}$ and $I$ is the identity matrix.
+Evaluate the matrix polynomial $f(A) = A^2 - 4A + 5I_2$ where $A = \begin{bmatrix} 2 & -1 \\ 1 & 2 \end{bmatrix}$.
 
-**Solution:**
+We break the polynomial into three distinct calculations: squaring matrix $A$, performing scalar multiplication on $A$, scaling the identity matrix, and then combining the results.
 
-First, find $A^2$:
-$$
-A^2 = \begin{bmatrix} 2 & 0 \\ 1 & 2 \end{bmatrix} \begin{bmatrix} 2 & 0 \\ 1 & 2 \end{bmatrix} = \begin{bmatrix} 4+0 & 0+0 \\ 2+2 & 0+4 \end{bmatrix} = \begin{bmatrix} 4 & 0 \\ 4 & 4 \end{bmatrix}
-$$
-
-Now compute $5A$:
-$$
-5A = 5 \begin{bmatrix} 2 & 0 \\ 1 & 2 \end{bmatrix} = \begin{bmatrix} 10 & 0 \\ 5 & 10 \end{bmatrix}
-$$
-
-Now compute $6I$:
-$$
-6I = 6 \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix} = \begin{bmatrix} 6 & 0 \\ 0 & 6 \end{bmatrix}
-$$
-
-Combine all parts into $f(A) = A^2 - 5A + 6I$:
-
-<MathWrapper title="Solution 10">
+<MathWrapper title="Polynomial Evaluation">
 
 $$
 \begin{aligned}
-f(A) &= \begin{bmatrix} 4 & 0 \\ 4 & 4 \end{bmatrix} - \begin{bmatrix} 10 & 0 \\ 5 & 10 \end{bmatrix} + \begin{bmatrix} 6 & 0 \\ 0 & 6 \end{bmatrix} \\
-f(A) &= \begin{bmatrix} 4 - 10 + 6 & 0 - 0 + 0 \\ 4 - 5 + 0 & 4 - 10 + 6 \end{bmatrix} \\
-f(A) &= \begin{bmatrix} 0 & 0 \\ -1 & 0 \end{bmatrix}
+A^2 &= \begin{bmatrix} 2 & -1 \\ 1 & 2 \end{bmatrix} \begin{bmatrix} 2 & -1 \\ 1 & 2 \end{bmatrix} = \begin{bmatrix} 4-1 & -2-2 \\ 2+2 & -1+4 \end{bmatrix} = \begin{bmatrix} 3 & -4 \\ 4 & 3 \end{bmatrix} \\
+4A &= \begin{bmatrix} 8 & -4 \\ 4 & 8 \end{bmatrix} \\
+5I_2 &= \begin{bmatrix} 5 & 0 \\ 0 & 5 \end{bmatrix} \\
+f(A) &= \begin{bmatrix} 3 & -4 \\ 4 & 3 \end{bmatrix} - \begin{bmatrix} 8 & -4 \\ 4 & 8 \end{bmatrix} + \begin{bmatrix} 5 & 0 \\ 0 & 5 \end{bmatrix} \\
+f(A) &= \begin{bmatrix} 3 - 8 + 5 & -4 - (-4) + 0 \\ 4 - 4 + 0 & 3 - 8 + 5 \end{bmatrix} \\
+f(A) &= \begin{bmatrix} 0 & 0 \\ 0 & 0 \end{bmatrix}
 \end{aligned}
 $$
 

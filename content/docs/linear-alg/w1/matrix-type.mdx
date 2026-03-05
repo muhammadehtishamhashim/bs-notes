@@ -1,6 +1,6 @@
 ---
 title: Types of Matrices
-description: Comprehensive classification of matrices including row, column, square, diagonal, and triangular types.
+description: Comprehensive classification of matrices including row, column, square, diagonal, and triangular types based on Grade 11 textbook.
 ---
 
 import { MathWrapper } from '@/components/mdx/math-wrapper';
@@ -8,143 +8,262 @@ import { Callout } from 'fumadocs-ui/components/callout';
 
 # Types of Matrices
 
-Matrices are classified based on their order and the structural arrangement of their elements.
+The Grade 11 textbook classifies matrices into distinct types based on their order and the internal arrangement of their elements. Understanding these definitions is critical for matrix algebra.
 
-1. **Row Matrix**: A matrix having only one row. Order: $1 \times n$.
-2. **Column Matrix**: A matrix having only one column. Order: $m \times 1$.
-3. **Square Matrix**: A matrix where the number of rows equals the number of columns ($m = n$).
-4. **Diagonal Matrix**: A square matrix where all non-diagonal elements are zero ($a_{ij} = 0$ for $i \neq j$).
-5. **Scalar Matrix**: A diagonal matrix where all diagonal elements are identical.
-6. **Identity (Unit) Matrix**: A scalar matrix where all diagonal elements are exactly $1$. Denoted by $I$.
-7. **Zero (Null) Matrix**: A matrix where all elements are zero. Denoted by $O$.
-8. **Upper Triangular Matrix**: A square matrix where all elements *below* the main diagonal are zero ($a_{ij} = 0$ for $i > j$).
-9. **Lower Triangular Matrix**: A square matrix where all elements *above* the main diagonal are zero ($a_{ij} = 0$ for $i < j$).
+1. **Row Matrix**: A matrix containing exactly one row ($1 \times n$).
+2. **Column Matrix**: A matrix containing exactly one column ($m \times 1$).
+3. **Rectangular Matrix**: A matrix where rows $\neq$ columns ($m \neq n$).
+4. **Square Matrix**: A matrix where rows = columns ($m = n$).
+5. **Diagonal Matrix**: A square matrix where all non-diagonal elements are exactly zero ($a_{ij} = 0$ for $i \neq j$), and at least one principal diagonal element is non-zero.
+6. **Scalar Matrix**: A diagonal matrix where all diagonal elements are identical ($a_{ii} = k$).
+7. **Identity (Unit) Matrix**: A scalar matrix where all diagonal elements are exactly $1$. Denoted by $I_n$.
+8. **Null (Zero) Matrix**: A matrix of any order where every element is zero ($a_{ij} = 0$). Denoted by $O$.
+9. **Upper Triangular Matrix**: A square matrix where all elements *below* the main diagonal are zero ($a_{ij} = 0$ for $i > j$).
+10. **Lower Triangular Matrix**: A square matrix where all elements *above* the main diagonal are zero ($a_{ij} = 0$ for $i < j$).
 
 ---
 
-## Solved Practice Questions
+### Visualizing Specific Square Matrices
+
+A common source of confusion in textbook exercises is distinguishing between these structural types. Let's visualize them:
+
+<div className="my-6 border border-border/50 rounded-xl bg-card shadow-sm overflow-hidden">
+  <div className="overflow-x-auto p-6">
+    <div className="w-max mx-auto flex flex-col gap-8">
+      
+      {/* Structural Square Matrices */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        {/* Diagonal Matrix */}
+        <div className="flex flex-col items-center bg-[#0d1117] dark:bg-black/50 border border-border/60 rounded-lg p-4 font-mono text-sm shadow-sm relative w-full">
+          <span className="text-sm font-bold text-foreground mb-4 pb-1 border-b border-border/50">Diagonal Matrix</span>
+          <div className="flex flex-col gap-2 w-full items-center">
+            <div className="flex gap-4">
+              <span className="text-yellow-400 bg-yellow-500/10 px-2 rounded font-bold">5</span>
+              <span className="text-muted-foreground/30 px-2">0</span>
+              <span className="text-muted-foreground/30 px-2">0</span>
+            </div>
+            <div className="flex gap-4">
+              <span className="text-muted-foreground/30 px-2">0</span>
+              <span className="text-yellow-400 bg-yellow-500/10 px-2 rounded font-bold">-2</span>
+              <span className="text-muted-foreground/30 px-2">0</span>
+            </div>
+            <div className="flex gap-4">
+              <span className="text-muted-foreground/30 px-2">0</span>
+              <span className="text-muted-foreground/30 px-2">0</span>
+              <span className="text-yellow-400 bg-yellow-500/10 px-2 rounded font-bold">3</span>
+            </div>
+          </div>
+          <div className="text-xs text-muted-foreground mt-4 text-center">Different non-zero values<br/>on the diagonal.</div>
+        </div>
+
+        {/* Scalar Matrix */}
+        <div className="flex flex-col items-center bg-[#0d1117] dark:bg-black/50 border border-border/60 rounded-lg p-4 font-mono text-sm shadow-sm relative w-full">
+          <span className="text-sm font-bold text-foreground mb-4 pb-1 border-b border-border/50">Scalar Matrix</span>
+          <div className="flex flex-col gap-2 w-full items-center">
+            <div className="flex gap-4">
+              <span className="text-blue-400 bg-blue-500/10 px-2 rounded font-bold">k</span>
+              <span className="text-muted-foreground/30 px-2">0</span>
+              <span className="text-muted-foreground/30 px-2">0</span>
+            </div>
+            <div className="flex gap-4">
+              <span className="text-muted-foreground/30 px-2">0</span>
+              <span className="text-blue-400 bg-blue-500/10 px-2 rounded font-bold">k</span>
+              <span className="text-muted-foreground/30 px-2">0</span>
+            </div>
+            <div className="flex gap-4">
+              <span className="text-muted-foreground/30 px-2">0</span>
+              <span className="text-muted-foreground/30 px-2">0</span>
+              <span className="text-blue-400 bg-blue-500/10 px-2 rounded font-bold">k</span>
+            </div>
+          </div>
+          <div className="text-xs text-muted-foreground mt-4 text-center">Identical values ($k$)<br/>on the diagonal.</div>
+        </div>
+
+        {/* Identity Matrix */}
+        <div className="flex flex-col items-center bg-[#0d1117] dark:bg-black/50 border border-border/60 rounded-lg p-4 font-mono text-sm shadow-sm relative w-full">
+          <span className="text-sm font-bold text-foreground mb-4 pb-1 border-b border-border/50">Identity Matrix ($I_3$)</span>
+          <div className="flex flex-col gap-2 w-full items-center">
+            <div className="flex gap-4">
+              <span className="text-green-400 bg-green-500/10 px-2 rounded font-bold">1</span>
+              <span className="text-muted-foreground/30 px-2">0</span>
+              <span className="text-muted-foreground/30 px-2">0</span>
+            </div>
+            <div className="flex gap-4">
+              <span className="text-muted-foreground/30 px-2">0</span>
+              <span className="text-green-400 bg-green-500/10 px-2 rounded font-bold">1</span>
+              <span className="text-muted-foreground/30 px-2">0</span>
+            </div>
+            <div className="flex gap-4">
+              <span className="text-muted-foreground/30 px-2">0</span>
+              <span className="text-muted-foreground/30 px-2">0</span>
+              <span className="text-green-400 bg-green-500/10 px-2 rounded font-bold">1</span>
+            </div>
+          </div>
+          <div className="text-xs text-muted-foreground mt-4 text-center">Exactly $1$<br/>on the diagonal.</div>
+        </div>
+
+      </div>
+
+      <div className="h-px bg-border/50 w-full rounded-full"></div>
+
+      {/* Triangular Matrices */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-xl mx-auto">
+        
+        {/* Upper Triangular Matrix */}
+        <div className="flex flex-col items-center bg-[#0d1117] dark:bg-black/50 border border-border/60 rounded-lg p-4 font-mono text-sm shadow-sm relative w-full text-center">
+          <span className="text-sm font-bold text-foreground mb-4 pb-1 border-b border-border/50 w-full">Upper Triangular Matrix</span>
+          <div className="flex flex-col gap-2 w-full items-center">
+            <div className="flex gap-4">
+              <span className="text-purple-400 bg-purple-500/10 px-2 rounded font-bold">2</span>
+              <span className="text-purple-400 bg-purple-500/10 px-2 rounded font-bold">3</span>
+              <span className="text-purple-400 bg-purple-500/10 px-2 rounded font-bold">1</span>
+            </div>
+            <div className="flex gap-4">
+              <span className="text-muted-foreground/30 px-2">0</span>
+              <span className="text-purple-400 bg-purple-500/10 px-2 rounded font-bold">1</span>
+              <span className="text-purple-400 bg-purple-500/10 px-2 rounded font-bold">6</span>
+            </div>
+            <div className="flex gap-4">
+              <span className="text-muted-foreground/30 px-2">0</span>
+              <span className="text-muted-foreground/30 px-2">0</span>
+              <span className="text-purple-400 bg-purple-500/10 px-2 rounded font-bold">4</span>
+            </div>
+          </div>
+          <div className="text-xs text-muted-foreground mt-4 text-center">Zeros below the<br/>main diagonal.</div>
+        </div>
+
+        {/* Lower Triangular Matrix */}
+        <div className="flex flex-col items-center bg-[#0d1117] dark:bg-black/50 border border-border/60 rounded-lg p-4 font-mono text-sm shadow-sm relative w-full text-center">
+          <span className="text-sm font-bold text-foreground mb-4 pb-1 border-b border-border/50 w-full">Lower Triangular Matrix</span>
+          <div className="flex flex-col gap-2 w-full items-center">
+            <div className="flex gap-4">
+              <span className="text-cyan-400 bg-cyan-500/10 px-2 rounded font-bold">2</span>
+              <span className="text-muted-foreground/30 px-2">0</span>
+              <span className="text-muted-foreground/30 px-2">0</span>
+            </div>
+            <div className="flex gap-4">
+              <span className="text-cyan-400 bg-cyan-500/10 px-2 rounded font-bold">0</span>
+              <span className="text-cyan-400 bg-cyan-500/10 px-2 rounded font-bold">1</span>
+              <span className="text-muted-foreground/30 px-2">0</span>
+            </div>
+            <div className="flex gap-4">
+              <span className="text-cyan-400 bg-cyan-500/10 px-2 rounded font-bold">3</span>
+              <span className="text-cyan-400 bg-cyan-500/10 px-2 rounded font-bold">6</span>
+              <span className="text-cyan-400 bg-cyan-500/10 px-2 rounded font-bold">2</span>
+            </div>
+          </div>
+          <div className="text-xs text-muted-foreground mt-4 text-center">Zeros above the<br/>main diagonal.</div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+---
+
+## Conceptual Questions
 
 ### Question 1
-Identify the type of the following matrix:
-$$A = \begin{bmatrix} 4 & 0 & 0 \\ 0 & 4 & 0 \\ 0 & 0 & 4 \end{bmatrix}$$
+"Every Identity Matrix is a Scalar Matrix, but every Scalar Matrix is not necessarily an Identity Matrix." Verify this textbook statement.
 
 **Solution:**
-
-1. It is a $3 \times 3$ matrix, so it is a Square Matrix.
-2. All non-diagonal elements are zero ($a_{ij} = 0$ for $i \neq j$), so it is a Diagonal Matrix.
-3. All principal diagonal elements are exactly the same ($4$).
-
-**Conclusion:** Matrix $A$ is a Scalar Matrix.
+This is **True**. A scalar matrix requires the diagonal elements to be identical constants $k$ and non-diagonals to be $0$. An Identity matrix perfectly satisfies this condition where the constant is $k = 1$, making it a special subset of a scalar matrix. However, a scalar matrix where $k = 5$ is not an identity matrix, proving the reverse statement is false.
 
 ### Question 2
-Determine the order and type of the matrix $B$:
-$$B = \begin{bmatrix} 7 & -2 & 3 & 1 \end{bmatrix}$$
+If a matrix $A$ is strictly classified as both an Upper Triangular AND Lower Triangular matrix simultaneously, what specific type of matrix must it be?
 
 **Solution:**
-
-- Rows ($m$) = $1$
-- Columns ($n$) = $4$
-- Order = $1 \times 4$
-
-**Conclusion:** Because it has exactly one row, it is a Row Matrix.
+The upper triangular condition implies $a_{ij} = 0$ for $i > j$ (everything below the diagonal is zero). The lower triangular condition implies $a_{ij} = 0$ for $i < j$ (everything above the diagonal is zero). Combining these means $a_{ij} = 0$ for all $i \neq j$. A square matrix where all non-diagonal elements are zero is defined as a **Diagonal Matrix**.
 
 ### Question 3
-Find the values of $x$ and $y$ if the following matrix is an Identity Matrix:
-$$I = \begin{bmatrix} 1 & x-2 \\ y+3 & 1 \end{bmatrix}$$
+Is it possible for a Null (Zero) matrix to also be classified as a Scalar Matrix? Explain your reasoning.
 
 **Solution:**
+Yes, but only if the Null Matrix is a **square matrix**. A scalar matrix must be a square matrix where all diagonal elements are identical and non-diagonal elements are zero. A square null matrix satisfies this with the constant $k = 0$. However, a rectangular null matrix cannot be a scalar matrix.
 
-By definition, a $2 \times 2$ identity matrix is:
-$$
-I = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}
-$$
+---
 
-Comparing the elements:
-- $x - 2 = 0 \implies x = 2$
-- $y + 3 = 0 \implies y = -3$
+## Exercise Questions
+
+### Question 1
+Identify the order and specific type of matrix $A$.
+$$A = \begin{bmatrix} 7 & -2 & 3 \end{bmatrix}$$
+
+**Solution:**
+The matrix has $m=1$ row and $n=3$ columns. Its order is $1 \times 3$. Because it possesses exactly one row, the textbook classifies this as a **Row Matrix**.
+
+### Question 2
+Analyze the structural properties of matrix $B$ and classify it fully based on the textbook rules.
+$$B = \begin{bmatrix} 4 & 0 & 0 \\ 0 & 4 & 0 \\ 0 & 0 & 4 \end{bmatrix}$$
+
+**Solution:**
+1. The order is $3 \times 3$, so it is a **Square Matrix**.
+2. All non-diagonal elements are zero, making it a **Diagonal Matrix**.
+3. All principal diagonal elements are exactly identical (all are $4$).
+According to textbook definitions, $B$ is definitively a **Scalar Matrix**.
+
+### Question 3
+Find the values of $x$ and $y$ if the given matrix is an Identity Matrix ($I_2$).
+$$M = \begin{bmatrix} 1 & x-5 \\ 2y+4 & 1 \end{bmatrix}$$
+
+**Solution:**
+By definition, a $2 \times 2$ identity matrix must have zeros on the non-diagonal positions. Equating corresponding non-diagonal elements to zero:
+- $x - 5 = 0 \implies x = 5$
+- $2y + 4 = 0 \implies 2y = -4 \implies y = -2$
 
 ### Question 4
-A diagonal matrix is given compactly as $D = \text{diag}(5, -1, 3)$. Write the full matrix $D$.
+Construct the diagonal matrix represented compactly as $D = \text{diag}(8, -3, 0)$.
 
 **Solution:**
-
-A "diag" notation implies a square matrix where the specified values form the principal diagonal, and all other entries are zero.
-
-$$
-D = \begin{bmatrix} 5 & 0 & 0 \\ 0 & -1 & 0 \\ 0 & 0 & 3 \end{bmatrix}
-$$
+The notation $\text{diag}(x, y, z)$ is used in textbooks to compactly write a square matrix where $x, y, z$ form the main diagonal from top-left to bottom-right, and all other entries are zero.
+$$D = \begin{bmatrix} 8 & 0 & 0 \\ 0 & -3 & 0 \\ 0 & 0 & 0 \end{bmatrix}$$
 
 ### Question 5
-Identify the type(s) of the following matrix $Z$:
-$$Z = \begin{bmatrix} 0 & 0 \\ 0 & 0 \\ 0 & 0 \end{bmatrix}$$
+Classify the following matrix $U$.
+$$U = \begin{bmatrix} 2 & 5 & 1 \\ 0 & 9 & 4 \\ 0 & 0 & 7 \end{bmatrix}$$
 
 **Solution:**
-
-1. All elements are exactly zero.
-2. Its order is $3 \times 2$.
-
-**Conclusion:** It is a $3 \times 2$ Zero (or Null) Matrix.
+Notice that all elements strictly below the main diagonal are zero ($u_{21}=0, u_{31}=0, u_{32}=0$). Therefore, this is an **Upper Triangular Matrix**.
 
 ### Question 6
-State the mathematical condition on the elements $a_{ij}$ for a square matrix to be an **Upper Triangular Matrix**. Also provide an example of order 3.
+Find $a, b, c$ such that $L$ is a Lower Triangular Matrix.
+$$L = \begin{bmatrix} 5 & a-1 & b+2 \\ -3 & 4 & c-3 \\ 7 & 8 & 9 \end{bmatrix}$$
 
 **Solution:**
-
-Condition: $a_{ij} = 0$ for all $i > j$.
-
-Example:
-$$
-U = \begin{bmatrix} 1 & 2 & 3 \\ 0 & 5 & 6 \\ 0 & 0 & 9 \end{bmatrix}
-$$
+For a lower triangular matrix, all elements strictly above the main diagonal must be zero. We extract those entries and equate them to zero:
+- $l_{12} = a - 1 = 0 \implies a = 1$
+- $l_{13} = b + 2 = 0 \implies b = -2$
+- $l_{23} = c - 3 = 0 \implies c = 3$
 
 ### Question 7
-True or False: Every Identity matrix is a Scalar matrix. Justify your answer.
+Classify the following matrix. Is it a column matrix or a row matrix?
+$$V = \begin{bmatrix} 8 \\ -2 \\ 5 \\ 0 \end{bmatrix}$$
 
 **Solution:**
-
-True.
-
-A scalar matrix requires all diagonal elements to be identical and all non-diagonal elements to be zero.
-An identity matrix satisfies this because all diagonal elements are identically $1$, and non-diagonal elements are $0$.
+The matrix has $4$ rows and $1$ column. Its order is $4 \times 1$. Because it consists of a single vertical column, the textbook classifies it as a **Column Matrix**.
 
 ### Question 8
-Find the values of $a, b,$ and $c$ such that the matrix $L$ is a Lower Triangular Matrix.
-$$L = \begin{bmatrix} 2 & a & b \\ 4 & 5 & c \\ 7 & 8 & 9 \end{bmatrix}$$
+Given that $D$ is a diagonal matrix, find the values of variables $x$ and $y$.
+$$D = \begin{bmatrix} 5 & x - 2 \\ y + 1 & 8 \end{bmatrix}$$
 
 **Solution:**
-
-For a lower triangular matrix, all elements strictly above the main diagonal must be zero.
-
-Condition: $l_{ij} = 0$ for $i < j$
-
-- $l_{12} = a = 0$
-- $l_{13} = b = 0$
-- $l_{23} = c = 0$
-
-Therefore, $a = 0$, $b = 0$, and $c = 0$.
+By definition, a diagonal matrix must have zeros in all non-diagonal positions. 
+- $x - 2 = 0 \implies x = 2$
+- $y + 1 = 0 \implies y = -1$
 
 ### Question 9
-Is it possible for a matrix to be both Upper Triangular and Lower Triangular? If so, what is this type of matrix called?
+Construct a $3 \times 3$ scalar matrix given that the scalar constant is $k = -5$.
 
 **Solution:**
-
-Yes, it is possible.
-
-- If a matrix is Upper Triangular, then $a_{ij} = 0$ for $i > j$.
-- If a matrix is Lower Triangular, then $a_{ij} = 0$ for $i < j$.
-
-Combining these means $a_{ij} = 0$ for all $i \neq j$.
-A matrix satisfying this condition is called a **Diagonal Matrix**.
+A $3 \times 3$ scalar matrix has the constant $k$ on the main diagonal and zeros everywhere else.
+$$S = \begin{bmatrix} -5 & 0 & 0 \\ 0 & -5 & 0 \\ 0 & 0 & -5 \end{bmatrix}$$
 
 ### Question 10
-Identify all the applicable classifications for the matrix $M$:
-$$M = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}$$
+Classify the matrix $O$ fully based on its dimensions and elements.
+$$O = \begin{bmatrix} 0 & 0 & 0 \\ 0 & 0 & 0 \end{bmatrix}$$
 
 **Solution:**
-
-1. Square Matrix (Order $2 \times 2$)
-2. Diagonal Matrix (Non-diagonal elements are $0$)
-3. Scalar Matrix (Diagonal elements are identical)
-4. Identity Matrix (Diagonal elements are exactly $1$)
-5. Upper Triangular Matrix ($a_{21} = 0$)
-6. Lower Triangular Matrix ($a_{12} = 0$)
+The order of the matrix is $2 \times 3$, making it a rectangular matrix. Since every single element inside the matrix is $0$, it is strictly classified as a $2 \times 3$ **Null (or Zero) Matrix**.
