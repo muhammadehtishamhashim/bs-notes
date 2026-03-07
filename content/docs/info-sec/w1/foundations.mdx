@@ -1,0 +1,140 @@
+---
+title: Information Security Foundations
+description: Core concepts, principles, and types of Information Security (InfoSec).
+---
+
+import { Callout } from 'fumadocs-ui/components/callout';
+
+# Introduction to Information Security
+
+**Information Security (InfoSec)** is the practice of protecting physical and electronic information from unauthorized access, use, disclosure, disruption, modification, or destruction. It requires a multi-disciplinary approach involving people, processes, and technology.
+
+<Callout title="Historical Context" type="info">
+The need to secure information dates back centuries. During WWI, multi-tier classification systems were developed for sensitive information. A famous milestone is **Alan Turing's** successful decryption of the German Enigma Machine during WWII, heavily influencing modern cryptography.
+</Callout>
+
+---
+
+## The CIA Triad & Core Principles
+
+Information Security programs are built around three primary objectives, universally known as the **CIA Triad**.
+
+<div className="my-6 overflow-x-auto border border-border/50 rounded-xl bg-card shadow-sm">
+  <div className="w-max mx-auto p-8 flex items-center justify-center gap-8 min-w-[600px]">
+    
+    {/* Confidentiality */}
+    <div className="flex flex-col items-center w-48 text-center relative">
+      <div className="w-16 h-16 rounded-2xl bg-blue-500/10 border-2 border-blue-500/40 flex items-center justify-center mb-3 shadow-sm">
+        <svg className="w-8 h-8 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
+      </div>
+      <h3 className="font-bold text-blue-500 mb-2">Confidentiality</h3>
+      <p className="text-xs text-muted-foreground">Information is strictly not disclosed to unauthorized individuals, entities, or processes.</p>
+    </div>
+
+    {/* Integrity */}
+    <div className="flex flex-col items-center w-48 text-center relative">
+      <div className="w-16 h-16 rounded-2xl bg-green-500/10 border-2 border-green-500/40 flex items-center justify-center mb-3 shadow-sm">
+        <svg className="w-8 h-8 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+      </div>
+      <h3 className="font-bold text-green-500 mb-2">Integrity</h3>
+      <p className="text-xs text-muted-foreground">Maintaining the strict accuracy and completeness of data. Data cannot be edited in an unauthorized way.</p>
+    </div>
+
+    {/* Availability */}
+    <div className="flex flex-col items-center w-48 text-center relative">
+      <div className="w-16 h-16 rounded-2xl bg-orange-500/10 border-2 border-orange-500/40 flex items-center justify-center mb-3 shadow-sm">
+        <svg className="w-8 h-8 text-orange-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
+      </div>
+      <h3 className="font-bold text-orange-500 mb-2">Availability</h3>
+      <p className="text-xs text-muted-foreground">Information and systems must be accessible and available to authorized users exactly when needed.</p>
+    </div>
+
+  </div>
+</div>
+
+### Extended Principles
+Beyond the CIA Triad, robust InfoSec programs enforce three additional principles:
+* **Non-repudiation:** Ensures a party cannot deny sending or receiving a message/transaction (requires Data Integrity and Authenticity).
+* **Authenticity:** Verifying that users/systems are exactly who they claim to be, and inputs are from trusted sources.
+* **Accountability:** The ability to trace actions on a system uniquely back to the specific entity that performed them.
+
+---
+
+## Types of Information Security
+
+Security spans multiple domains to create a defense-in-depth strategy:
+
+<div className="my-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+  <div className="rounded-xl border border-border/50 bg-card p-5 shadow-sm">
+    <h4 className="font-bold text-primary mb-1">Network Security</h4>
+    <p className="text-sm text-muted-foreground">Defends networks from unauthorized access using firewalls, VPNs, and Intrusion Detection Systems (IDS).</p>
+  </div>
+  <div className="rounded-xl border border-border/50 bg-card p-5 shadow-sm">
+    <h4 className="font-bold text-primary mb-1">Application Security</h4>
+    <p className="text-sm text-muted-foreground">Secures software by patching vulnerabilities and using Web Application Firewalls (WAF).</p>
+  </div>
+  <div className="rounded-xl border border-border/50 bg-card p-5 shadow-sm">
+    <h4 className="font-bold text-primary mb-1">Data Security</h4>
+    <p className="text-sm text-muted-foreground">Ensures safety during storage and transfer via encryption and data masking.</p>
+  </div>
+  <div className="rounded-xl border border-border/50 bg-card p-5 shadow-sm">
+    <h4 className="font-bold text-primary mb-1">Endpoint Security</h4>
+    <p className="text-sm text-muted-foreground">Secures individual devices (PCs, phones) using Antivirus and Endpoint Detection & Response (EDR).</p>
+  </div>
+  <div className="rounded-xl border border-border/50 bg-card p-5 shadow-sm lg:col-span-2">
+    <h4 className="font-bold text-primary mb-1">Cloud Security</h4>
+    <p className="text-sm text-muted-foreground">Protects data hosted in cloud environments using secure configurations, IAM, and Multi-Factor Authentication (MFA).</p>
+  </div>
+</div>
+
+---
+
+## Governance & Compliance
+
+To manage risks at an organizational scale, frameworks and laws are established.
+
+* **ISMS (Information Security Management System):** A structured framework (like ISO/IEC 27001) that includes policies, procedures, and controls to continuously manage and secure sensitive data from cyber threats.
+* **GDPR (General Data Protection Regulation):** An EU privacy law (effective May 2018) granting individuals control over their personal data. It mandates strict rules on data collection, transparency, and enforces significant fines for non-compliance.
+
+---
+
+## Information Classification
+
+Organizations often implement **Information Classification** systems to categorize data sensitivity (e.g., Public, Internal, Confidential). 
+
+<div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
+  <div className="p-5 border border-l-4 border-l-green-500 bg-green-500/5 rounded-r-lg">
+    <h4 className="font-bold text-green-500 mb-3 flex items-center gap-2">
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
+      Advantages
+    </h4>
+    <ul className="text-sm space-y-2 text-muted-foreground list-disc pl-4 marker:text-green-500">
+      <li>**Cost & Efficiency:** Optimizes spending by applying strict controls only to highly sensitive data.</li>
+      <li>**Compliance:** Meets standard requirements like HIPAA and PCI-DSS.</li>
+      <li>**Risk Management:** Clarifies the potential impact of breaches, improving incident response.</li>
+    </ul>
+  </div>
+  <div className="p-5 border border-l-4 border-l-red-500 bg-red-500/5 rounded-r-lg">
+    <h4 className="font-bold text-red-500 mb-3 flex items-center gap-2">
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+      Disadvantages
+    </h4>
+    <ul className="text-sm space-y-2 text-muted-foreground list-disc pl-4 marker:text-red-500">
+      <li>**Complexity & Cost:** Expensive and difficult to maintain across massive, diverse data lakes.</li>
+      <li>**Human Error:** Misclassification can lead to inadequate protection or restrictive bottlenecks.</li>
+      <li>**False Security:** Organizations may over-rely on labels and ignore foundational best practices.</li>
+    </ul>
+  </div>
+</div>
+
+---
+
+## Modern InfoSec Challenges
+
+The landscape of information security is continuously evolving, facing threats such as:
+
+1. **Cyber Threats:** Escalating sophistication of malware, ransomware, and phishing attacks.
+2. **The Human Element:** Insider threats (malicious employees) and human error (weak passwords, clicking malicious links).
+3. **Hardware Sprawl:** The explosion of easily lost/stolen Mobile and IoT devices with natively weak security controls.
+4. **Third-Party Integrations:** Connecting internal systems to external vendors introduces supply-chain vulnerabilities.
+5. **Globalization & Privacy:** Navigating conflicting data storage/processing laws across international borders while maintaining strict data privacy.

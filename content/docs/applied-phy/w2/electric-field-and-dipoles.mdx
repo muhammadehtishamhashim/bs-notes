@@ -1,19 +1,19 @@
 ---
-title: Electric Field & Dipoles
-description: Point charges in an electric field, lines of force, and electric dipoles.
+title: Electric Field, Dipoles & Energy
+description: Point charges in an electric field, lines of force, and the potential energy of electric dipoles.
 weight: 3
 ---
 
 import { MathWrapper } from '@/components/mdx/math-wrapper';
-import { DiagramWrapper } from '@/components/mdx/diagram-wrapper';
 import { ImageWrapper } from '@/components/mdx/image-wrapper';
 import { Callout } from 'fumadocs-ui/components/callout';
 import electricField1 from './files/electric-field-1.jpeg';
-import electricField2 from './files/electric-field-2.jpeg';
+import electricField2 from './files/electric-field-2.png';
+
 
 # Electric Field due to a Point Charge
 
-An electric field ($E$) is a region of space around a charged particle where a force would be exerted on other charged particles. It essentially describes the "electric pull or push" in the space surrounding a charge. The formula for the electric field produced by a point charge $q$ at a distance $r$ is:
+An electric field ($E$) describes the "electric pull or push" in the space surrounding a charge. The electric field produced by a point charge $q$ at a distance $r$ is:
 
 <MathWrapper title="Electric Field Equation">
 
@@ -23,63 +23,161 @@ $$
 
 </MathWrapper>
 
-* $E$ is a vector quantity, measured in Newtons per Coulomb (N/C). It points away from positive charges and towards negative charges.
+* **Vector Quantity:** Measured in Newtons per Coulomb (N/C).
+* **Direction:** Points *away* from positive charges and *towards* negative charges.
 
 ## Point Charge IN an Electric Field
-If you take a test charge ($q_0$) and drop it into an existing uniform electric field ($E$), it will experience a force based on the strength of that field:
-<MathWrapper title="Force on a Test Charge">
-
-$$
-F = q_0 E
-$$
-
-</MathWrapper>
-
-Because $F = ma$ (Newton's Second Law), this electric force causes the charge to accelerate. The acceleration of the particle is:
-$$a = \frac{q_0 E}{m}$$
+If a test charge ($q_0$) is dropped into an existing uniform electric field ($E$), it experiences a force: $F = q_0 E$. 
+Because $F = ma$, this force causes the charge to accelerate: $a = \frac{q_0 E}{m}$.
 
 ---
 
 # Electric Lines of Force
 
-Electric field lines are a fantastic visualization tool to understand the strength and direction of the electric field visually.
-1. They **originate** from positive charges and **terminate** on negative charges.
-2. The tangent to a field line at any point gives the **direction** of the electric field $\vec{E}$ at that point.
-3. Field lines **never intersect** each other.
-4. The **density** of the lines represents the **strength** of the field (closer lines = stronger field, spread out = weaker field).
+Field lines are visual tools to map the electric field's strength and direction.
+* **Origin & Termination:** Start on positive charges, end on negative charges.
+* **Direction:** The tangent to a line indicates the field's direction at that exact point.
+* **No Intersections:** Field lines never cross each other.
+* **Strength:** Closer lines indicate a stronger field; spaced-out lines indicate a weaker field.
 
 <ImageWrapper 
   title="Electric Field Lines Visualization"
   darkSrc={electricField1}
-  alt="A high-quality 2D scientific diagram showing Electric Field Lines for two isolated point charges. Background must be cleanly integrated, using a #111111 dark mode theme or zinc-50 light mode theme without looking out of place in modern web documentation. On the left: a positive charge (orange) with vector arrows pointing radially OUTWARD in all directions. On the right: a negative charge (blue) with vector arrows pointing radially INWARD from all directions. Keep it minimalistic, futuristic, and highly legible." 
+  alt="A high-quality 2D scientific diagram showing Electric Field Lines for two isolated point charges. Background must be cleanly integrated perfectly into #111111 dark mode. On the left: a positive charge (orange) with vector arrows pointing radially OUTWARD in all directions. On the right: a negative charge (blue) with vector arrows pointing radially INWARD from all directions. Minimalistic, futuristic, highly legible." 
 />
 
 ---
 
-# Electric Dipole
+# Electric Dipole & Torque
 
-An electric dipole consists of two equal and opposite point charges ($+q$ and $-q$) separated by a very small distance ($d$). They are very common in nature, such as in water molecules ($H_2O$).
+An **electric dipole** consists of two equal and opposite point charges ($+q$ and $-q$) separated by a small distance ($d$).
 
-* **Dipole Moment ($p$)**: A vector quantity pointing from the negative charge to the positive charge. It measures the strength of the dipole.
-  $$p = q \cdot d$$
+* **Dipole Moment ($\vec{p}$):** A vector pointing from $-q$ to $+q$ measuring the dipole's strength. $p = q \cdot d$
 
-## Dipole in a Uniform Electric Field
-When a dipole is placed inside an external electric field, the $+q$ charge is pushed in the direction of the field, and the $-q$ charge is pulled opposite to the field. 
-
-This creates a rotational **Torque ($\tau$)** that tries to twist and align the dipole with the field lines:
+## Torque in a Uniform Field
+When placed in a uniform electric field ($\vec{E}$), the $+q$ is pushed with the field and $-q$ is pulled against it. This creates a rotational force called **Torque ($\vec{\tau}$)**.
 
 <MathWrapper title="Torque on an Electric Dipole">
 
 $$
-\tau = p \times E \\
-\tau = pE \sin\theta
+\begin{aligned}
+\vec{\tau} &= \vec{p} \times \vec{E} \\[1em]
+\tau &= pE \sin\theta
+\end{aligned}
 $$
 
 </MathWrapper>
-*(Where $\theta$ is the angle between the dipole moment and the electric field).*
+*(Where $\theta$ is the angle between the dipole moment $\vec{p}$ and the electric field $\vec{E}$).*
 
 <ImageWrapper 
   title="Dipole in a Uniform Field"
   darkSrc={electricField2}
-  alt="A visually stunning, futuristic 2D diagram showing an Electric Dipole situated within a Uniform Electric Field. Background: minimalistic, #111111 (dark) or zinc-50 (light). The uniform field is represented by faded horizontal parallel lines pointing to the right. In the center, a dipole is rotated at an angle with a central connecting rod labeled 'd'. The top-right charge is '+q' (orange) with a force vector pointing right ('F = +qE'). The bottom-left charge is '-q' (blue) with a force vector pointing left ('F = -qE'). Focus on educational clarity and premium textbook aesthetic." 
+  alt="Futuristic 2D diagram of an Electric Dipole in a Uniform Electric Field. Background: #111111. Uniform field = horizontal right-pointing arrows. Center: A rotated dipole with distance 'd'. Top-right charge '+q' (orange) has force vector 'F = +qE' right. Bottom-left charge '-q' (blue) has force vector 'F = -qE' left. Shows rotational torque twist." 
 />
+
+---
+
+# Work and Potential Energy
+
+To understand the energy stored in a dipole, we must map linear motion principles to angular motion.
+
+* **Linear Work:** $dW = F \cdot dr$ (Force $\times$ linear displacement)
+* **Angular Work:** $dW = \tau \cdot d\theta$ (Torque $\times$ angular displacement)
+
+## Deriving Work Done on a Dipole
+To find the total work ($W$) done in rotating a dipole from an initial angle $\theta_i$ to a final angle $\theta_f$, we integrate the angular work equation:
+
+<MathWrapper title="Integration of Work">
+
+$$
+\begin{aligned}
+W &= \int_{\theta_i}^{\theta_f} \tau \, d\theta \\[1em]
+W &= \int_{\theta_i}^{\theta_f} pE \sin\theta \, d\theta \\[1em]
+W &= pE \Big[ -\cos\theta \Big]_{\theta_i}^{\theta_f} \\[1em]
+W &= -pE (\cos\theta_f - \cos\theta_i)
+\end{aligned}
+$$
+
+</MathWrapper>
+
+## Potential Energy ($U$)
+The work done on the dipole is stored as **Potential Energy ($U$)**. 
+$$U = -pE (\cos\theta_f - \cos\theta_i)$$
+
+To find the absolute potential energy at any angle $\theta$, physicists assign a zero-energy reference point. **Assume $\theta_i = 90^\circ$** because the potential energy is zero when the dipole is perpendicular to the field.
+
+<MathWrapper title="General Potential Energy Formula">
+
+$$
+\begin{aligned}
+U &= -pE (\cos\theta_f - \cos 90^\circ) \\[1em]
+U &= -pE (\cos\theta - 0) \\[1em]
+U &= -pE \cos\theta \implies U = -\vec{p} \cdot \vec{E}
+\end{aligned}
+$$
+
+</MathWrapper>
+
+
+---
+
+# 3 Special Cases of Potential Energy
+
+Using the formula $U = -pE \cos\theta$, we can analyze the dipole's energy state based on its alignment with the electric field.
+
+### Case 1: $\theta = 0^\circ$ (Parallel)
+<MathWrapper title="Minimum Energy">
+
+$$
+\begin{aligned}
+U &= -pE \cos(0^\circ) \\
+U &= -pE(1) \\
+U &= -pE \quad \text{(Minimum Energy)}
+\end{aligned}
+$$
+
+</MathWrapper>
+<Callout title="Stable Equilibrium" type="info">
+When perfectly aligned with the field, the dipole has minimum potential energy. This is a state of **stable equilibrium** (it doesn't want to move).
+</Callout>
+
+### Case 2: $\theta = 90^\circ$ (Perpendicular)
+<MathWrapper title="Zero Energy">
+
+$$
+\begin{aligned}
+U &= -pE \cos(90^\circ) \\
+U &= 0 \quad \text{(Zero Energy)}
+\end{aligned}
+$$
+
+</MathWrapper>
+
+### Case 3: $\theta = 180^\circ$ (Anti-Parallel)
+<MathWrapper title="Maximum Energy">
+
+$$
+\begin{aligned}
+U &= -pE \cos(180^\circ) \\
+U &= -pE(-1) \\
+U &= +pE \quad \text{(Maximum Energy)}
+\end{aligned}
+$$
+
+</MathWrapper>
+<Callout title="Unstable Equilibrium" type="warn">
+When perfectly against the field, the dipole has maximum potential energy. This is a state of **unstable equilibrium** (the slightest nudge will cause it to violently spin to $0^\circ$).
+</Callout>
+
+---
+
+## Comprehensive Summary
+
+* **Electric Field:** Calculates the force per unit charge ($E = \frac{1}{4\pi\epsilon_0} \frac{q}{r^2}$). Point charges dropped in a field will accelerate ($a = \frac{q_0E}{m}$).
+* **Field Lines:** Visual arrows pointing from positive to negative. Density dictates field strength.
+* **Dipole & Torque:** Two opposite charges separated by $d$ create a dipole moment $p=qd$. In a uniform field, forces cause it to twist (Torque: $\tau = pE\sin\theta$).
+* **Angular Work:** Work done rotating the dipole is the integral of torque ($W = \int \tau d\theta$).
+* **Potential Energy:** The energy stored during rotation is $U = -pE\cos\theta$ (assuming $U=0$ at $90^\circ$).
+* **Equilibrium States:** * $0^\circ$: Stable, Minimum Energy ($-pE$)
+  * $90^\circ$: Zero Energy ($0$)
+  * $180^\circ$: Unstable, Maximum Energy ($+pE$)
