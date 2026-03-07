@@ -1,0 +1,129 @@
+---
+title: Electric Flux
+description: Understanding electric flux, area vectors, and calculating field line penetration.
+weight: 6
+---
+
+import { MathWrapper } from '@/components/mdx/math-wrapper';
+import { Callout } from 'fumadocs-ui/components/callout';
+import { ImageWrapper } from '@/components/mdx/image-wrapper';
+import fluxAreaImage from './files/flux-area.png';
+import fluxCasesImage from './files/flux-cases.png';
+
+# What is Electric Flux ($\Phi$)?
+
+**Electric Flux** ($\Phi$, pronounced "phi") is a measure of the total number of electric field lines passing through a specific surface area. It helps us quantify how much of an electric field is penetrating a given boundary.
+
+To calculate flux, we use the dot product of the Electric Field vector ($\vec{E}$) and the Area vector ($\vec{A}$).
+
+<MathWrapper title="Electric Flux Formula">
+
+$$
+\Phi = \vec{E} \cdot \vec{A} \\[1em]
+\Phi = E A \cos\theta
+$$
+
+</MathWrapper>
+
+### Understanding the Area Vector ($\vec{A}$)
+A crucial concept here is the **Area Vector**. The direction of an area vector is always **perpendicular (normal) to the surface**. 
+* If you place a book flat on a table, its surface area vector points straight up toward the ceiling.
+* The angle $\theta$ in our formula is the angle between the electric field lines and this perpendicular area vector.
+
+<ImageWrapper 
+  title="Electric Flux and the Area Vector"
+  darkSrc={fluxAreaImage}
+  alt="PROMPT: A clean, modern academic textbook illustration of Electric Flux. Dark mode background (#111111). A slanted translucent gray rectangular plane represents a surface area. A distinct vector arrow pointing perfectly perpendicular to the surface is labeled 'Area Vector (A)'. Several soft-blue horizontal arrows representing the Electric Field (E) pass through the surface. An angle arc labeled 'theta' is shown between the E arrows and the A vector. Minimalist, professional, soft matte colors." 
+/>
+
+---
+
+# Calculating Flux: Three Orientations
+
+Depending on how a surface is oriented in an electric field, the flux changes based on the angle $\theta$. Let's look at the three main cases.
+
+### Case I: Maximum Positive Flux ($\theta = 0^\circ$)
+The surface is exactly perpendicular to the electric field. The field lines hit it head-on, in the exact same direction as the Area Vector.
+
+<MathWrapper title="Maximum Positive Flux">
+
+$$
+\begin{aligned}
+\Phi &= EA \cos(0^\circ) \\
+\Phi &= EA (1) \\
+\Phi &= +EA \quad \text{(Maximum Outward Flux)}
+\end{aligned}
+$$
+
+</MathWrapper>
+
+### Case II: Zero Flux ($\theta = 90^\circ$)
+The surface is flat/parallel to the electric field. The lines simply glide over the surface without piercing it. The Area Vector is completely perpendicular ($90^\circ$) to the field lines.
+
+<MathWrapper title="Zero Flux">
+
+$$
+\begin{aligned}
+\Phi &= EA \cos(90^\circ) \\
+\Phi &= EA (0) \\
+\Phi &= 0 \quad \text{(Minimum Magnitude)}
+\end{aligned}
+$$
+
+</MathWrapper>
+
+### Case III: Minimum Flux ($\theta = 180^\circ$)
+The surface is perpendicular to the field, but the field lines are travelling in the exact *opposite* direction of the Area Vector (e.g., lines entering a closed box instead of leaving it). 
+
+<MathWrapper title="Maximum Negative Flux">
+
+$$
+\begin{aligned}
+\Phi &= EA \cos(180^\circ) \\
+\Phi &= EA (-1) \\
+\Phi &= -EA \quad \text{(Algebraic Minimum / Inward Flux)}
+\end{aligned}
+$$
+
+</MathWrapper>
+
+<ImageWrapper 
+  title="The Three Cases of Flux"
+  darkSrc={fluxCasesImage}
+  alt="PROMPT: Clean, modern 2D physics diagram split into three sections. Section 1 (0 degrees): Horizontal E-field passing through a vertical plane, Area vector points right (parallel to E). Section 2 (90 degrees): Horizontal E-field sliding over a flat horizontal plane, Area vector points straight up. Section 3 (180 degrees): Horizontal E-field passing right-to-left through a vertical plane, Area vector points right (opposite to E). Dark background (#111111), matte colors, highly legible textbook style." 
+/>
+
+---
+
+# Flux through Variable Surfaces (Calculus Approach)
+
+To calculate flux for complex or curved shapes, we break the large Area ($A$) into infinitely small area elements ($d\vec{A}$). We calculate the tiny amount of flux ($d\Phi$) through one element, and then **integrate** over the entire surface.
+
+<MathWrapper title="Integral Form of Flux">
+
+$$
+\begin{aligned}
+d\Phi &= \vec{E} \cdot d\vec{A} \\[1em]
+\Phi &= \int \vec{E} \cdot d\vec{A}
+\end{aligned}
+$$
+
+</MathWrapper>
+
+<Callout title="Correction from Class Notes" type="warn">
+In the handwritten notes, the derivation for the SI unit mistakenly used "$Q = EA$". $Q$ stands for Charge. The correct equation is $\Phi = EA$. Therefore, the SI unit of Electric Flux is calculated as Force/Charge $\times$ Area: $\frac{\text{Newtons}}{\text{Coulomb}} \times \text{Meters}^2$, resulting in **$Nm^2/C$**.
+</Callout>
+
+---
+
+## Comprehensive Summary
+
+* **Definition:** Electric flux ($\Phi$) measures how many electric field lines pierce through a specific area.
+* **Formula:** $\Phi = \vec{E} \cdot \vec{A} = EA\cos\theta$.
+* **Area Vector:** A vector that is always $90^\circ$ (perpendicular) to the surface itself. 
+* **Orientation Matters:**
+  * $0^\circ$: Max outward flux ($+EA$).
+  * $90^\circ$: Zero flux ($0$).
+  * $180^\circ$: Max inward flux ($-EA$).
+* **Integration:** For curved surfaces, flux is the integral of the field over tiny area pieces: $\Phi = \int \vec{E} \cdot d\vec{A}$.
+* **SI Unit:** Newton-meters squared per Coulomb ($N \cdot m^2 / C$).

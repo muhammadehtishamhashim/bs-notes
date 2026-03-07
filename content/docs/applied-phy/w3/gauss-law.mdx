@@ -1,0 +1,173 @@
+---
+title: Gauss's Law
+description: Statement, proof, and the derivation of the differential and integral forms of Gauss's Law.
+weight: 7
+---
+
+import { MathWrapper } from '@/components/mdx/math-wrapper';
+import { Callout } from 'fumadocs-ui/components/callout';
+import { ImageWrapper } from '@/components/mdx/image-wrapper';
+import gaussProofImage from './files/gauss-proof.png';
+
+# Statement of Gauss's Law
+
+Gauss's Law relates the electric flux through a boundary to the charge inside it. 
+
+**The Law States:** The total amount of flux passing through an enclosed surface is equal to $1/\epsilon_0$ times the total charge ($q$) enclosed by that surface.
+
+<MathWrapper title="Gauss's Law">
+
+$$
+\Phi = \frac{1}{\epsilon_0} \times q
+$$
+
+</MathWrapper>
+
+---
+
+# Proof of Gauss's Law
+
+If we have a closed surface, let's assume it is a sphere containing a point charge $q$.
+
+1. We know the flux integral is: $\Phi = \oint \vec{E} \cdot d\vec{A}$.
+2. For a sphere, the Area Vector and Electric Field are parallel, so $\cos(0^\circ) = 1$. The limits of integration for the area are from $0$ to the full surface area of a sphere ($2\pi r^2$, wait, a full sphere is $4\pi r^2$, adjusting to correct mathematical standard while maintaining logic).
+
+<MathWrapper title="Deriving Gauss's Law">
+
+$$
+\begin{aligned}
+\Phi &= E \int d\vec{A} \\[1em]
+\Phi &= E \cdot [A] \quad \text{(from 0 to } 4\pi r^2) \\[1em]
+\Phi &= E (4\pi r^2 - 0)
+\end{aligned}
+$$
+
+</MathWrapper>
+
+Now, we substitute the standard formula for the electric field ($E = \frac{1}{4\pi\epsilon_0} \frac{q}{r^2}$):
+
+<MathWrapper title="Substituting Electric Field">
+
+$$
+\begin{aligned}
+\Phi &= \left( \frac{1}{4\pi\epsilon_0} \frac{q}{r^2} \right) (4\pi r^2) \\[1em]
+\Phi &= \frac{1}{\cancel{4\pi}\epsilon_0 \cancel{r^2}} \times q \times (\cancel{4\pi} \cancel{r^2}) \\[1em]
+\Phi &= \frac{1}{\epsilon_0} q \quad \text{(Hence Proved)}
+\end{aligned}
+$$
+
+</MathWrapper>
+
+<ImageWrapper 
+  title="Spherical Gaussian Surface"
+  darkSrc={gaussProofImage}
+  alt="PROMPT: Clean, modern textbook diagram. Dark mode (#111111). A positive point charge '+q' sits in the exact center of a translucent spherical wireframe (the Gaussian surface) with radius 'r'. Symmetrical electric field lines radiate straight outwards, passing through a highlighted tiny square patch on the sphere's surface labeled 'dA'. An Area vector and E-field vector are shown pointing in the exact same outward direction. Professional, soft matte grays and muted orange." 
+/>
+
+---
+
+# Differential Form of Gauss's Law
+
+To find what happens at a microscopic point rather than a macro-surface, we derive the differential form. We start by comparing our known flux equations.
+
+### Step 1: Comparing Equations
+<MathWrapper title="Equation Comparison">
+
+$$
+\begin{aligned}
+\text{1. } \Phi &= \frac{1}{\epsilon_0} q \\[1em]
+\text{2. } \Phi &= \vec{E} \cdot \vec{A} \\[1em]
+\text{3. } \Phi &= \int_S \vec{E} \cdot d\vec{A} \\[1em]
+\text{Comparing (1) and (3):} \\[1em]
+\int_S \vec{E} \cdot d\vec{A} &= \frac{1}{\epsilon_0} q \quad \longrightarrow \text{(Equation 4)}
+\end{aligned}
+$$
+
+</MathWrapper>
+
+### Step 2: Volume Charge Density
+Now, we use volume charge density ($\rho = \frac{dq}{dV}$). By integrating, we find the total charge: $q = \int_V \rho \, dV$. We substitute this new $q$ into Equation 4.
+
+<MathWrapper title="Substituting Density">
+
+$$
+\text{New equation:} \quad \int_S \vec{E} \cdot d\vec{A} = \frac{1}{\epsilon_0} \int_V \rho \, dV
+$$
+
+</MathWrapper>
+
+### Step 3: The Divergence Theorem
+Here we introduce a critical rule of calculus called the **Divergence Theorem**. It states that a surface integral over a closed boundary is equal to the volume integral of the divergence inside it.
+
+$$\int_S \vec{V} \cdot d\vec{A} = \int_V (\nabla \cdot \vec{V}) dV$$
+
+By applying the Divergence Theorem to our Electric Field ($\vec{E}$), we can rewrite the left side of our equation:
+
+<MathWrapper title="Applying Divergence Theorem">
+
+$$
+\begin{aligned}
+\text{By using D.T we have:} \quad \int_S \vec{E} \cdot d\vec{A} &= \int_V (\nabla \cdot \vec{E}) dV \\[1em]
+\text{So, put this into our equation:} \\[1em]
+\int_V (\nabla \cdot \vec{E}) dV &= \frac{1}{\epsilon_0} \int_V \rho \, dV
+\end{aligned}
+$$
+
+</MathWrapper>
+
+Since both sides are volume integrals, the inside contents must be equal:
+
+<Callout title="Differential Form" type="info">
+$$\nabla \cdot \vec{E} = \frac{\rho}{\epsilon_0}$$
+*(This can also be written as: $\text{Div } \vec{E} = \frac{\rho}{\epsilon_0}$)*
+</Callout>
+
+---
+
+# Integral Form of Gauss's Law
+
+Interestingly, we can easily derive the Integral Form by working backwards from the Differential calculations we just completed.
+
+From our previous calculations, we know:
+$$\int_V (\nabla \cdot \vec{E}) dV = \int_V \frac{1}{\epsilon_0} \rho \, dV$$
+
+Using the **Divergence Theorem** in reverse, we convert the volume integral on the left back into a surface integral:
+
+<MathWrapper title="Reversing via Divergence">
+
+$$
+\int_S \vec{E} \cdot d\vec{A} = \int_V \frac{1}{\epsilon_0} \rho \, dV
+$$
+
+</MathWrapper>
+
+We pull the constant ($1/\epsilon_0$) out of the right side. We also know that the integral of density over volume equals total charge ($q = \int \rho \, dV$). 
+
+<MathWrapper title="Final Integral Form Derivation">
+
+$$
+\begin{aligned}
+\int_S \vec{E} \cdot d\vec{A} &= \frac{1}{\epsilon_0} \left( \int \rho \, dV \right) \\[1em]
+\int_S \vec{E} \cdot d\vec{A} &= \frac{1}{\epsilon_0} q
+\end{aligned}
+$$
+
+</MathWrapper>
+
+<Callout title="Integral Form" type="info">
+$$\oint_S \vec{E} \cdot d\vec{A} = \frac{q}{\epsilon_0}$$
+</Callout>
+
+---
+
+## Comprehensive Summary
+
+* **Gauss's Law:** $\Phi = q/\epsilon_0$. The total flux through an enclosed surface depends solely on the charge inside it.
+* **Proof:** Derived mathematically by integrating $E$ over a spherical area ($4\pi r^2$).
+* **Differential Derivation:** 1. Equate flux integral to $q/\epsilon_0$.
+  2. Substitute $q$ with volume integral of charge density ($\rho$).
+  3. Apply the **Divergence Theorem** to convert the surface integral to a volume integral.
+  4. Compare both sides to isolate the differential form: $\nabla \cdot \vec{E} = \rho/\epsilon_0$.
+* **Integral Derivation:** 1. Start from the differential volume equality.
+  2. Use the Divergence Theorem to convert the left side back to a surface integral ($\int_S \vec{E} \cdot d\vec{A}$).
+  3. Replace the volume integral of density on the right side with total charge ($q$). Resulting in the Integral form.
