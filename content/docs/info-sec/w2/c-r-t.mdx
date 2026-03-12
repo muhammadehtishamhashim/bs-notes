@@ -65,64 +65,7 @@ To solve a CRT problem, follow these precise steps:
 
 ## Applied Examples
 
-### Example 1: Three Equations
-
-Solve the following system for $X$:
-1. $X \equiv 2 \pmod 3$
-2. $X \equiv 3 \pmod 5$
-3. $X \equiv 2 \pmod 7$
-
-**Extracted Variables:**
-* $a_1 = 2, m_1 = 3$
-* $a_2 = 3, m_2 = 5$
-* $a_3 = 2, m_3 = 7$
-
-#### Step 1: Find $M$
-$M = m_1 \times m_2 \times m_3 = 3 \times 5 \times 7 = \mathbf{105}$
-
-#### Step 2: Find Partial Moduli ($M_i$)
-* $M_1 = \frac{M}{m_1} = \frac{105}{3} = \mathbf{35}$
-* $M_2 = \frac{M}{m_2} = \frac{105}{5} = \mathbf{21}$
-* $M_3 = \frac{M}{m_3} = \frac{105}{7} = \mathbf{15}$
-
-#### Step 3: Find Inverses ($M_i^{-1}$)
-
-* **For $M_1^{-1}$:**
-  $35 \times M_1^{-1} \equiv 1 \pmod 3$
-  *(Since $35 \equiv 2 \pmod 3$)*
-  $2 \times M_1^{-1} \equiv 1 \pmod 3 \implies \mathbf{M_1^{-1} = 2}$ (Because $2 \times 2 = 4 \equiv 1 \pmod 3$).
-
-* **For $M_2^{-1}$:**
-  $21 \times M_2^{-1} \equiv 1 \pmod 5$
-  *(Since $21 \equiv 1 \pmod 5$)*
-  $1 \times M_2^{-1} \equiv 1 \pmod 5 \implies \mathbf{M_2^{-1} = 1}$.
-
-* **For $M_3^{-1}$:**
-  $15 \times M_3^{-1} \equiv 1 \pmod 7$
-  *(Since $15 \equiv 1 \pmod 7$)*
-  $1 \times M_3^{-1} \equiv 1 \pmod 7 \implies \mathbf{M_3^{-1} = 1}$.
-
-#### Step 4: Master Formula
-
-<MathWrapper title="Final Calculation">
-$$
-\begin{aligned}
-X &= (a_1 M_1 M_1^{-1} + a_2 M_2 M_2^{-1} + a_3 M_3 M_3^{-1}) \pmod M \\[1em]
-X &= (2 \times 35 \times 2 + 3 \times 21 \times 1 + 2 \times 15 \times 1) \pmod{105} \\[1em]
-X &= (140 + 63 + 30) \pmod{105} \\[1em]
-X &= 233 \pmod{105}
-\end{aligned}
-$$
-</MathWrapper>
-
-To reduce $233 \pmod{105}$, we subtract $105$ twice ($210$). 
-$X = 233 - 210 = \mathbf{23}$
-
-**Final Answer: $X = 23$** *(Check: $23 \pmod 3 = 2$, $23 \pmod 5 = 3$, $23 \pmod 7 = 2$. It works!)*
-
----
-
-### Example 2: Two Equations
+### Example 1: Two Equations
 
 Solve the following system for $X$:
 1. $X \equiv 1 \pmod 4$
@@ -147,4 +90,18 @@ Solve the following system for $X$:
 Subtract $20$ twice ($40$) to reduce the modulo:
 $X = 53 - 40 = \mathbf{13}$
 
-**Final Answer: $X = 13$**
+---
+
+## Exam Critical Points
+<div className="bg-red-500/5 border-l-4 border-red-500 p-4 rounded-r-xl my-6">
+  <ul className="list-disc pl-5 space-y-2 text-sm font-medium text-foreground">
+    <li><strong className="text-red-500">The Coprime Condition:</strong> The CRT is ONLY applicable if all moduli ($m_1, m_2, \dots$) are pairwise relatively prime (e.g., $\text{GCD}(m_1, m_2) = 1$).</li>
+    <li><strong className="text-red-500">Modulo Reduction:</strong> Never forget the final step! The master formula yields a massive sum, but the final answer <strong>MUST</strong> be reduced using $\pmod M$.</li>
+    <li>When finding the inverse $M_i^{-1}$, you must solve it relative to the <em>small</em> modulus $m_i$, NOT the global modulus $M$.</li>
+  </ul>
+</div>
+
+## Comprehensive Summary
+* **What it is:** A mathematical theorem ensuring a single unique integer solution exists for a system of multiple modulo equations.
+* **Core Mechanism:** It breaks the system into sub-problems by isolating each modulus, calculating a partial block ($M_i$), determining its modular inverse, and mapping it back to the original remainders ($a_i$) to construct a unified result.
+* **Significance:** CRT allows massive computational operations to be broken down into smaller, parallel modular computations, vastly speeding up cryptographic functions like RSA decryption.

@@ -84,4 +84,18 @@ A modular inverse $a^{-1} \pmod m$ **only exists** if $a$ and $m$ are coprime, m
 
 Therefore, $5$ is the modular inverse of $3$ under modulo $7$. We can write $3^{-1} \equiv 5 \pmod 7$.
 
-*(Note: Finding modular inverses is a critical step for executing the Chinese Remainder Theorem in the next module).*
+---
+
+## Exam Critical Points
+<div className="bg-red-500/5 border-l-4 border-red-500 p-4 rounded-r-xl my-6">
+  <ul className="list-disc pl-5 space-y-2 text-sm font-medium text-foreground">
+    <li><strong className="text-red-500">Divisibility Condition:</strong> $A \equiv B \pmod N$ is completely equivalent to stating that $N \mid (A - B)$.</li>
+    <li><strong className="text-red-500">Inverse Prerequisite:</strong> The modular inverse of $A \pmod M$ exists <strong>ONLY IF</strong> $\text{GCD}(A, M) = 1$. If they are not coprime, no inverse exists.</li>
+    <li>Congruences can be added, multiplied, and exponentiated, but division behaves differently (division is only possible by multiplying by the modular inverse).</li>
+  </ul>
+</div>
+
+## Comprehensive Summary
+* **What it is:** The mathematical formulation of modular arithmetic (clock arithmetic), where numbers "wrap around" upon reaching a certain value (the modulus).
+* **Core Concept:** It defines equivalence classes. If two numbers give the same remainder when divided by $n$, they are part of the same equivalence class and are congruent. 
+* **Significance:** It serves as the algebraic playground for almost all modern cryptography. Discovering modular inverses is a mandatory step for key decryption and solving simultaneous equations via the CRT.

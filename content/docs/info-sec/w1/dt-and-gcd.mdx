@@ -3,6 +3,7 @@ title: "Divisibility Theory and GCD"
 description: "Understanding remainders, factors, and calculating Greatest Common Divisors."
 ---
 
+import { MathWrapper } from '@/components/mdx/math-wrapper';
 import { Callout } from 'fumadocs-ui/components/callout';
 
 # Divisibility Theory and GCD
@@ -13,7 +14,12 @@ Before learning complex encryption algorithms, we must master the basics of how 
 
 In cryptography and number theory, **Divisibility** strictly refers to a division operation where the **remainder equals exactly 0**. 
 
-In programming, this is heavily reliant on the modulo operator (`%`), which returns the remainder of a division. If `A % B == 0`, then $A$ is divisible by $B$.
+In programming, this is heavily reliant on the modulo operator (`%`), which returns the remainder of a division. If `a % b == 0`, then $a$ is divisible by $b$.
+
+An integer $a$ is said to be divisible by an integer $b$ (where $b \neq 0$) if there exists some integer $q$ such that:
+<MathWrapper title="Divisibility Condition">
+$$ a = b \cdot q $$
+</MathWrapper>
 
 ---
 
@@ -48,3 +54,20 @@ If both numbers provided are prime numbers, they share no common factors other t
 <Callout title="Coprime Numbers" type="info">
 Whenever the $\text{GCD}$ of two numbers is exactly $1$, those numbers are referred to as **Coprime** or mutually prime. They do not have to be prime numbers themselves (e.g., $8$ and $9$ are coprime because $\text{GCD}(8,9) = 1$).
 </Callout>
+
+---
+
+## Exam Critical Points
+<div className="bg-red-500/5 border-l-4 border-red-500 p-4 rounded-r-xl my-6">
+  <ul className="list-disc pl-5 space-y-2 text-sm font-medium text-foreground">
+    <li><strong className="text-red-500">GCD(a, 0) = |a|</strong>. The GCD of any number and zero is the absolute value of the number itself.</li>
+    <li><strong className="text-red-500">GCD(0, 0) is undefined.</strong></li>
+    <li><strong>Coprime Rule:</strong> If $\text{GCD}(A, B) = 1$, then $A$ and $B$ are relatively prime (coprime). Neither number actually needs to be a prime number (e.g., 8 and 9).</li>
+    <li>Divisibility mathematically implies the remainder is exactly zero ($A \pmod B = 0$).</li>
+  </ul>
+</div>
+
+## Comprehensive Summary
+* **What it is:** Divisibility theory explores the relationships of integers under division where no remainder exists. 
+* **Core Concept:** The Greatest Common Divisor (GCD) is the absolute largest integer that divides two numbers perfectly. 
+* **Why it matters:** Establishing whether two numbers are coprime ($\text{GCD} = 1$) is a mandatory prerequisite for generating cryptographic keys and calculating modular inverses later on.

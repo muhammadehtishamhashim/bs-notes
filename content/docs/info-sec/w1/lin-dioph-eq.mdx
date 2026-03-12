@@ -33,10 +33,6 @@ Note that $x = 0$ and $y = 0$ is always a solution. This is known as the **trivi
 If $\text{GCD}(a,b) = d$, then the complete family of solutions to $ax + by = 0$ is:
 $$ x = k\left(\frac{b}{d}\right) \quad \text{and} \quad y = -k\left(\frac{a}{d}\right) \quad \text{for any } k \in \mathbb{Z} $$
 
-**Example:** Solve $6x + 9y = 0$.
-* $d = \text{GCD}(6, 9) = 3$.
-* Solutions: $x = k(9/3) = 3k$, and $y = -k(6/3) = -2k$.
-
 ---
 
 ## Solving Non-Homogeneous LDEs ($ax + by = c$)
@@ -90,60 +86,16 @@ Follow these 6 strict steps to find the general solution for a non-homogeneous l
 
 ---
 
-## Applied Examples
+## Exam Critical Points
+<div className="bg-red-500/5 border-l-4 border-red-500 p-4 rounded-r-xl my-6">
+  <ul className="list-disc pl-5 space-y-2 text-sm font-medium text-foreground">
+    <li><strong className="text-red-500">The Existence Rule:</strong> A linear Diophantine equation $ax + by = c$ has an integer solution <em>if and only if</em> $\text{GCD}(a, b)$ perfectly divides $c$. If it does not, you must state "No integer solution exists."</li>
+    <li><strong className="text-red-500">Trivial Solutions:</strong> The equation $ax + by = 0$ will ALWAYS have the trivial solution $(0, 0)$.</li>
+    <li>When finding general solutions, remember to express your final answer in terms of an arbitrary integer constant $k$ (e.g., $x = 3k - 4$, $y = -5k + 8$).</li>
+  </ul>
+</div>
 
-### Example 1: The Die Hard Jug Problem ($5x + 3y = 4$)
-
-* **Step 1:** $d = \text{GCD}(5, 3) = 1$.
-* **Step 2:** Since $1 \mid 4$, a solution exists.
-* **Step 3 (Particular Sol):** Using inspection or Euclidean extension, we know $5(-1) + 3(2) = 1$. Multiply by 4: $5(-4) + 3(8) = 4$. So $x_0 = -4, y_0 = 8$.
-* **Step 4 (Variables):** Let $u = x + 4$ and $v = y - 8$. The equation becomes $5u + 3v = 0$.
-* **Step 5 (Solve HLDE):** $u = 3k$ and $v = -5k$.
-* **Step 6 (General Sol):** Substitute back:
-  $$ x = 3k - 4 \quad \text{and} \quad y = -5k + 8 \quad (k \in \mathbb{Z}) $$
-
-### Example 2: No Solution Case ($6x + 9y = 4$)
-
-* **Step 1:** $d = \text{GCD}(6, 9) = 3$.
-* **Step 2:** Does $3 \mid 4$? **NO**.
-* **Conclusion:** This equation has no integer solutions.
-
----
-
-### Example 3: Constrained Boundaries ($20x + 16y = 500$)
-
-Assume both $x \geq 0$ and $y \geq 0$.
-
-1. $d = \text{GCD}(20, 16) = 4$. Since $4 \mid 500$, solutions exist.
-2. Particular solution: $x_0 = 125, y_0 = -125$ is a valid mathematical start (yielding $2500 - 2000 = 500$).
-3. Let $u = x - 125$ and $v = y + 125$. Yields $20u + 16v = 0$.
-4. Solve $20u + 16v = 0$: $u = \frac{16k}{4} = 4k$ and $v = \frac{-20k}{4} = -5k$.
-5. General solution: $x = 4k + 125$ and $y = -5k - 125$.
-6. Apply constraints ($x, y \geq 0$):
-   * $4k + 125 \geq 0 \implies k \geq -31.25$
-   * $-5k - 125 \geq 0 \implies k \leq -25$
-   * Integer bounds: $-31 \leq k \leq -25$.
-
-**Valid Solutions:** $\{ (25,0), (21,5), (17,10), (13, 15), (9, 20), (5, 25), (1,30) \}$
-
----
-
-### Example 4: Mrs. Brown's Cheque Problem
-
-**The Problem:** Mrs. Brown received a cheque. The teller swapped dollars ($x$) and cents ($y$). She spent $5$ cents and realized she had exactly twice her original cheque amount.
-
-**The Equation:** Original amount: $100x + y$
-Received amount: $100y + x$
-After spending 5 cents: $100y + x - 5 = 2(100x + y)$
-Simplify: $198x - 98y = -5 \implies$ **$199x - 98y = -5$**.
-
-1. **GCD:** $\text{GCD}(199, 98) = 1$. Since $1 \mid 5$, solutions exist.
-2. **Particular:** Using Extended Euclid, $5 = -199(-165) + 98(-335)$. So $x_0 = -165, y_0 = -335$.
-3. **General Sol:** $u = 98k, v = 199k \implies x = 98k - 165$ and $y = 199k - 335$.
-4. **Constraints:** Dollars and cents must be between $0$ and $99$.
-   * $98k - 165 \geq 0 \implies k \geq 1.68$
-   * $199k - 335 < 100 \implies k < 2.18$
-   * Therefore, $k$ must strictly be $2$.
-5. **Result:** $x = 98(2) - 165 = 31$. $y = 199(2) - 335 = 63$.
-
-The cheque was for **$31.63**.
+## Comprehensive Summary
+* **What it is:** An algebraic equation targeting multiple variables where solutions are strictly restricted to integers.
+* **Core Mechanism:** You determine if a solution exists using the GCD of the coefficients. If it does, you find one basic "Particular Solution," convert the problem to equal 0 (Homogeneous), and solve it to find an infinite family of possible valid coordinates.
+* **Significance:** Used heavily in cryptography to find inverse elements and solve modular equations by reformulating $ax \equiv 1 \pmod m$ into the LDE $ax - my = 1$.
