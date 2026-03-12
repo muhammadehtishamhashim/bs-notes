@@ -1,10 +1,156 @@
 ---
 title: "Euclidean Theory and Algorithm"
+description: "The tabular and programmatic methods for calculating GCD efficiently."
 ---
+
+import { Callout } from 'fumadocs-ui/components/callout';
 
 # Euclidean Theory and Algorithm
 
-## Euclidean Theory
+When dealing with massive numbers in cryptography, listing factors or finding prime trees is computationally impossible. The **Euclidean Algorithm** provides a lightning-fast mathematical approach to finding the Greatest Common Divisor (GCD).
 
-## Euclidean Algorithm
+<Callout title="Prerequisite Rule" type="warn">
+Always arrange your numbers such that $A > B$ before starting the algorithm.
+</Callout>
 
+---
+
+## The Tabular Method (Q, A, B, R)
+
+The algorithm repeatedly divides $A$ by $B$ to find a Quotient ($Q$) and a Remainder ($R$). 
+For the next row, $A$ inherits the old $B$, and $B$ inherits the old $R$. This continues until the Remainder ($R$) becomes $0$. The last non-zero $B$ is your GCD.
+
+### Example 1: GCD(33, 12)
+
+<div className="overflow-x-auto my-6">
+  <table className="w-full text-center border-collapse">
+    <thead>
+      <tr className="bg-primary/10 border-y border-border">
+        <th className="py-3 font-bold text-primary">Quotient (Q)</th>
+        <th className="py-3 font-bold">A</th>
+        <th className="py-3 font-bold">B</th>
+        <th className="py-3 font-bold text-orange-500">Remainder (R)</th>
+      </tr>
+    </thead>
+    <tbody className="divide-y divide-border/50 bg-card font-mono text-sm">
+      <tr>
+        <td className="py-3">2</td>
+        <td className="py-3">33</td>
+        <td className="py-3 font-bold text-blue-400">12 ↙</td>
+        <td className="py-3 font-bold text-orange-400">9 ↙</td>
+      </tr>
+      <tr>
+        <td className="py-3">1</td>
+        <td className="py-3">12</td>
+        <td className="py-3 font-bold text-blue-400">9 ↙</td>
+        <td className="py-3 font-bold text-orange-400">3 ↙</td>
+      </tr>
+      <tr>
+        <td className="py-3">3</td>
+        <td className="py-3">9</td>
+        <td className="py-3 font-bold text-green-500 bg-green-500/10 rounded">3</td>
+        <td className="py-3 font-bold text-red-500">0</td>
+      </tr>
+      <tr className="text-muted-foreground bg-muted/20">
+        <td className="py-3">X</td>
+        <td className="py-3">3</td>
+        <td className="py-3">0</td>
+        <td className="py-3">X</td>
+      </tr>
+    </tbody>
+  </table>
+  <div className="mt-2 text-center text-sm font-bold text-green-500">Result: GCD(33, 12) = 3</div>
+</div>
+
+### Example 2: GCD(900, 750)
+
+<div className="overflow-x-auto my-6">
+  <table className="w-full text-center border-collapse">
+    <thead>
+      <tr className="bg-primary/10 border-y border-border">
+        <th className="py-3 font-bold text-primary">Q</th>
+        <th className="py-3 font-bold">A</th>
+        <th className="py-3 font-bold">B</th>
+        <th className="py-3 font-bold text-orange-500">R</th>
+      </tr>
+    </thead>
+    <tbody className="divide-y divide-border/50 bg-card font-mono text-sm">
+      <tr>
+        <td className="py-3">1</td>
+        <td className="py-3">900</td>
+        <td className="py-3 font-bold text-blue-400">750 ↙</td>
+        <td className="py-3 font-bold text-orange-400">150 ↙</td>
+      </tr>
+      <tr>
+        <td className="py-3">5</td>
+        <td className="py-3">750</td>
+        <td className="py-3 font-bold text-green-500 bg-green-500/10 rounded">150</td>
+        <td className="py-3 font-bold text-red-500">0</td>
+      </tr>
+      <tr className="text-muted-foreground bg-muted/20">
+        <td className="py-3">X</td>
+        <td className="py-3">150</td>
+        <td className="py-3">0</td>
+        <td className="py-3">X</td>
+      </tr>
+    </tbody>
+  </table>
+  <div className="mt-2 text-center text-sm font-bold text-green-500">Result: GCD(900, 750) = 150</div>
+</div>
+
+### Example 3: GCD(1005, 105)
+
+<div className="overflow-x-auto my-6">
+  <table className="w-full text-center border-collapse">
+    <thead>
+      <tr className="bg-primary/10 border-y border-border">
+        <th className="py-3 font-bold text-primary">Q</th>
+        <th className="py-3 font-bold">A</th>
+        <th className="py-3 font-bold">B</th>
+        <th className="py-3 font-bold text-orange-500">R</th>
+      </tr>
+    </thead>
+    <tbody className="divide-y divide-border/50 bg-card font-mono text-sm">
+      <tr><td className="py-2">9</td><td className="py-2">1005</td><td className="py-2">105</td><td className="py-2">60</td></tr>
+      <tr><td className="py-2">1</td><td className="py-2">105</td><td className="py-2">60</td><td className="py-2">45</td></tr>
+      <tr><td className="py-2">1</td><td className="py-2">60</td><td className="py-2">45</td><td className="py-2">15</td></tr>
+      <tr><td className="py-2">3</td><td className="py-2">45</td><td className="py-2 font-bold text-green-500 bg-green-500/10 rounded">15</td><td className="py-2 font-bold text-red-500">0</td></tr>
+      <tr className="text-muted-foreground bg-muted/20"><td className="py-2">X</td><td className="py-2">15</td><td className="py-2">0</td><td className="py-2">X</td></tr>
+    </tbody>
+  </table>
+  <div className="mt-2 text-center text-sm font-bold text-green-500">Result: GCD(1005, 105) = 15</div>
+</div>
+
+---
+
+## The Programmatic Algorithm
+
+In programming languages, the Euclidean algorithm is incredibly easy to write using recursion and the modulo (`%`) operator.
+
+The logic is defined mathematically as:
+$$ \text{GCD}(a, b) = \text{GCD}(b, a \pmod b) $$
+
+**Pseudocode Structure:**
+```text
+Function Euclid_GCD(a, b):
+    If b == 0, then:
+        return a
+    Else:
+        return Euclid_GCD(b, a % b)
+```
+
+### Algorithm Tracing Examples
+
+**Example 1: Find GCD(50, 12)**
+1. `GCD(50, 12)` $\implies$ `GCD(12, 50 % 12)` $\implies$ `GCD(12, 2)`
+2. `GCD(12, 2)` $\implies$ `GCD(2, 12 % 2)` $\implies$ `GCD(2, 0)`
+3. `GCD(2, 0)` $\implies$ Since $b=0$, return $a$, which is **$2$**.
+* **Result:** **$2$**
+
+**Example 2: Find GCD(83, 90)** *(Remember: $a$ must be $> b$, so flip them)*
+1. `GCD(90, 83)` $\implies$ `GCD(83, 90 % 83)` $\implies$ `GCD(83, 7)`
+2. `GCD(83, 7)` $\implies$ `GCD(7, 83 % 7)` $\implies$ `GCD(7, 6)`
+3. `GCD(7, 6)` $\implies$ `GCD(6, 7 % 6)` $\implies$ `GCD(6, 1)`
+4. `GCD(6, 1)` $\implies$ `GCD(1, 6 % 1)` $\implies$ `GCD(1, 0)`
+5. `GCD(1, 0)` $\implies$ Since $b=0$, return $a$, which is **$1$**.
+* **Result:** **$1$**

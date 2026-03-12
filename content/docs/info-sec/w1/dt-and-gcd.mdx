@@ -1,9 +1,50 @@
 ---
-title: "Divisibility theory and GCD"
+title: "Divisibility Theory and GCD"
+description: "Understanding remainders, factors, and calculating Greatest Common Divisors."
 ---
 
-# Divisibility theory and GCD
+import { Callout } from 'fumadocs-ui/components/callout';
+
+# Divisibility Theory and GCD
+
+Before learning complex encryption algorithms, we must master the basics of how numbers divide into one another.
 
 ## Divisibility
 
-## GCD
+In cryptography and number theory, **Divisibility** strictly refers to a division operation where the **remainder equals exactly 0**. 
+
+In programming, this is heavily reliant on the modulo operator (`%`), which returns the remainder of a division. If `A % B == 0`, then $A$ is divisible by $B$.
+
+---
+
+## Greatest Common Divisor (GCD) / HCF
+
+The Greatest Common Divisor (GCD), also known as the Highest Common Factor (HCF), is the largest positive integer that perfectly divides two or more numbers without leaving a remainder.
+
+Here are three basic methods to find the GCD before moving to advanced algorithms.
+
+### Method 1: Listing Factors
+The simplest way is to list all factors and find the highest common one.
+**Example: Find GCD of 12 and 33**
+* Factors of $12 = 1, 2, \mathbf{3}, 4, 6, 12$
+* Factors of $33 = 1, \mathbf{3}, 11, 33$
+* **Result:** $\text{GCD}(12, 33) = \mathbf{3}$
+
+### Method 2: Prime Factorization
+Break both numbers down into their prime components and multiply the shared primes.
+**Example: Find GCD of 25 and 150**
+* $25 = \mathbf{5 \times 5}$
+* $150 = 2 \times 3 \times \mathbf{5 \times 5}$
+* Common Primes $= 5 \times 5$
+* **Result:** $\text{GCD}(25, 150) = \mathbf{25}$
+
+### Method 3: Prime Number Rule (Coprimes)
+If both numbers provided are prime numbers, they share no common factors other than 1.
+**Example: Find GCD of 13 and 31**
+* 13 is Prime.
+* 31 is Prime.
+* **Result:** $\text{GCD}(13, 31) = \mathbf{1}$
+
+<Callout title="Coprime Numbers" type="info">
+Whenever the $\text{GCD}$ of two numbers is exactly $1$, those numbers are referred to as **Coprime** or mutually prime. They do not have to be prime numbers themselves (e.g., $8$ and $9$ are coprime because $\text{GCD}(8,9) = 1$).
+</Callout>

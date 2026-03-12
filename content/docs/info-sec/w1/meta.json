@@ -1,6 +1,9 @@
 {
     "title": "Week 1",
     "pages":[
-        "foundations"
+        "foundations",
+        "dt-and-gcd",
+        "euclidean-algo",
+        "lin-dioph-eq"
     ]
 }
