@@ -1,140 +1,136 @@
 ---
 title: Information Security Foundations
-description: Core concepts, principles, and types of Information Security (InfoSec).
+description: Core concepts, encryption basics, and the mathematical role of prime numbers.
 ---
 
 import { Callout } from 'fumadocs-ui/components/callout';
 
 # Introduction to Information Security
 
-**Information Security (InfoSec)** is the practice of protecting physical and electronic information from unauthorized access, use, disclosure, disruption, modification, or destruction. It requires a multi-disciplinary approach involving people, processes, and technology.
+**Information Security (InfoSec)** at its core is simply the practice of **making data secure**. It protects physical and electronic information from unauthorized access, modification, or destruction.
 
-<Callout title="Historical Context" type="info">
-The need to secure information dates back centuries. During WWI, multi-tier classification systems were developed for sensitive information. A famous milestone is **Alan Turing's** successful decryption of the German Enigma Machine during WWII, heavily influencing modern cryptography.
-</Callout>
+### The Basic Encryption Flow
 
----
+A fundamental method to secure information is **Encryption**. This process involves transforming readable data into an unreadable format before transmission over a medium.
 
-## The CIA Triad & Core Principles
-
-Information Security programs are built around three primary objectives, universally known as the **CIA Triad**.
-
-<div className="my-6 overflow-x-auto border border-border/50 rounded-xl bg-card shadow-sm">
-  <div className="w-max mx-auto p-8 flex items-center justify-center gap-8 min-w-[600px]">
+<div className="my-8 overflow-x-auto">
+  <div className="min-w-[600px] flex items-center justify-between bg-card border border-border/50 rounded-xl p-6 shadow-sm">
     
-    {/* Confidentiality */}
-    <div className="flex flex-col items-center w-48 text-center relative">
-      <div className="w-16 h-16 rounded-2xl bg-blue-500/10 border-2 border-blue-500/40 flex items-center justify-center mb-3 shadow-sm">
-        <svg className="w-8 h-8 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
+    {/* Sender Side */}
+    <div className="flex flex-col items-center gap-3">
+      <div className="flex items-center gap-3">
+        <div className="flex flex-col items-center">
+          <div className="w-12 h-16 bg-blue-500/10 border-2 border-blue-500/40 rounded flex flex-col justify-center items-center gap-1 p-2">
+            <div className="w-full h-0.5 bg-blue-500/50"></div>
+            <div className="w-full h-0.5 bg-blue-500/50"></div>
+            <div className="w-3/4 h-0.5 bg-blue-500/50 self-start"></div>
+          </div>
+          <span className="text-xs font-bold mt-2">Plain Text</span>
+        </div>
+        <div className="text-muted-foreground font-bold">→</div>
+        <div className="flex flex-col items-center">
+          <div className="w-12 h-16 bg-red-500/10 border-2 border-red-500/40 rounded flex flex-col justify-center items-center gap-1 p-2">
+            <div className="w-full h-1 bg-red-500/50 rounded-full rotate-2"></div>
+            <div className="w-full h-1 bg-red-500/50 rounded-full -rotate-2"></div>
+          </div>
+          <span className="text-xs font-bold mt-2 text-red-500">Cipher Text</span>
+        </div>
       </div>
-      <h3 className="font-bold text-blue-500 mb-2">Confidentiality</h3>
-      <p className="text-xs text-muted-foreground">Information is strictly not disclosed to unauthorized individuals, entities, or processes.</p>
+      <div className="mt-4 p-3 bg-foreground/5 rounded-lg border border-border w-full text-center">
+        <span className="font-bold text-sm">Sender (Computer)</span>
+      </div>
     </div>
 
-    {/* Integrity */}
-    <div className="flex flex-col items-center w-48 text-center relative">
-      <div className="w-16 h-16 rounded-2xl bg-green-500/10 border-2 border-green-500/40 flex items-center justify-center mb-3 shadow-sm">
-        <svg className="w-8 h-8 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+    {/* Medium / Protocols */}
+    <div className="flex flex-col items-center flex-1 px-4 relative">
+      <div className="text-xs font-bold text-muted-foreground mb-1">Medium</div>
+      <div className="w-full h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-green-500 rounded-full relative">
+        <div className="absolute right-0 -top-1.5 w-0 h-0 border-y-[6px] border-y-transparent border-l-[8px] border-l-green-500"></div>
       </div>
-      <h3 className="font-bold text-green-500 mb-2">Integrity</h3>
-      <p className="text-xs text-muted-foreground">Maintaining the strict accuracy and completeness of data. Data cannot be edited in an unauthorized way.</p>
+      <div className="mt-8 border-b-2 border-x-2 border-foreground/20 w-full h-4 rounded-b-lg absolute bottom-0 translate-y-6"></div>
+      <span className="text-xs font-bold text-foreground/60 absolute bottom-0 translate-y-12 bg-card px-2">Protocols</span>
     </div>
 
-    {/* Availability */}
-    <div className="flex flex-col items-center w-48 text-center relative">
-      <div className="w-16 h-16 rounded-2xl bg-orange-500/10 border-2 border-orange-500/40 flex items-center justify-center mb-3 shadow-sm">
-        <svg className="w-8 h-8 text-orange-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
+    {/* Receiver Side */}
+    <div className="flex flex-col items-center gap-3">
+      <div className="flex items-center gap-3">
+        <div className="flex flex-col items-center">
+          <div className="w-12 h-16 bg-red-500/10 border-2 border-red-500/40 rounded flex flex-col justify-center items-center gap-1 p-2">
+            <div className="w-full h-1 bg-red-500/50 rounded-full rotate-2"></div>
+            <div className="w-full h-1 bg-red-500/50 rounded-full -rotate-2"></div>
+          </div>
+          <span className="text-xs font-bold mt-2 text-red-500">Cipher Text</span>
+        </div>
+        <div className="text-muted-foreground font-bold">→</div>
+        <div className="flex flex-col items-center">
+          <div className="w-12 h-16 bg-green-500/10 border-2 border-green-500/40 rounded flex flex-col justify-center items-center gap-1 p-2">
+            <div className="w-full h-0.5 bg-green-500/50"></div>
+            <div className="w-full h-0.5 bg-green-500/50"></div>
+            <div className="w-3/4 h-0.5 bg-green-500/50 self-start"></div>
+          </div>
+          <span className="text-xs font-bold mt-2">Plain Text</span>
+        </div>
       </div>
-      <h3 className="font-bold text-orange-500 mb-2">Availability</h3>
-      <p className="text-xs text-muted-foreground">Information and systems must be accessible and available to authorized users exactly when needed.</p>
+      <div className="mt-4 p-3 bg-foreground/5 rounded-lg border border-border w-full text-center">
+        <span className="font-bold text-sm">Receiver (Computer)</span>
+      </div>
     </div>
 
   </div>
 </div>
 
-### Extended Principles
-Beyond the CIA Triad, robust InfoSec programs enforce three additional principles:
-* **Non-repudiation:** Ensures a party cannot deny sending or receiving a message/transaction (requires Data Integrity and Authenticity).
-* **Authenticity:** Verifying that users/systems are exactly who they claim to be, and inputs are from trusted sources.
-* **Accountability:** The ability to trace actions on a system uniquely back to the specific entity that performed them.
+---
+
+## Mathematical Foundations of Cryptography
+
+To implement strong protocols and encryption, we rely heavily on Number Theory. The core mathematical topics covered in modern cryptography include:
+
+* **Divisibility:** Operations where the remainder is $0$ (uses `%` modulo operator).
+* **Greatest Common Divisor (GCD):** Finding the largest shared factor.
+* **Euclidean Algorithm:** An efficient method to compute the GCD.
+* **Prime Numbers:** The building blocks of encryption keys.
+* **Congruence & Chinese Remainder Theorem (CRT):** Advanced modular arithmetic.
+* **Group Theory:** Algebraic structures used in modern cyphers.
 
 ---
 
-## Types of Information Security
+## Prime Numbers
 
-Security spans multiple domains to create a defense-in-depth strategy:
-
-<div className="my-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-  <div className="rounded-xl border border-border/50 bg-card p-5 shadow-sm">
-    <h4 className="font-bold text-primary mb-1">Network Security</h4>
-    <p className="text-sm text-muted-foreground">Defends networks from unauthorized access using firewalls, VPNs, and Intrusion Detection Systems (IDS).</p>
-  </div>
-  <div className="rounded-xl border border-border/50 bg-card p-5 shadow-sm">
-    <h4 className="font-bold text-primary mb-1">Application Security</h4>
-    <p className="text-sm text-muted-foreground">Secures software by patching vulnerabilities and using Web Application Firewalls (WAF).</p>
-  </div>
-  <div className="rounded-xl border border-border/50 bg-card p-5 shadow-sm">
-    <h4 className="font-bold text-primary mb-1">Data Security</h4>
-    <p className="text-sm text-muted-foreground">Ensures safety during storage and transfer via encryption and data masking.</p>
-  </div>
-  <div className="rounded-xl border border-border/50 bg-card p-5 shadow-sm">
-    <h4 className="font-bold text-primary mb-1">Endpoint Security</h4>
-    <p className="text-sm text-muted-foreground">Secures individual devices (PCs, phones) using Antivirus and Endpoint Detection & Response (EDR).</p>
-  </div>
-  <div className="rounded-xl border border-border/50 bg-card p-5 shadow-sm lg:col-span-2">
-    <h4 className="font-bold text-primary mb-1">Cloud Security</h4>
-    <p className="text-sm text-muted-foreground">Protects data hosted in cloud environments using secure configurations, IAM, and Multi-Factor Authentication (MFA).</p>
-  </div>
-</div>
-
----
-
-## Governance & Compliance
-
-To manage risks at an organizational scale, frameworks and laws are established.
-
-* **ISMS (Information Security Management System):** A structured framework (like ISO/IEC 27001) that includes policies, procedures, and controls to continuously manage and secure sensitive data from cyber threats.
-* **GDPR (General Data Protection Regulation):** An EU privacy law (effective May 2018) granting individuals control over their personal data. It mandates strict rules on data collection, transparency, and enforces significant fines for non-compliance.
-
----
-
-## Information Classification
-
-Organizations often implement **Information Classification** systems to categorize data sensitivity (e.g., Public, Internal, Confidential). 
+A **Prime Number** is a number greater than $1$ that has exactly two factors: **$1$ and itself**. It cannot be divided further by any other number without leaving a remainder.
 
 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
-  <div className="p-5 border border-l-4 border-l-green-500 bg-green-500/5 rounded-r-lg">
-    <h4 className="font-bold text-green-500 mb-3 flex items-center gap-2">
-      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
-      Advantages
-    </h4>
-    <ul className="text-sm space-y-2 text-muted-foreground list-disc pl-4 marker:text-green-500">
-      <li>**Cost & Efficiency:** Optimizes spending by applying strict controls only to highly sensitive data.</li>
-      <li>**Compliance:** Meets standard requirements like HIPAA and PCI-DSS.</li>
-      <li>**Risk Management:** Clarifies the potential impact of breaches, improving incident response.</li>
+  <div className="bg-card border border-border/50 rounded-xl overflow-hidden shadow-sm">
+    <div className="bg-primary/10 p-3 border-b border-border/50">
+      <h4 className="font-bold text-primary">Fast Facts About Primes</h4>
+    </div>
+    <ul className="p-4 space-y-2 text-sm text-muted-foreground list-disc pl-8">
+      <li>The number **$2$** is the smallest prime number.</li>
+      <li>The number **$2$** is the *only* even prime number.</li>
+      <li>The number **$1$** is NOT a prime number.</li>
+      <li>Except for $2$ and $5$, all prime numbers end in the digits **$1, 3, 7, \text{or } 9$**.</li>
     </ul>
   </div>
-  <div className="p-5 border border-l-4 border-l-red-500 bg-red-500/5 rounded-r-lg">
-    <h4 className="font-bold text-red-500 mb-3 flex items-center gap-2">
-      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
-      Disadvantages
-    </h4>
-    <ul className="text-sm space-y-2 text-muted-foreground list-disc pl-4 marker:text-red-500">
-      <li>**Complexity & Cost:** Expensive and difficult to maintain across massive, diverse data lakes.</li>
-      <li>**Human Error:** Misclassification can lead to inadequate protection or restrictive bottlenecks.</li>
-      <li>**False Security:** Organizations may over-rely on labels and ignore foundational best practices.</li>
+  
+  <div className="bg-card border border-border/50 rounded-xl overflow-hidden shadow-sm">
+    <div className="bg-orange-500/10 p-3 border-b border-border/50">
+      <h4 className="font-bold text-orange-500">Why are Primes Essential in Crypto?</h4>
+    </div>
+    <ul className="p-4 space-y-2 text-sm text-muted-foreground list-disc pl-8">
+      <li>Many modern encryption algorithms (like RSA) are directly based on prime numbers.</li>
+      <li>It is **very fast** for computers to multiply two large prime numbers together.</li>
+      <li>It is **extremely computer-intensive** to reverse engineer (factoring a massive number back into its original primes is incredibly hard).</li>
     </ul>
   </div>
 </div>
 
----
+### Prime Factorization Examples
 
-## Modern InfoSec Challenges
+Every number is either a prime or can be broken down into prime factors. 
 
-The landscape of information security is continuously evolving, facing threats such as:
-
-1. **Cyber Threats:** Escalating sophistication of malware, ransomware, and phishing attacks.
-2. **The Human Element:** Insider threats (malicious employees) and human error (weak passwords, clicking malicious links).
-3. **Hardware Sprawl:** The explosion of easily lost/stolen Mobile and IoT devices with natively weak security controls.
-4. **Third-Party Integrations:** Connecting internal systems to external vendors introduces supply-chain vulnerabilities.
-5. **Globalization & Privacy:** Navigating conflicting data storage/processing laws across international borders while maintaining strict data privacy.
+| Number | Prime Factorization | Is Prime? |
+| :--- | :--- | :--- |
+| **10** | $2^1 \times 5^1$ (Factors: $2, 5$) | **No** |
+| **11** | $1 \times 11^1$ (Factors: $1, 11$) | <span className="text-green-500 font-bold">Yes</span> |
+| **37** | $1 \times 37^1$ (Factors: $1, 37$) | <span className="text-green-500 font-bold">Yes</span> |
+| **100** | $2^2 \times 5^2$ (Factors: $2, 5$) | **No** |
+| **308** | $2^2 \times 7^1 \times 11^1$ (Factors: $2, 7, 11$) | **No** |
