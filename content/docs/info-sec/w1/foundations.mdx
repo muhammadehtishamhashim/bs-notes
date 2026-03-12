@@ -1,6 +1,6 @@
 ---
 title: Information Security Foundations
-description: Core concepts, principles, and types of Information Security (InfoSec), along with encryption basics.
+description: Core concepts, principles, and types of Information Security (InfoSec).
 ---
 
 import { Callout } from 'fumadocs-ui/components/callout';
@@ -89,6 +89,57 @@ Security spans multiple domains to create a defense-in-depth strategy:
 
 ---
 
+## Governance & Compliance
+
+To manage risks at an organizational scale, frameworks and laws are established.
+
+* **ISMS (Information Security Management System):** A structured framework (like ISO/IEC 27001) that includes policies, procedures, and controls to continuously manage and secure sensitive data from cyber threats.
+* **GDPR (General Data Protection Regulation):** An EU privacy law (effective May 2018) granting individuals control over their personal data. It mandates strict rules on data collection, transparency, and enforces significant fines for non-compliance.
+
+---
+
+## Information Classification
+
+Organizations often implement **Information Classification** systems to categorize data sensitivity (e.g., Public, Internal, Confidential).
+
+<div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
+  <div className="p-5 border border-l-4 border-l-green-500 bg-green-500/5 rounded-r-lg">
+    <h4 className="font-bold text-green-500 mb-3 flex items-center gap-2">
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
+      Advantages
+    </h4>
+    <ul className="text-sm space-y-2 text-muted-foreground list-disc pl-4 marker:text-green-500">
+      <li>**Cost & Efficiency:** Optimizes spending by applying strict controls only to highly sensitive data.</li>
+      <li>**Compliance:** Meets standard requirements like HIPAA and PCI-DSS.</li>
+      <li>**Risk Management:** Clarifies the potential impact of breaches, improving incident response.</li>
+    </ul>
+  </div>
+  <div className="p-5 border border-l-4 border-l-red-500 bg-red-500/5 rounded-r-lg">
+    <h4 className="font-bold text-red-500 mb-3 flex items-center gap-2">
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+      Disadvantages
+    </h4>
+    <ul className="text-sm space-y-2 text-muted-foreground list-disc pl-4 marker:text-red-500">
+      <li>**Complexity & Cost:** Expensive and difficult to maintain across massive, diverse data lakes.</li>
+      <li>**Human Error:** Misclassification can lead to inadequate protection or restrictive bottlenecks.</li>
+      <li>**False Security:** Organizations may over-rely on labels and ignore foundational best practices.</li>
+    </ul>
+  </div>
+</div>
+
+---
+
+## Modern InfoSec Challenges
+
+The landscape of information security is continuously evolving, facing threats such as:
+
+1. **Cyber Threats:** Escalating sophistication of malware, ransomware, and phishing attacks.
+2. **The Human Element:** Insider threats (malicious employees) and human error (weak passwords, clicking malicious links).
+3. **Hardware Sprawl:** The explosion of easily lost/stolen Mobile and IoT devices with natively weak security controls.
+4. **Third-Party Integrations:** Connecting internal systems to external vendors introduces supply-chain vulnerabilities.
+5. **Globalization & Privacy:** Navigating conflicting data storage/processing laws across international borders while maintaining strict data privacy.
+---
+
 ## The Basic Encryption Flow
 
 A fundamental method to secure information is **Encryption**. This process involves transforming readable data into an unreadable format before transmission over a medium.
@@ -158,19 +209,6 @@ A fundamental method to secure information is **Encryption**. This process invol
 
   </div>
 </div>
-
----
-
-## Mathematical Foundations of Cryptography
-
-To implement strong protocols and encryption, we rely heavily on Number Theory. The core mathematical topics covered in modern cryptography include:
-
-* **Divisibility:** Operations where the remainder is $0$ (uses `%` modulo operator).
-* **Greatest Common Divisor (GCD):** Finding the largest shared factor.
-* **Euclidean Algorithm:** An efficient method to compute the GCD.
-* **Prime Numbers:** The building blocks of encryption keys.
-* **Congruence & Chinese Remainder Theorem (CRT):** Advanced modular arithmetic.
-* **Group Theory:** Algebraic structures used in modern cyphers.
 
 ---
 
