@@ -1,8 +1,9 @@
 ---
 title: "Euclidean Theory and Algorithm"
-description: "The tabular and programmatic methods for calculating GCD efficiently."
+description: "The tabular and programmatic methods for calculating GCD efficiently, along with the core proof."
 ---
 
+import { MathWrapper } from '@/components/mdx/math-wrapper';
 import { Callout } from 'fumadocs-ui/components/callout';
 
 # Euclidean Theory and Algorithm
@@ -12,6 +13,50 @@ When dealing with massive numbers in cryptography, listing factors or finding pr
 <Callout title="Prerequisite Rule" type="warn">
 Always arrange your numbers such that $A > B$ before starting the algorithm.
 </Callout>
+
+<Callout title="The Core Theorem" type="info">
+For any two positive integers $a$ and $b$, where $a = bq + r$, a common divisor of $a$ and $b$ is also a common divisor of $b$ and $r$. Therefore:
+$$ \text{GCD}(a, b) = \text{GCD}(b, r) $$
+</Callout>
+
+---
+
+## Proof of the Algorithm
+
+**To Prove:** For $a = bq + r$, any common divisor of $a$ and $b$ is also a common divisor of $b$ and $r$, and vice versa.
+
+<div className="my-6 overflow-x-auto border border-border/50 rounded-xl bg-card shadow-sm p-6">
+  <div className="flex flex-col gap-4">
+    
+    <div className="border-l-4 border-purple-500 pl-4">
+      <h4 className="font-bold text-foreground mb-1">Part 1: Forward Proof</h4>
+      <p className="text-sm text-muted-foreground mb-2">Let $c$ be a common divisor of $a$ and $b$. This means $a = cq_1$ and $b = cq_2$.</p>
+      <div className="font-mono text-xs bg-black/10 dark:bg-black/50 p-2 rounded text-purple-400">
+        r = a - bq <br/>
+        r = (cq₁) - (cq₂)q <br/>
+        r = c(q₁ - q₂q) &nbsp;&nbsp;&nbsp;&nbsp; ... (i)
+      </div>
+      <p className="text-sm text-muted-foreground mt-2">This shows $c \mid r$. Hence, $c$ is a common divisor of $b$ and $r$.</p>
+    </div>
+
+    <div className="border-l-4 border-blue-500 pl-4 mt-4">
+      <h4 className="font-bold text-foreground mb-1">Part 2: Reverse Proof</h4>
+      <p className="text-sm text-muted-foreground mb-2">Let $d$ be a common divisor of $b$ and $r$. This means $b = r_1d$ and $r = r_2d$.</p>
+      <div className="font-mono text-xs bg-black/10 dark:bg-black/50 p-2 rounded text-blue-400">
+        a = bq + r <br/>
+        a = (r₁d)q + r₂d <br/>
+        a = d(r₁q + r₂) &nbsp;&nbsp;&nbsp;&nbsp; ... (ii)
+      </div>
+      <p className="text-sm text-muted-foreground mt-2">This shows $d \mid a$. Thus, $d$ is a common divisor of $a$ and $b$.</p>
+    </div>
+    
+  </div>
+</div>
+
+From `(i)` and `(ii)`, we conclude that the sets of common divisors are identical, meaning: 
+$$ \text{GCD}(a, b) = \text{GCD}(b, r) $$
+
+Because the remainder $r$ strictly decreases ($0 \leq r < b$) at each step, the sequence of remainders must eventually reach $0$ after a finite number of steps, guaranteeing termination.
 
 ---
 
@@ -62,7 +107,7 @@ For the next row, $A$ inherits the old $B$, and $B$ inherits the old $R$. This c
   <div className="mt-2 text-center text-sm font-bold text-green-500">Result: GCD(33, 12) = 3</div>
 </div>
 
-### Example 2: GCD(900, 750)
+### Example 2: GCD(1005, 105)
 
 <div className="overflow-x-auto my-6">
   <table className="w-full text-center border-collapse">
@@ -75,27 +120,14 @@ For the next row, $A$ inherits the old $B$, and $B$ inherits the old $R$. This c
       </tr>
     </thead>
     <tbody className="divide-y divide-border/50 bg-card font-mono text-sm">
-      <tr>
-        <td className="py-3">1</td>
-        <td className="py-3">900</td>
-        <td className="py-3 font-bold text-blue-400">750 ↙</td>
-        <td className="py-3 font-bold text-orange-400">150 ↙</td>
-      </tr>
-      <tr>
-        <td className="py-3">5</td>
-        <td className="py-3">750</td>
-        <td className="py-3 font-bold text-green-500 bg-green-500/10 rounded">150</td>
-        <td className="py-3 font-bold text-red-500">0</td>
-      </tr>
-      <tr className="text-muted-foreground bg-muted/20">
-        <td className="py-3">X</td>
-        <td className="py-3">150</td>
-        <td className="py-3">0</td>
-        <td className="py-3">X</td>
-      </tr>
+      <tr><td className="py-2">9</td><td className="py-2">1005</td><td className="py-2">105</td><td className="py-2">60</td></tr>
+      <tr><td className="py-2">1</td><td className="py-2">105</td><td className="py-2">60</td><td className="py-2">45</td></tr>
+      <tr><td className="py-2">1</td><td className="py-2">60</td><td className="py-2">45</td><td className="py-2">15</td></tr>
+      <tr><td className="py-2">3</td><td className="py-2">45</td><td className="py-2 font-bold text-green-500 bg-green-500/10 rounded">15</td><td className="py-2 font-bold text-red-500">0</td></tr>
+      <tr className="text-muted-foreground bg-muted/20"><td className="py-2">X</td><td className="py-2">15</td><td className="py-2">0</td><td className="py-2">X</td></tr>
     </tbody>
   </table>
-  <div className="mt-2 text-center text-sm font-bold text-green-500">Result: GCD(900, 750) = 150</div>
+  <div className="mt-2 text-center text-sm font-bold text-green-500">Result: GCD(1005, 105) = 15</div>
 </div>
 
 ---
@@ -123,6 +155,19 @@ Function Euclid_GCD(a, b):
 2. `GCD(12, 2)` $\implies$ `GCD(2, 12 % 2)` $\implies$ `GCD(2, 0)`
 3. `GCD(2, 0)` $\implies$ Since $b=0$, return $a$, which is **$2$**.
 * **Result:** **$2$**
+
+---
+
+## Practice Problems
+
+Test your understanding of the algorithm. 
+
+| Question | Problem | Answer |
+| :--- | :--- | :--- |
+| **Q1** | Find the GCD of $120$ and $45$ | **$15$** |
+| **Q2** | Find the GCD of $144$ and $60$ | **$12$** |
+| **Q3** | Find the GCD of $462$ and $192$ | **$6$** |
+| **Q4** | Find the GCD of $84$ and $56$ | **$28$** |
 
 ---
 
