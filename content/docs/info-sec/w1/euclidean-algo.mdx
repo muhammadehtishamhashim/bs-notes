@@ -154,3 +154,30 @@ Function Euclid_GCD(a, b):
 4. `GCD(6, 1)` $\implies$ `GCD(1, 6 % 1)` $\implies$ `GCD(1, 0)`
 5. `GCD(1, 0)` $\implies$ Since $b=0$, return $a$, which is **$1$**.
 * **Result:** **$1$**
+---
+
+<div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
+  <div className="bg-primary/5 border border-primary/20 rounded-xl p-6">
+    <h3 className="text-lg font-bold text-primary mb-3 flex items-center gap-2">
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+      Critical Points
+    </h3>
+    <ul className="space-y-2 text-sm text-muted-foreground list-disc pl-4 marker:text-primary">
+      <li>The **Euclidean Algorithm** is vastly more efficient than prime factorization, especially for numbers with hundreds of digits.</li>
+      <li>The core repetition cycle is always: $A$ becomes $B$, and $B$ becomes the Remainder $R$.</li>
+      <li>The algorithm always stops when the Remainder $R$ reaches exactly $0$. The non-zero $B$ on the step before $R=0$ is your result.</li>
+    </ul>
+  </div>
+
+  <div className="bg-orange-500/5 border border-orange-500/20 rounded-xl p-6">
+    <h3 className="text-lg font-bold text-orange-500 mb-3 flex items-center gap-2">
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" /></svg>
+      Exam Important
+    </h3>
+    <ul className="space-y-2 text-sm text-muted-foreground list-disc pl-4 marker:text-orange-500">
+      <li>Always ensure **$A > B$** before starting a manual calculation. If $B > A$, simply swap their positions.</li>
+      <li>Be prepared to quickly trace the algorithm recursively (e.g., $\text{GCD}(83, 90) \rightarrow \text{GCD}(90, 83) \rightarrow \text{GCD}(83, 7) \dots$).</li>
+      <li>If the final $\text{GCD}$ is $1$, immediately recognize that the original two numbers are **coprimes**.</li>
+    </ul>
+  </div>
+</div>

@@ -13,12 +13,12 @@ import { WeekOverview } from '@/components/week-overview';
   modules={[
     {
       title: "1. InfoSec Foundations",
-      description: "CIA Triad, Encryption basics, and the crucial role of Prime Numbers.",
+      description: "CIA Triad, Types of Security, and Encryption basics.",
       link: "/docs/info-sec/w1/foundations"
     },
     {
-      title: "2. Divisibility & GCD",
-      description: "Understanding divisibility rules and calculating Greatest Common Divisors.",
+      title: "2. Prime Numbers & GCD",
+      description: "Understanding prime factors, divisibility rules, and calculating Greatest Common Divisors.",
       link: "/docs/info-sec/w1/dt-and-gcd"
     },
     {
@@ -28,8 +28,22 @@ import { WeekOverview } from '@/components/week-overview';
     },
     {
       title: "4. Linear Diophantine Equations",
-      description: "Solving polynomial equations with integer unknowns.",
+      description: "Solving polynomial equations with integer unknowns using GCDs and Substitution.",
       link: "/docs/info-sec/w1/lin-dioph-eq"
     }
   ]}
 />
+
+<div className="mt-12 bg-card border border-border/50 rounded-2xl p-6 shadow-sm flex flex-col items-center text-center">
+  <div className="w-16 h-16 rounded-2xl bg-primary/10 border-2 border-primary/20 flex items-center justify-center mb-4">
+    <svg className="w-8 h-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" /></svg>
+  </div>
+  <h2 className="text-xl font-bold mb-2">Week 1 At A Glance</h2>
+  <p className="text-muted-foreground text-sm max-w-[600px] mb-6">
+    This week lays the absolute groundwork. If you do not understand the core components of the <strong>CIA Triad</strong> or the mathematical rules governing <strong>Primes, Modulos, and Greatest Common Divisors</strong>, subsequent weeks concerning RSA and AES encryptions will be significantly more difficult.
+  </p>
+  <div className="w-full flex justify-center gap-4 text-xs font-bold text-foreground/80">
+    <div className="bg-foreground/5 px-4 py-2 rounded-full border border-border">Theory Heavy</div>
+    <div className="bg-foreground/5 px-4 py-2 rounded-full border border-border">Math Heavy</div>
+  </div>
+</div>

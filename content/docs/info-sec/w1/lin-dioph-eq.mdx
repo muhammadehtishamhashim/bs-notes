@@ -147,3 +147,30 @@ Simplify: $198x - 98y = -5 \implies$ **$199x - 98y = -5$**.
 5. **Result:** $x = 98(2) - 165 = 31$. $y = 199(2) - 335 = 63$.
 
 The cheque was for **$31.63**.
+---
+
+<div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
+  <div className="bg-primary/5 border border-primary/20 rounded-xl p-6">
+    <h3 className="text-lg font-bold text-primary mb-3 flex items-center gap-2">
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+      Critical Points
+    </h3>
+    <ul className="space-y-2 text-sm text-muted-foreground list-disc pl-4 marker:text-primary">
+      <li>A **Diophantine Equation** specifically requires integer solutions. Decimal or fractional answers are strictly invalid.</li>
+      <li>The most critical step is Step 2: **Existence Check**. If $d \nmid c$ (the GCD of $a$ and $b$ does not evenly divide $c$), you can stop immediately—no solutions exist.</li>
+      <li>The variable $k$ acts as a "slider", generating an infinite number of valid mathematical pairs. However, real-world constraints (like "no negative money") usually limit $k$ to a small, finite range.</li>
+    </ul>
+  </div>
+
+  <div className="bg-orange-500/5 border border-orange-500/20 rounded-xl p-6">
+    <h3 className="text-lg font-bold text-orange-500 mb-3 flex items-center gap-2">
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" /></svg>
+      Exam Important
+    </h3>
+    <ul className="space-y-2 text-sm text-muted-foreground list-disc pl-4 marker:text-orange-500">
+      <li>Memorize the 6-step method exactly. Writing the steps explicitly often yields partial credit even if arithmetic errors occur.</li>
+      <li>Be prepared to translate a word problem (like Mrs. Brown's Cheque or the Die Hard Jugs) into an equation of the form $ax + by = c$.</li>
+      <li>When dealing with real-world constraints, practice creating inequalities to find the exact upper and lower bounds for $k$.</li>
+    </ul>
+  </div>
+</div>
