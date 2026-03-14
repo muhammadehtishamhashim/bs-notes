@@ -1,0 +1,8 @@
+{
+  "title": "Week 3",
+  "description": "In this section we will learn about transactions and their properties. We will also learn about transaction states and how they are managed in a database system.",
+  "pages": [
+    "transac-acid",
+    "transac-states"
+  ]
+}

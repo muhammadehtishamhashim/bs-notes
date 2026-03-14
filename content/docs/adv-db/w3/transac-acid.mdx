@@ -1,0 +1,164 @@
+---
+title: Transactions & ACID Properties
+description: Understanding the concept of database transactions, operations, and the core ACID properties.
+weight: 1
+---
+
+import { Callout } from 'fumadocs-ui/components/callout';
+
+# Concept of Transactions
+
+A **transaction** is a single logical unit of work in a Database Management System (DBMS). It consists of an action or a series of actions—carried out by a single user or application program—that accesses or changes the contents of the database.
+
+A transaction could be an entire program, a function, or just a single SQL statement (like `INSERT` or `UPDATE`). The primary goal of a transaction is to transform the database from **one consistent state to another**. 
+
+Because the DBMS doesn't inherently know which updates are grouped together, we define transaction boundaries using explicit commands:
+* `BEGIN TRANSACTION`: Marks the start of the logical unit.
+* `COMMIT`: Successfully ends the transaction, saving all changes permanently to the disk.
+* `ROLLBACK`: Aborts the transaction, undoing any changes made in RAM and reverting to the previous consistent state.
+
+---
+
+### Database Operations (Money Transfer Example)
+
+To understand how a transaction works behind the scenes, let's look at transferring **Rs. 1000 from Account A to Account B**. 
+
+**Initial State:** `Account A = 5000` | `Account B = 1000`
+
+<div className="my-6 overflow-x-auto border border-border/50 rounded-xl bg-card shadow-sm relative z-0">
+  <div className="min-w-[600px] mx-auto p-6 flex flex-col items-center gap-4">
+    
+    <div className="flex items-stretch justify-center gap-6 w-full">
+      {/* Account A Operations */}
+      <div className="flex-1 bg-red-500/5 border border-red-500/20 rounded-lg p-4 shadow-sm relative">
+        <div className="absolute top-0 right-0 p-2 text-red-500/40">
+           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+        <h4 className="font-bold text-red-500 mb-2 border-b border-red-500/20 pb-1">1. Deduct from A</h4>
+        <ul className="text-sm space-y-2 font-mono text-muted-foreground">
+          <li><span className="text-foreground">Read(A)</span> <br/><span className="text-xs">// Fetches 5000 from DB to RAM</span></li>
+          <li><span className="text-foreground">A = A - 1000</span> <br/><span className="text-xs">// Non-DB calculation in RAM</span></li>
+          <li><span className="text-foreground">Write(A)</span> <br/><span className="text-xs">// Updates A to 4000 (Only in RAM!)</span></li>
+        </ul>
+      </div>
+
+      {/* Account B Operations */}
+      <div className="flex-1 bg-green-500/5 border border-green-500/20 rounded-lg p-4 shadow-sm relative">
+         <div className="absolute top-0 right-0 p-2 text-green-500/40">
+           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+        <h4 className="font-bold text-green-500 mb-2 border-b border-green-500/20 pb-1">2. Add to B</h4>
+        <ul className="text-sm space-y-2 font-mono text-muted-foreground">
+          <li><span className="text-foreground">Read(B)</span> <br/><span className="text-xs">// Fetches 1000 from DB to RAM</span></li>
+          <li><span className="text-foreground">B = B + 1000</span> <br/><span className="text-xs">// Non-DB calculation in RAM</span></li>
+          <li><span className="text-foreground">Write(B)</span> <br/><span className="text-xs">// Updates B to 2000 (Only in RAM!)</span></li>
+        </ul>
+      </div>
+    </div>
+
+    {/* Commit Phase */}
+    <div className="w-full bg-blue-500/10 border border-blue-500/30 rounded-lg p-4 mt-2 flex items-center gap-4 shadow-sm">
+      <div className="p-3 bg-blue-500/20 text-blue-500 rounded-full shrink-0">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+      </div>
+      <div>
+        <h4 className="font-bold text-blue-500">3. COMMIT</h4>
+        <p className="text-sm text-muted-foreground m-0">Changes are permanently saved from RAM to the Hard Disk. <br/> **Final State:** A=4000, B=2000.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<Callout title="Two Ultimate Outcomes" type="info">
+A transaction can only end in one of two ways:
+1. **Committed:** Execution was 100% successful. The database reaches a new consistent state, and changes are irreversible (permanent).
+2. **Aborted (Rolled Back):** Execution failed midway (e.g., due to a crash or rule violation). The database is undone and restored to the exact consistent state it was in *before* the transaction started.
+</Callout>
+
+---
+
+# The ACID Properties
+
+To guarantee data validity despite errors, power failures, or concurrent user access, every database transaction must strictly follow the **ACID properties**.
+
+<div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
+  
+  {/* Atomicity */}
+  <div className="p-5 border border-border/50 bg-card rounded-xl shadow-sm hover:border-purple-500/50 transition-colors">
+    <div className="flex items-center gap-3 mb-2">
+      <div className="p-2 bg-purple-500/20 text-purple-500 rounded-lg">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
+      </div>
+      <h3 className="font-bold text-lg m-0">Atomicity</h3>
+    </div>
+    <p className="text-sm text-muted-foreground mt-2">
+      **The "All or Nothing" Rule.** A transaction is an indivisible unit. It is either performed completely, or not performed at all.
+    </p>
+    <p className="text-xs text-muted-foreground mt-2 border-t border-border/50 pt-2">
+      *Example:* When withdrawing cash from an ATM, if the power goes out before cash is dispensed, the system rolls back the deduction from your account. You never lose money without getting the cash.
+    </p>
+  </div>
+
+  {/* Consistency */}
+  <div className="p-5 border border-border/50 bg-card rounded-xl shadow-sm hover:border-emerald-500/50 transition-colors">
+    <div className="flex items-center gap-3 mb-2">
+      <div className="p-2 bg-emerald-500/20 text-emerald-500 rounded-lg">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      </div>
+      <h3 className="font-bold text-lg m-0">Consistency</h3>
+    </div>
+    <p className="text-sm text-muted-foreground mt-2">
+      **Following the Rules.** A transaction must transform the database from one valid state to another, strictly obeying all defined integrity constraints.
+    </p>
+    <p className="text-xs text-muted-foreground mt-2 border-t border-border/50 pt-2">
+      *Example:* If a bank database has a rule preventing negative balances, a transaction attempting to withdraw $100 from an account with only $50 will be aborted to maintain data consistency.
+    </p>
+  </div>
+
+  {/* Isolation */}
+  <div className="p-5 border border-border/50 bg-card rounded-xl shadow-sm hover:border-blue-500/50 transition-colors">
+    <div className="flex items-center gap-3 mb-2">
+      <div className="p-2 bg-blue-500/20 text-blue-500 rounded-lg">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+      </div>
+      <h3 className="font-bold text-lg m-0">Isolation</h3>
+    </div>
+    <p className="text-sm text-muted-foreground mt-2">
+      **Staying Separate.** Transactions execute independently. The partial effects of an incomplete transaction are totally invisible to other concurrent transactions.
+    </p>
+    <p className="text-xs text-muted-foreground mt-2 border-t border-border/50 pt-2">
+      *Example:* If you withdraw money while a friend sends you money simultaneously, the transactions process separately (e.g., sequentially) so your final balance doesn't get miscalculated.
+    </p>
+  </div>
+
+  {/* Durability */}
+  <div className="p-5 border border-border/50 bg-card rounded-xl shadow-sm hover:border-orange-500/50 transition-colors">
+    <div className="flex items-center gap-3 mb-2">
+      <div className="p-2 bg-orange-500/20 text-orange-500 rounded-lg">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="4" width="20" height="16" rx="2" ry="2"/><line x1="6" y1="8" x2="6" y2="8"/><line x1="10" y1="8" x2="18" y2="8"/><line x1="6" y1="12" x2="6" y2="12"/><line x1="10" y1="12" x2="18" y2="12"/><line x1="6" y1="16" x2="6" y2="16"/><line x1="10" y1="16" x2="18" y2="16"/></svg>
+      </div>
+      <h3 className="font-bold text-lg m-0">Durability</h3>
+    </div>
+    <p className="text-sm text-muted-foreground mt-2">
+      **Permanent Change.** Once a transaction commits, its effects are permanently recorded in physical storage and cannot be lost, even in a system crash.
+    </p>
+    <p className="text-xs text-muted-foreground mt-2 border-t border-border/50 pt-2">
+      *Example:* The moment you see "Transaction Successful" on an ATM, the bank's database has recorded it safely on the hard drive. Even if the server instantly crashes, your record is secure.
+    </p>
+  </div>
+
+</div>
+
+---
+
+## Comprehensive Summary
+
+* **Transaction:** A logical unit of work (group of DB operations) aiming to take the database from one valid state to another.
+* **Boundaries:** Defined by `BEGIN TRANSACTION`, `COMMIT`, and `ROLLBACK`.
+* **Flow:** Data is Read from DB $\rightarrow$ Modified in RAM $\rightarrow$ Written to RAM $\rightarrow$ Committed to permanent Hard Disk storage.
+* **ACID Properties:**
+  * **Atomicity:** Entire transaction executes fully, or not at all.
+  * **Consistency:** Data validity is maintained before and after the transaction.
+  * **Isolation:** Concurrent transactions don't interfere with one another.
+  * **Durability:** Committed changes survive system failures.

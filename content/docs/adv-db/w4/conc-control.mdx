@@ -1,0 +1,88 @@
+---
+title: Concurrency Control (Locking)
+description: Solving concurrency problems using Shared locks, Exclusive locks, and Two-Phase Locking (2PL).
+weight: 2
+---
+
+import { Callout } from 'fumadocs-ui/components/callout';
+import { ImageWrapper } from '@/components/mdx/image-wrapper';
+import twoPhaseLockingDark from './files/2pl-dark.png';
+import twoPhaseLockingLight from './files/2pl-light.png';
+
+# Locking Methods
+
+To solve the problems of Lost Updates and Dirty Reads, Database Management Systems use **Concurrency Control** protocols. The most common approach is **Locking**.
+
+A lock is a mechanism that prevents other transactions from accessing a data item while one transaction is using it.
+
+## 1. Types of Locks
+
+To maximize performance, databases don't just use one universal lock. They use two specific types based on what the transaction wants to do:
+
+### Shared Lock (S-Lock / Read Lock)
+* **Purpose:** Used when a transaction only wants to **READ** data.
+* **Rule:** If a data item has a Shared Lock, other transactions can *also* acquire Shared Locks to read it. However, no transaction can write to it.
+* *Analogy:* Reading a public notice board. Multiple people can read it at once, but no one can alter it while people are reading.
+
+### Exclusive Lock (X-Lock / Write Lock)
+* **Purpose:** Used when a transaction wants to **WRITE/UPDATE** data.
+* **Rule:** If a transaction holds an Exclusive Lock on an item, *no other transaction* can read or write to it until the lock is released.
+* *Analogy:* Using a single-occupancy bathroom. You lock the door exclusively; no one else can enter until you leave.
+
+<div className="my-6 overflow-x-auto border border-border/50 rounded-xl bg-card shadow-sm p-4">
+  <table className="w-full text-sm text-left">
+    <thead className="text-xs uppercase bg-muted/50 border-b border-border text-center">
+      <tr>
+        <th className="py-3 px-4 font-bold">Lock Requested \ Lock Held</th>
+        <th className="py-3 px-4 font-bold text-blue-500">Shared (Read) Held</th>
+        <th className="py-3 px-4 font-bold text-red-500">Exclusive (Write) Held</th>
+      </tr>
+    </thead>
+    <tbody className="text-center">
+      <tr className="border-b border-border/50">
+        <td className="py-3 px-4 font-bold text-blue-500">Shared (Read) Requested</td>
+        <td className="py-3 px-4 bg-emerald-500/10 text-emerald-500 font-bold border-l border-border/50">GRANTED ✅</td>
+        <td className="py-3 px-4 bg-red-500/10 text-red-500 font-bold border-l border-border/50">DENIED (Wait) ❌</td>
+      </tr>
+      <tr>
+        <td className="py-3 px-4 font-bold text-red-500">Exclusive (Write) Requested</td>
+        <td className="py-3 px-4 bg-red-500/10 text-red-500 font-bold border-l border-border/50">DENIED (Wait) ❌</td>
+        <td className="py-3 px-4 bg-red-500/10 text-red-500 font-bold border-l border-border/50">DENIED (Wait) ❌</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+---
+
+# Two-Phase Locking (2PL)
+
+Simply having locks isn't enough to guarantee safety (serializability). If a transaction grabs a lock, releases it, and grabs another, it can still cause inconsistencies. 
+
+To guarantee perfect database consistency, transactions must follow the **Two-Phase Locking (2PL)** protocol.
+
+Under 2PL, a transaction goes through two distinct phases:
+
+1.  **Growing Phase:** The transaction acquires all the locks it needs (Shared or Exclusive). *Crucial Rule: Once a transaction releases a single lock, the growing phase is over.*
+2.  **Shrinking Phase:** The transaction releases its locks. *Crucial Rule: During this phase, the transaction cannot acquire ANY new locks.*
+
+<ImageWrapper 
+  title="The Two-Phase Locking Protocol"
+  darkSrc={twoPhaseLockingDark}
+  lightSrc={twoPhaseLockingLight}
+  alt="Two-Phase Locking (2PL) Protocol Graph" 
+/>
+
+<Callout title="Strict 2PL" type="info">
+In practice, most modern databases use **Strict 2PL**. This means the Shrinking Phase doesn't happen gradually. Instead, the transaction holds *all* its locks until the very end, and releases them all simultaneously the exact millisecond the transaction `COMMIT`s or `ROLLBACK`s. This completely prevents Dirty Reads.
+</Callout>
+
+---
+
+## Comprehensive Summary
+
+* **Locks:** Control access to data. 
+* **Shared (S) Locks:** For reading. Multiple transactions can hold S-locks on the same data.
+* **Exclusive (X) Locks:** For writing. Only one transaction can hold an X-lock, blocking all others.
+* **Two-Phase Locking (2PL):** A rule stating transactions must gather all locks (Growing Phase) before releasing any (Shrinking Phase) to guarantee correct serial execution.
+* **Strict 2PL:** Prevents dirty reads by holding all acquired locks until the transaction is entirely finished (Committed/Aborted).

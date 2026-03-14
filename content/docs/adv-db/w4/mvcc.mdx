@@ -1,0 +1,59 @@
+---
+title: Multiversion Concurrency Control
+description: How MVCC allows high performance by retaining old versions of data so readers don't block writers.
+weight: 4
+---
+
+import { Callout } from 'fumadocs-ui/components/callout';
+import { ImageWrapper } from '@/components/mdx/image-wrapper';
+import mvccDark from './files/mvc-dark.png';
+import mvccLight from './files/mvc-light.png';
+
+# Multiversion Concurrency Control (MVCC)
+
+Traditional locking systems have a major bottleneck: If someone is writing to a row (holding an Exclusive Lock), anyone who wants to read that row must wait. 
+
+**Multiversion Concurrency Control (MVCC)** solves this beautifully. It is based on a simple but brilliant concept: **Readers never block writers, and writers never block readers.**
+
+### The Core Concept: Creating Versions
+
+Instead of directly overwriting existing data when an update occurs, MVCC creates a **new version** of the data item while secretly retaining the old version. 
+
+When a transaction attempts to read a data item, the DBMS doesn't make it wait for locks. Instead, it looks at the transaction's timestamp and serves it the specific *historical version* of the data that existed exactly when the transaction started.
+
+---
+
+## Oracle's Implementation of MVCC
+
+Oracle Database heavily utilizes this concept through its **multiversion read consistency** protocol. It guarantees that a query will see a perfect, frozen snapshot of the database as it existed at the millisecond the query began.
+
+Oracle manages this using two primary tools:
+1.  **System Change Number (SCN):** A logical timestamp that acts as a global, chronological clock. Every transaction gets an SCN.
+2.  **Undo Segments:** Special storage areas in the database. When a transaction modifies a row, the "before-image" (the old data) is moved into the Undo Segment.
+
+If Transaction A starts a massive report query at `SCN 100`, and Transaction B changes the underlying data and commits at `SCN 105`, Transaction A doesn't see the new data. Oracle automatically routes Transaction A to the Undo Segments to read the `SCN 100` version.
+
+---
+
+## Visualizing MVCC in Action
+
+<ImageWrapper 
+  title="Multiversion Concurrency Control (MVCC)"
+  darkSrc={mvccLight}
+  lightSrc={mvccDark}
+  alt="Multiversion Concurrency Control diagram showing Database Record X with Undo Segment and Active Database, queried by Reader Query and updated by Writer Update" 
+/>
+
+<Callout title="Garbage Collection" type="info">
+You might wonder: *Won't the database eventually run out of space storing old versions?* Yes! To fix this, MVCC uses periodic purging. Once a version of a row becomes older than the timestamp of the *oldest active transaction* currently running in the system, the DBMS knows no one will ever need to look at it again, and safely deletes it from the Undo Segments.
+</Callout>
+
+---
+
+## Comprehensive Summary
+
+* **The Goal:** Eliminate lock-waiting times. "Reads don't block Writes, Writes don't block Reads."
+* **The Mechanism:** Instead of updating data in place, the system creates a new version of the row with a new timestamp. 
+* **Snapshot Isolation:** Queries are served data from the specific timestamp/version that matches when they started, ensuring perfect consistency without locking.
+* **Oracle Implementation:** Uses the System Change Number (SCN) for timestamps and "Undo Segments" to store the older versions of modified data.
+* **Cleanup:** Old versions are automatically purged when no active transactions are old enough to require them.

@@ -1,0 +1,10 @@
+{
+  "title": "Week 4",
+  "description": "Week 4 of Advanced Database Concepts",
+  "pages":[
+    "prob-in-conc",
+    "conc-control",
+    "timestamp-ordering",
+    "mvcc"
+  ]
+}

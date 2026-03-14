@@ -1,0 +1,163 @@
+---
+title: Problems in Concurrency
+description: Understanding the Lost Update, Dirty Read, and Deadlock problems in database concurrency.
+weight: 1
+---
+
+import { Callout } from 'fumadocs-ui/components/callout';
+
+# Concurrency in Databases
+
+**Concurrency** means allowing multiple users or transactions to access and modify the database at the exact same time. While this drastically improves performance and system utilization, uncontrolled interleaving of operations can destroy database consistency.
+
+There are three major problems caused by uncontrolled concurrency, along with the issue of Deadlocks (which arises when trying to control concurrency).
+
+---
+
+## 1. The Lost Update Problem
+
+A successfully completed update operation by one user is completely overwritten and "lost" by another user doing a simultaneous update.
+
+**Example Scenario:**
+Transaction 1 ($T_1$) withdraws £10 from an account. Transaction 2 ($T_2$) deposits £100 into the same account. The initial balance is £100.
+
+<div className="my-6 overflow-x-auto border border-border/50 rounded-xl bg-card shadow-sm relative z-0">
+  <div className="min-w-[600px] p-6">
+    <div className="grid grid-cols-3 gap-4 text-sm text-center font-mono">
+      {/* Headers */}
+      <div className="font-bold text-blue-500 border-b border-border pb-2">Time</div>
+      <div className="font-bold text-purple-500 border-b border-border pb-2">Transaction 1 (Withdraw £10)</div>
+      <div className="font-bold text-emerald-500 border-b border-border pb-2">Transaction 2 (Deposit £100)</div>
+      
+      {/* Row 1 */}
+      <div className="text-muted-foreground py-2">t1</div>
+      <div className="bg-purple-500/10 rounded py-2 border border-purple-500/20">Read(Balance) <br/><span className="text-xs text-muted-foreground">Gets £100</span></div>
+      <div className="py-2"></div>
+
+      {/* Row 2 */}
+      <div className="text-muted-foreground py-2">t2</div>
+      <div className="py-2"></div>
+      <div className="bg-emerald-500/10 rounded py-2 border border-emerald-500/20">Read(Balance) <br/><span className="text-xs text-muted-foreground">Gets £100</span></div>
+
+      {/* Row 3 */}
+      <div className="text-muted-foreground py-2">t3</div>
+      <div className="py-2">Balance = 100 - 10 = £90</div>
+      <div className="py-2">Balance = 100 + 100 = £200</div>
+
+      {/* Row 4 */}
+      <div className="text-muted-foreground py-2">t4</div>
+      <div className="py-2"></div>
+      <div className="bg-emerald-500/10 rounded py-2 border border-emerald-500/20">Write(Balance) <br/><span className="text-xs text-muted-foreground">DB becomes £200</span></div>
+
+      {/* Row 5 */}
+      <div className="text-muted-foreground py-2">t5</div>
+      <div className="bg-red-500/10 text-red-500 rounded py-2 border border-red-500/20 font-bold">Write(Balance) <br/><span className="text-xs">DB becomes £90!</span></div>
+      <div className="py-2"></div>
+    </div>
+  </div>
+</div>
+
+<Callout title="The Result" type="error">
+The £100 deposited by $T_2$ is entirely lost because $T_1$ blindly overwrote the database with its outdated calculation. The final balance should be £190, but it is £90.
+</Callout>
+
+---
+
+## 2. Uncommitted Dependency (Dirty Read)
+
+This problem occurs when a transaction is allowed to read the intermediate, uncommitted results of another transaction. If the first transaction fails and rolls back, the second transaction has read "dirty" (invalid) data.
+
+**Example Scenario:**
+$T_4$ updates a balance from £100 to £200, but later encounters an error and aborts. Meanwhile, $T_5$ reads that £200 balance to do calculations.
+
+<div className="my-6 overflow-x-auto border border-border/50 rounded-xl bg-card shadow-sm relative z-0">
+  <div className="min-w-[600px] p-6">
+    <div className="grid grid-cols-3 gap-4 text-sm text-center font-mono">
+      <div className="font-bold text-blue-500 border-b border-border pb-2">Time</div>
+      <div className="font-bold text-emerald-500 border-b border-border pb-2">Transaction 4 (Failing Update)</div>
+      <div className="font-bold text-purple-500 border-b border-border pb-2">Transaction 5 (Victim)</div>
+      
+      <div className="text-muted-foreground py-2">t1</div>
+      <div className="bg-emerald-500/10 rounded py-2 border border-emerald-500/20">Write(Balance) <br/><span className="text-xs text-muted-foreground">Changes to £200</span></div>
+      <div className="py-2"></div>
+
+      <div className="text-muted-foreground py-2">t2</div>
+      <div className="py-2"></div>
+      <div className="bg-orange-500/10 rounded py-2 border border-orange-500/20 font-bold text-orange-500">Read(Balance) <br/><span className="text-xs text-muted-foreground">Reads £200 (DIRTY!)</span></div>
+
+      <div className="text-muted-foreground py-2">t3</div>
+      <div className="bg-red-500/10 rounded py-2 border border-red-500/20 font-bold text-red-500">ROLLBACK <br/><span className="text-xs text-muted-foreground">Balance restored to £100</span></div>
+      <div className="py-2"></div>
+    </div>
+  </div>
+</div>
+
+<Callout title="The Result" type="error">
+$T_5$ is now performing calculations based on a balance of £200, but in the official database reality, that £200 never existed.
+</Callout>
+
+---
+
+## 3. Deadlocks
+
+While controlling concurrency (usually via locks), we can accidentally create a situation where two or more transactions are waiting indefinitely for each other to release resources. This is called a **Deadlock** or Deadly Embrace.
+
+**Example Scenario:**
+$T_1$ locks Item A and needs Item B to finish.
+$T_2$ locks Item B and needs Item A to finish.
+
+<div className="my-8 overflow-x-auto border border-zinc-200 dark:border-zinc-800 rounded-xl bg-zinc-50 dark:bg-zinc-900/20 shadow-sm relative z-0">
+  <div className="relative w-[600px] h-[240px] mx-auto">
+    
+    {/* Transaction 1 */}
+    <div className="absolute left-[40px] top-1/2 -translate-y-1/2 w-[200px] bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-xl p-5 shadow-sm text-center z-10 transition-shadow hover:shadow-md">
+      <h4 className="font-semibold text-zinc-900 dark:text-zinc-100 mb-3 border-b border-zinc-100 dark:border-zinc-800 pb-2">Transaction 1</h4>
+      <div className="text-[13px] text-zinc-600 dark:text-zinc-400 space-y-1.5 font-medium">
+        <p><span className="text-emerald-600 dark:text-emerald-400">Holds:</span> Lock A</p>
+        <p><span className="text-rose-600 dark:text-rose-400">Needs:</span> Lock B</p>
+      </div>
+    </div>
+
+    {/* Transaction 2 */}
+    <div className="absolute right-[40px] top-1/2 -translate-y-1/2 w-[200px] bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-xl p-5 shadow-sm text-center z-10 transition-shadow hover:shadow-md">
+      <h4 className="font-semibold text-zinc-900 dark:text-zinc-100 mb-3 border-b border-zinc-100 dark:border-zinc-800 pb-2">Transaction 2</h4>
+      <div className="text-[13px] text-zinc-600 dark:text-zinc-400 space-y-1.5 font-medium">
+        <p><span className="text-emerald-600 dark:text-emerald-400">Holds:</span> Lock B</p>
+        <p><span className="text-rose-600 dark:text-rose-400">Needs:</span> Lock A</p>
+      </div>
+    </div>
+
+    {/* Circular Wait Arrows */}
+    <svg className="absolute inset-0 w-full h-full pointer-events-none z-0" viewBox="0 0 600 240">
+      <defs>
+        <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+          <path d="M 0 0 L 10 5 L 0 10 z" className="fill-zinc-400 dark:fill-zinc-600" />
+        </marker>
+      </defs>
+      
+      {/* Top Arrow (T1 -> T2) */}
+      <path d="M 240 85 Q 300 35 352 85" fill="none" stroke="currentColor" strokeWidth="2" strokeDasharray="4,4" className="text-zinc-400 dark:text-zinc-600" markerEnd="url(#arrow)"/>
+      
+      {/* Bottom Arrow (T2 -> T1) */}
+      <path d="M 360 155 Q 300 205 248 155" fill="none" stroke="currentColor" strokeWidth="2" strokeDasharray="4,4" className="text-zinc-400 dark:text-zinc-600" markerEnd="url(#arrow)"/>
+    </svg>
+
+    {/* Center Deadlock Pill */}
+    <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white dark:bg-zinc-900 border border-rose-200 dark:border-rose-900/50 text-rose-600 dark:text-rose-400 text-[11px] uppercase tracking-widest font-bold px-3 py-1.5 rounded-full z-10 shadow-sm flex items-center gap-1.5">
+      <div className="w-1.5 h-1.5 rounded-full bg-rose-500 animate-[pulse_2s_ease-in-out_infinite]"></div>
+      Deadlock
+    </div>
+
+  </div>
+</div>
+
+Neither transaction can move forward. The only solution is for the DBMS to detect the deadlock, forcibly kill (abort) one of the transactions, and let the other proceed.
+
+---
+
+## Comprehensive Summary
+
+* **Concurrency:** Multiple transactions executing simultaneously. Necessary for speed, but dangerous if uncontrolled.
+* **Lost Update:** Two transactions read the same data, calculate updates in RAM, and write back. The first write is overwritten and lost.
+* **Dirty Read (Uncommitted Dependency):** A transaction reads data written by another transaction *before* it commits. If the writer rolls back, the reader is using ghost data.
+* **Deadlocks:** A side-effect of using locks to fix the above problems. Two transactions hold locks the other needs, resulting in an infinite standoff.

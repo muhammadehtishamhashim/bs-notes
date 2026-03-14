@@ -1,0 +1,64 @@
+---
+title: Transaction States
+description: The lifecycle of a database transaction from initiation to termination.
+weight: 2
+---
+
+import { Callout } from 'fumadocs-ui/components/callout';
+import { ImageWrapper } from '@/components/mdx/image-wrapper';
+import TransactionCycleImg from './files/transaction-cycle.png';
+
+# Transaction Lifecycle
+
+During its lifecycle, a transaction passes through several distinct states. These states dictate how the Database Management System (DBMS) handles normal operations, consistency checks, and potential failures.
+
+### The State Transition Diagram
+
+<ImageWrapper 
+  lightSrc={TransactionCycleImg} 
+  darkSrc={TransactionCycleImg} 
+  alt="Transaction State Transition Diagram" 
+  caption="The State Transition Diagram" 
+/>
+
+---
+
+# Detailed State Explanations
+
+Let's break down each state using an **ATM Withdrawal Example**.
+
+### 1. Active State
+* **What it is:** The initial state of every transaction. It stays in this state while its instructions (reads and writes) are actively executing.
+* **ATM Example:** You insert your card, enter your PIN, and request $500. The system queries your account to read the balance (`Read Account_A = $1000`). The transaction is currently "Active".
+
+### 2. Partially Committed State
+* **What it is:** The transaction reaches this state immediately after its *final statement* has executed, but before the changes are permanently saved. The logic is done, but the DBMS is performing final checks (like integrity and serializability checks) to ensure no rules are broken before saving to the physical hard drive.
+* **ATM Example:** The system deducts the $500 in RAM ($1000 - $500 = $500). Operations are finished, but the bank is doing a final validation check before permanently altering your official record.
+
+### 3. Committed State
+* **What it is:** The ultimate success state. The transaction has passed all checks from the Partially Committed state, and its updates have been permanently and safely recorded on secondary storage (hard disk). 
+* **ATM Example:** The validation passes. The bank permanently overwrites your old balance. The ATM dispenses your $500, and the screen says "Transaction Successful".
+
+### 4. Failed State
+* **What it is:** A transaction falls into the Failed state if it encounters a fatal error during the `Active` state (e.g., user cancellation, concurrency conflict) or during the `Partially Committed` state (e.g., a hardware crash before changes could be saved, or a constraint violation).
+* **ATM Example:** While you are in the Partially Committed state, the ATM loses power, or the system realizes you actually don't have enough funds. The system throws an error, marking the transaction as "Failed".
+
+### 5. Aborted State
+* **What it is:** Once a transaction fails, it cannot just be left half-done. The recovery subsystem kicks in, rolling back any changes made in RAM to restore the database to its previous, untouched consistent state. Once the rollback is complete, the transaction is marked as Aborted.
+* **ATM Example:** Because the power failed, the bank cleans up the temporary deduction made in RAM. Your balance is restored exactly to $1000. No money was lost.
+
+### 6. Terminated State
+* **What it is:** The final phase of the lifecycle. A transaction enters this state after it has either been successfully `Committed` or successfully `Aborted`. 
+* **ATM Example:** The process is entirely closed and cleared from the system's active memory. The ATM is ready for the next customer's transaction.
+
+---
+
+## Comprehensive Summary
+
+* **State Machine Flow:** Transactions move through specific states to ensure tracking and safe failure recovery.
+* **Active:** The transaction is currently executing its Read/Write logic.
+* **Partially Committed:** All logic is executed, but the DBMS is doing final validation before writing to permanent storage.
+* **Committed:** The transaction succeeds, and data is permanently saved to the disk.
+* **Failed:** An error, crash, or constraint violation occurs during Active or Partially Committed states.
+* **Aborted:** The database rolls back the failed transaction, undoing all temporary changes.
+* **Terminated:** The transaction leaves the system entirely, having either succeeded (Committed) or failed safely (Aborted).
